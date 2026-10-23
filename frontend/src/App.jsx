@@ -4,6 +4,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import './App.css'
 import SqlExercise from './SqlExercise'
+import PythonExercise from './PythonExercise'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -41,6 +42,7 @@ function App() {
       </section>
 
       <SqlExercise />
+      <PythonExercise />
 
       <div className="ticks"></div>
 

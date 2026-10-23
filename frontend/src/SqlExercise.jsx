@@ -1,17 +1,23 @@
 import { useState } from 'react'
 import { runSql } from './sql/runSql'
+import { compareResults } from './sql/compareResults'
+import { sqlExample } from './exercises/sqlExample'
 
 export default function SqlExercise() {
-  const [query, setQuery] = useState('SELECT * FROM ventas;')
+  const [query, setQuery] = useState(sqlExample.starterQuery)
   const [result, setResult] = useState(null)
   const [error, setError] = useState(null)
+  const [verdict, setVerdict] = useState(null)
   const [running, setRunning] = useState(false)
 
-  async function run() {
+  async function run(verify) {
     setRunning(true)
     setError(null)
+    setVerdict(null)
     try {
-      setResult(await runSql(query))
+      const res = await runSql(query)
+      setResult(res)
+      if (verify) setVerdict(compareResults(res, sqlExample.expected))
     } catch (e) {
       setResult(null)
       setError(e.message)
@@ -23,6 +29,7 @@ export default function SqlExercise() {
   return (
     <section style={{ padding: '1rem', textAlign: 'left' }}>
       <h2>Ejercicio SQL (prueba)</h2>
+      <p>{sqlExample.statement}</p>
       <p>Tabla disponible: <code>ventas(id, producto, cantidad, precio)</code></p>
       <textarea
         value={query}
@@ -30,9 +37,18 @@ export default function SqlExercise() {
         rows={5}
         style={{ width: '100%', fontFamily: 'monospace' }}
       />
-      <button type="button" onClick={run} disabled={running}>
+      <button type="button" onClick={() => run(false)} disabled={running}>
         {running ? 'Ejecutando...' : 'Ejecutar'}
       </button>
+      <button type="button" onClick={() => run(true)} disabled={running}>
+        Verificar
+      </button>
+      {verdict && (
+        <p style={{ color: verdict.ok ? 'green' : 'crimson' }}>
+          {verdict.ok ? '✓ ' : '✗ '}
+          {verdict.message}
+        </p>
+      )}
       {error && <pre style={{ color: 'crimson' }}>{error}</pre>}
       {result && (
         <table>
