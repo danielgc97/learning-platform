@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(cd C:\\\\Users\\\\emerd\\\\Desktop\\\\repos\\\\learning-platform\\\\frontend; npm install @duckdb/duckdb-wasm; Get-ChildItem node_modules\\\\@duckdb\\\\duckdb-wasm\\\\dist | Where-Object { $_.Name -match 'duckdb-\\(mvp|eh\\)\\\\.wasm|browser-\\(mvp|eh\\)\\\\.worker\\\\.js$' } | Select-Object Name)"
+    ]
+  }
+}

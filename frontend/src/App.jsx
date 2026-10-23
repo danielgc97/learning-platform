@@ -1,15 +1,25 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import heroImg from './assets/hero.png'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import './App.css'
+import SqlExercise from './SqlExercise'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [backend, setBackend] = useState('conectando...')
+
+  useEffect(() => {
+    fetch('http://127.0.0.1:8000/health')
+      .then((res) => res.json())
+      .then((data) => setBackend(data.status))
+      .catch(() => setBackend('sin conexión'))
+  }, [])
 
   return (
     <>
       <section id="center">
+        <p>Backend: {backend}</p>
         <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />
           <img src={reactLogo} className="framework" alt="React logo" />
@@ -29,6 +39,8 @@ function App() {
           Count is {count}
         </button>
       </section>
+
+      <SqlExercise />
 
       <div className="ticks"></div>
 
