@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { runPython } from './python/runPython'
 import { pythonExample } from './exercises/pythonExample'
+import FeedbackButton from './FeedbackButton'
 
 export default function PythonExercise() {
   const [code, setCode] = useState(pythonExample.starterCode)
@@ -16,6 +17,14 @@ export default function PythonExercise() {
       setOutput(await runPython(code, verify ? pythonExample.tests : null))
     } catch (e) {
       setError(e.message)
+      if (verify) {
+        const lastLine = e.message.trim().split('\n').pop()
+        setOutput({
+          stdout: '',
+          result: null,
+          verdict: { ok: false, message: `Error al ejecutar tu código: ${lastLine}` },
+        })
+      }
     } finally {
       setRunning(false)
     }
@@ -42,6 +51,14 @@ export default function PythonExercise() {
           {output.verdict.ok ? '✓ ' : '✗ '}
           {output.verdict.message}
         </p>
+      )}
+      {output?.verdict && !output.verdict.ok && (
+        <FeedbackButton
+          exerciseType="python"
+          statement={pythonExample.statement}
+          studentCode={code}
+          testResult={output.verdict.message}
+        />
       )}
       {error && <pre style={{ color: 'crimson' }}>{error}</pre>}
       {output && !output.stdout && output.result === null && !output.verdict && (

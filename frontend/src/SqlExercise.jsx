@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { runSql } from './sql/runSql'
 import { compareResults } from './sql/compareResults'
 import { sqlExample } from './exercises/sqlExample'
+import FeedbackButton from './FeedbackButton'
 
 export default function SqlExercise() {
   const [query, setQuery] = useState(sqlExample.starterQuery)
@@ -21,6 +22,7 @@ export default function SqlExercise() {
     } catch (e) {
       setResult(null)
       setError(e.message)
+      if (verify) setVerdict({ ok: false, message: `Error al ejecutar la consulta: ${e.message}` })
     } finally {
       setRunning(false)
     }
@@ -48,6 +50,14 @@ export default function SqlExercise() {
           {verdict.ok ? '✓ ' : '✗ '}
           {verdict.message}
         </p>
+      )}
+      {verdict && !verdict.ok && (
+        <FeedbackButton
+          exerciseType="sql"
+          statement={sqlExample.statement}
+          studentCode={query}
+          testResult={verdict.message}
+        />
       )}
       {error && <pre style={{ color: 'crimson' }}>{error}</pre>}
       {result && (
