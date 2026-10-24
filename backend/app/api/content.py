@@ -10,13 +10,13 @@ router = APIRouter(dependencies=[Depends(get_current_user_id)])
 
 
 @router.get("/courses", response_model=list[CourseOut])
-def courses():
-    return content.list_courses()
+def courses(user_id: str = Depends(get_current_user_id)):
+    return content.list_courses(user_id)
 
 
 @router.get("/courses/{slug}", response_model=CourseDetail)
-def course(slug: str):
-    found = content.get_course(slug)
+def course(slug: str, user_id: str = Depends(get_current_user_id)):
+    found = content.get_course(slug, user_id)
     if found is None:
         raise HTTPException(status_code=404, detail="Curso no encontrado.")
     return found

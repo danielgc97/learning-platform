@@ -11,12 +11,15 @@
   },
   "dependencies": {
     "@duckdb/duckdb-wasm": "^1.33.1-dev57.0",
+    "@monaco-editor/react": "^4.7.0",
     "@supabase/supabase-js": "^2.118.0",
+    "@tailwindcss/vite": "^4.3.3",
     "pyodide": "^314.0.7",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "react-markdown": "^10.1.0",
-    "react-router-dom": "^7.18.4"
+    "react-router-dom": "^7.18.4",
+    "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
     "@types/react": "^19.3.0",

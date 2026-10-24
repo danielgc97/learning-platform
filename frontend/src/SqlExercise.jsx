@@ -3,6 +3,12 @@ import { runSql } from './sql/runSql'
 import { compareResults } from './sql/compareResults'
 import FeedbackButton from './FeedbackButton'
 import { saveSubmission } from './api'
+import Alert from './components/Alert'
+import Button from './components/Button'
+import CodeEditor from './components/CodeEditor'
+import ExerciseShell from './components/ExerciseShell'
+import { PlayIcon } from './components/Icons'
+import ResultTable from './components/ResultTable'
 
 export default function SqlExercise({ exercise, completed, onPassed }) {
   const { setup_sql: setupSql, expected } = exercise.spec
@@ -39,45 +45,41 @@ export default function SqlExercise({ exercise, completed, onPassed }) {
     }
   }
 
+  const hasResult = verdict || error || result
+
   return (
-    <section className="exercise">
-      <h3>Ejercicio SQL {completed && <span style={{ color: 'green' }}>✓ completado</span>}</h3>
-      <p>{exercise.statement}</p>
-      <textarea value={query} onChange={(e) => setQuery(e.target.value)} rows={5} />
-      <button type="button" onClick={() => run(false)} disabled={running}>
-        {running ? 'Ejecutando...' : 'Ejecutar'}
-      </button>
-      <button type="button" onClick={() => run(true)} disabled={running}>
-        Verificar
-      </button>
-      {verdict && (
-        <p style={{ color: verdict.ok ? 'green' : 'crimson' }}>
-          {verdict.ok ? '✓ ' : '✗ '}
-          {verdict.message}
-        </p>
-      )}
-      {verdict && !verdict.ok && (
-        <FeedbackButton
-          exerciseType="sql"
-          statement={exercise.statement}
-          studentCode={query}
-          testResult={verdict.message}
-          submissionId={submissionId}
-        />
-      )}
-      {error && <pre style={{ color: 'crimson' }}>{error}</pre>}
-      {result && (
-        <table>
-          <thead>
-            <tr>{result.columns.map((c) => <th key={c}>{c}</th>)}</tr>
-          </thead>
-          <tbody>
-            {result.rows.map((row, i) => (
-              <tr key={i}>{row.map((v, j) => <td key={j}>{String(v)}</td>)}</tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-    </section>
+    <ExerciseShell
+      label="SQL"
+      completed={completed}
+      statement={exercise.statement}
+      editor={<CodeEditor value={query} onChange={setQuery} language="sql" height={190} />}
+      actions={
+        <>
+          <Button onClick={() => run(false)} disabled={running}>
+            <PlayIcon width={14} height={14} className="mr-1.5" />
+            {running ? 'Ejecutando...' : 'Ejecutar'}
+          </Button>
+          <Button variant="primary" onClick={() => run(true)} disabled={running}>Verificar</Button>
+        </>
+      }
+      result={
+        hasResult && (
+          <>
+            {verdict && <Alert tone={verdict.ok ? 'success' : 'error'} className="mt-0">{verdict.ok ? '✓ ' : '✗ '}{verdict.message}</Alert>}
+            {verdict && !verdict.ok && (
+              <FeedbackButton
+                exerciseType="sql"
+                statement={exercise.statement}
+                studentCode={query}
+                testResult={verdict.message}
+                submissionId={submissionId}
+              />
+            )}
+            {error && !verdict && <pre className="overflow-x-auto font-mono text-sm text-red-600 dark:text-red-400">{error}</pre>}
+            {result && <ResultTable columns={result.columns} rows={result.rows} />}
+          </>
+        )
+      }
+    />
   )
 }

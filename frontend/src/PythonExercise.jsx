@@ -2,6 +2,11 @@ import { useState } from 'react'
 import { runPython } from './python/runPython'
 import FeedbackButton from './FeedbackButton'
 import { saveSubmission } from './api'
+import Alert from './components/Alert'
+import Button from './components/Button'
+import CodeEditor from './components/CodeEditor'
+import ExerciseShell from './components/ExerciseShell'
+import { PlayIcon } from './components/Icons'
 
 export default function PythonExercise({ exercise, completed, onPassed }) {
   const [code, setCode] = useState(exercise.starter_code)
@@ -38,42 +43,55 @@ export default function PythonExercise({ exercise, completed, onPassed }) {
     }
   }
 
+  const hasOutput = output && (output.stdout || output.result !== null)
+  const verdict = output?.verdict
+
+  let result = null
+  if (running) {
+    result = <p className="text-sm text-slate-500">Ejecutando... (la primera vez descarga Python, unos segundos)</p>
+  } else if (output || error) {
+    result = (
+      <>
+        {verdict && <Alert tone={verdict.ok ? 'success' : 'error'} className="mt-0">{verdict.ok ? '✓ ' : '✗ '}{verdict.message}</Alert>}
+        {verdict && !verdict.ok && (
+          <FeedbackButton
+            exerciseType="python"
+            statement={exercise.statement}
+            studentCode={code}
+            testResult={verdict.message}
+            submissionId={submissionId}
+          />
+        )}
+        {error && !verdict && <pre className="overflow-x-auto font-mono text-sm text-red-600 dark:text-red-400">{error}</pre>}
+        {output && !hasOutput && !verdict && (
+          <p className="text-sm text-slate-500">El código se ejecutó sin errores y no produjo salida.</p>
+        )}
+        {hasOutput && (
+          <pre className="mt-3 overflow-x-auto rounded-md bg-slate-100 p-3 font-mono text-sm dark:bg-slate-800">
+            {output.stdout}
+            {output.result !== null && `=> ${output.result}`}
+          </pre>
+        )}
+      </>
+    )
+  }
+
   return (
-    <section className="exercise">
-      <h3>Ejercicio Python {completed && <span style={{ color: 'green' }}>✓ completado</span>}</h3>
-      <p>{exercise.statement}</p>
-      <textarea value={code} onChange={(e) => setCode(e.target.value)} rows={8} />
-      <button type="button" onClick={() => run(false)} disabled={running}>
-        {running ? 'Ejecutando... (la primera vez descarga Python)' : 'Ejecutar'}
-      </button>
-      <button type="button" onClick={() => run(true)} disabled={running}>
-        Verificar
-      </button>
-      {output?.verdict && (
-        <p style={{ color: output.verdict.ok ? 'green' : 'crimson' }}>
-          {output.verdict.ok ? '✓ ' : '✗ '}
-          {output.verdict.message}
-        </p>
-      )}
-      {output?.verdict && !output.verdict.ok && (
-        <FeedbackButton
-          exerciseType="python"
-          statement={exercise.statement}
-          studentCode={code}
-          testResult={output.verdict.message}
-          submissionId={submissionId}
-        />
-      )}
-      {error && <pre style={{ color: 'crimson' }}>{error}</pre>}
-      {output && !output.stdout && output.result === null && !output.verdict && (
-        <p>El código se ejecutó sin errores y no produjo salida.</p>
-      )}
-      {output && (output.stdout || output.result !== null) && (
-        <pre>
-          {output.stdout}
-          {output.result !== null && `=> ${output.result}`}
-        </pre>
-      )}
-    </section>
+    <ExerciseShell
+      label="Python"
+      completed={completed}
+      statement={exercise.statement}
+      editor={<CodeEditor value={code} onChange={setCode} language="python" height={220} />}
+      actions={
+        <>
+          <Button onClick={() => run(false)} disabled={running}>
+            <PlayIcon width={14} height={14} className="mr-1.5" />
+            Ejecutar
+          </Button>
+          <Button variant="primary" onClick={() => run(true)} disabled={running}>Verificar</Button>
+        </>
+      }
+      result={result}
+    />
   )
 }

@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { apiFetch } from './api'
+import Alert from './components/Alert'
+import Button from './components/Button'
 
 export default function FeedbackButton({ exerciseType, statement, studentCode, testResult, submissionId }) {
   const [feedback, setFeedback] = useState(null)
@@ -30,12 +32,12 @@ export default function FeedbackButton({ exerciseType, statement, studentCode, t
   }
 
   return (
-    <div>
-      <button type="button" onClick={ask} disabled={loading}>
-        {loading ? 'Pensando...' : 'Pedir ayuda'}
-      </button>
-      {error && <p style={{ color: 'crimson' }}>{error}</p>}
-      {feedback && <p style={{ whiteSpace: 'pre-wrap' }}>💡 {feedback}</p>}
+    <div className="mt-3">
+      <Button onClick={ask} disabled={loading}>
+        {loading ? 'Pensando...' : '💡 Pedir ayuda'}
+      </Button>
+      {error && <Alert tone="error">{error}</Alert>}
+      {feedback && <Alert tone="info">{feedback}</Alert>}
     </div>
   )
 }
