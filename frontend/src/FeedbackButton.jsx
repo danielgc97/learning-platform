@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { supabase } from './supabase'
+import { apiFetch } from './api'
 
-export default function FeedbackButton({ exerciseType, statement, studentCode, testResult }) {
+export default function FeedbackButton({ exerciseType, statement, studentCode, testResult, submissionId }) {
   const [feedback, setFeedback] = useState(null)
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -11,26 +11,17 @@ export default function FeedbackButton({ exerciseType, statement, studentCode, t
     setError(null)
     setFeedback(null)
     try {
-      const { data } = await supabase.auth.getSession()
-      if (!data.session) throw new Error('Inicia sesión para pedir ayuda.')
-      const res = await fetch('http://127.0.0.1:8000/feedback', {
+      const data = await apiFetch('/feedback', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${data.session.access_token}`,
-        },
-        body: JSON.stringify({
+        body: {
           exercise_type: exerciseType,
           statement,
           student_code: studentCode,
           test_result: testResult,
-        }),
+          submission_id: submissionId,
+        },
       })
-      if (!res.ok) {
-        const body = await res.json().catch(() => null)
-        throw new Error(body?.detail ?? 'No se pudo obtener ayuda en este momento.')
-      }
-      setFeedback((await res.json()).feedback)
+      setFeedback(data.feedback)
     } catch (e) {
       setError(e.message)
     } finally {

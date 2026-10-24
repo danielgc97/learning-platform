@@ -7,7 +7,9 @@ load_dotenv(Path(__file__).resolve().parents[1] / ".env")
 from fastapi import FastAPI  # noqa: E402
 from fastapi.middleware.cors import CORSMiddleware  # noqa: E402
 
+from app.api.content import router as content_router  # noqa: E402
 from app.api.feedback import router as feedback_router  # noqa: E402
+from app.api.submissions import router as submissions_router  # noqa: E402
 
 app = FastAPI(title="Learning Platform API")
 
@@ -19,6 +21,8 @@ app.add_middleware(
 )
 
 app.include_router(feedback_router)
+app.include_router(content_router)
+app.include_router(submissions_router)
 
 
 @app.get("/health")

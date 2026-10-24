@@ -1,6 +1,6 @@
 id: sql-ventas-001
 type: sql
-statement: "Muestra cada producto con su total vendido (cantidad * precio) en una columna llamada total, ordenado de mayor a menor."
+statement: "La tabla ventas tiene las columnas id, producto, cantidad y precio. Muestra cada producto con su total vendido (cantidad * precio) en una columna llamada total, ordenado de mayor a menor."
 starter_code: "SELECT * FROM ventas;"
 setup_sql: |
   CREATE TABLE ventas (id INTEGER, producto VARCHAR, cantidad INTEGER, precio DOUBLE);

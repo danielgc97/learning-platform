@@ -1,20 +1,27 @@
 import { useState } from 'react'
 import { runPython } from './python/runPython'
-import { pythonExample } from './exercises/pythonExample'
 import FeedbackButton from './FeedbackButton'
+import { saveSubmission } from './api'
 
-export default function PythonExercise() {
-  const [code, setCode] = useState(pythonExample.starterCode)
+export default function PythonExercise({ exercise, completed, onPassed }) {
+  const [code, setCode] = useState(exercise.starter_code)
   const [output, setOutput] = useState(null)
   const [error, setError] = useState(null)
+  const [submissionId, setSubmissionId] = useState(null)
   const [running, setRunning] = useState(false)
 
   async function run(verify) {
     setRunning(true)
     setError(null)
     setOutput(null)
+    setSubmissionId(null)
     try {
-      setOutput(await runPython(code, verify ? pythonExample.tests : null))
+      const out = await runPython(code, verify ? exercise.spec.tests : null)
+      setOutput(out)
+      if (verify) {
+        setSubmissionId(await saveSubmission(exercise.slug, code, out.verdict.ok))
+        if (out.verdict.ok) onPassed(exercise.slug)
+      }
     } catch (e) {
       setError(e.message)
       if (verify) {
@@ -24,6 +31,7 @@ export default function PythonExercise() {
           result: null,
           verdict: { ok: false, message: `Error al ejecutar tu código: ${lastLine}` },
         })
+        setSubmissionId(await saveSubmission(exercise.slug, code, false))
       }
     } finally {
       setRunning(false)
@@ -31,15 +39,10 @@ export default function PythonExercise() {
   }
 
   return (
-    <section style={{ padding: '1rem', textAlign: 'left' }}>
-      <h2>Ejercicio Python (prueba)</h2>
-      <p>{pythonExample.statement}</p>
-      <textarea
-        value={code}
-        onChange={(e) => setCode(e.target.value)}
-        rows={8}
-        style={{ width: '100%', fontFamily: 'monospace' }}
-      />
+    <section className="exercise">
+      <h3>Ejercicio Python {completed && <span style={{ color: 'green' }}>✓ completado</span>}</h3>
+      <p>{exercise.statement}</p>
+      <textarea value={code} onChange={(e) => setCode(e.target.value)} rows={8} />
       <button type="button" onClick={() => run(false)} disabled={running}>
         {running ? 'Ejecutando... (la primera vez descarga Python)' : 'Ejecutar'}
       </button>
@@ -55,9 +58,10 @@ export default function PythonExercise() {
       {output?.verdict && !output.verdict.ok && (
         <FeedbackButton
           exerciseType="python"
-          statement={pythonExample.statement}
+          statement={exercise.statement}
           studentCode={code}
           testResult={output.verdict.message}
+          submissionId={submissionId}
         />
       )}
       {error && <pre style={{ color: 'crimson' }}>{error}</pre>}
