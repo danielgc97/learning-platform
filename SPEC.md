@@ -31,7 +31,7 @@ Certificados, foros, app móvil, modelo local, panel para otros docentes, inteli
 | Tema | Decisión | Razón |
 |---|---|---|
 | Backend | Python 3.11 + FastAPI | Un solo lenguaje que ya dominas; fácil de depurar y mantener solo. |
-| Base de datos | Supabase (PostgreSQL + auth + API automática) | Gratuita hasta 500MB, cero config de servidor, SQLAlchemy sigue funcionando en FastAPI. |
+| Base de datos | Supabase (PostgreSQL + Auth). Migraciones en SQL puro en `supabase/migrations/`; el backend usa el cliente `supabase` de Python | Gratuita hasta 500MB, esquema versionado en Git, una sola dependencia. Se puede sumar SQLAlchemy después si el modelo se complica. |
 | Frontend | React 18 + Vite | Stack estándar, escalable, amplia demanda laboral. Fácil de mantener y extender. |
 | Ejecución de SQL | DuckDB-WASM (o sql.js) en el navegador | El código del usuario nunca corre en tu servidor: cero riesgo de seguridad y cero costo de cómputo. |
 | Ejecución de Python | Pyodide (WebAssembly) en el navegador | Mismo motivo. Limitación: descarga inicial pesada y no todas las librerías disponibles; verificar pandas/numpy. |
