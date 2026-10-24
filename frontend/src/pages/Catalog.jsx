@@ -39,7 +39,9 @@ export default function Catalog() {
               </div>
               <div className="mt-3 flex items-center justify-between text-sm">
                 <span className="text-slate-500">
-                  {course.completed_count} de {course.exercise_count} completados
+                  {course.exercise_count === 0
+                    ? 'Contenido en preparación'
+                    : `${course.completed_count} de ${course.exercise_count} completados`}
                 </span>
                 <span className="inline-flex items-center gap-1 font-semibold text-teal-700 dark:text-teal-400">
                   {started ? 'Continuar' : 'Empezar'}
