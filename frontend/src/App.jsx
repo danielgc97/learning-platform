@@ -5,6 +5,7 @@ import viteLogo from './assets/vite.svg'
 import './App.css'
 import SqlExercise from './SqlExercise'
 import PythonExercise from './PythonExercise'
+import AuthPanel from './AuthPanel'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -21,6 +22,7 @@ function App() {
     <>
       <section id="center">
         <p>Backend: {backend}</p>
+        <AuthPanel />
         <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />
           <img src={reactLogo} className="framework" alt="React logo" />
