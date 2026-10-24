@@ -1,0 +1,10 @@
+id: agentes-concepto-001
+type: quiz
+statement: "¿Qué distingue a un agente de IA de una simple llamada a un modelo de lenguaje?"
+options:
+  - "Que usa un modelo más grande"
+  - "Que decide qué herramienta usar y repite pasos hasta cumplir un objetivo"
+  - "Que solo funciona con datos en inglés"
+  - "Que no necesita ningún modelo"
+correct: 1
+explanation: "Un agente combina un modelo con herramientas y un bucle de decisión: actúa, observa el resultado y decide el siguiente paso."

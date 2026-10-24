@@ -18,8 +18,8 @@ from dotenv import load_dotenv
 
 BACKEND = Path(__file__).resolve().parents[1]
 CONTENT = BACKEND.parent / "content"
-EXERCISE_TYPES = {"sql", "python", "agent"}
-SPEC_KEYS = ("setup_sql", "dataset", "expected", "tests", "rubric", "hints")
+EXERCISE_TYPES = {"sql", "python", "agent", "quiz"}
+SPEC_KEYS = ("setup_sql", "dataset", "expected", "tests", "rubric", "hints", "options", "correct", "explanation")
 PREFIX = re.compile(r"^(\d+)-(.+)$")
 
 
@@ -68,6 +68,12 @@ def collect() -> list[dict]:
                             sys.exit(f"{path}: falta el campo '{key}'")
                     if data["type"] not in EXERCISE_TYPES:
                         sys.exit(f"{path}: type debe ser uno de {sorted(EXERCISE_TYPES)}")
+                    if data["type"] == "quiz":
+                        options, correct = data.get("options"), data.get("correct")
+                        if not isinstance(options, list) or len(options) < 2:
+                            sys.exit(f"{path}: un quiz necesita 'options' con al menos 2 opciones")
+                        if not isinstance(correct, int) or not 0 <= correct < len(options):
+                            sys.exit(f"{path}: 'correct' debe ser el número de la opción correcta (empezando en 0)")
                     if data["id"] in seen_exercises:
                         sys.exit(f"{path}: el id '{data['id']}' está repetido")
                     seen_exercises.add(data["id"])

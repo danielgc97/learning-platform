@@ -8,6 +8,7 @@ import { ArrowLeftIcon, ArrowRightIcon, CheckIcon } from '../components/Icons'
 import Markdown from '../components/Markdown'
 import SqlExercise from '../SqlExercise'
 import PythonExercise from '../PythonExercise'
+import QuizExercise from '../QuizExercise'
 
 function NavCard({ lesson, direction }) {
   const isNext = direction === 'next'
@@ -70,6 +71,7 @@ export default function Lesson() {
         }
         if (exercise.type === 'sql') return <SqlExercise key={exercise.slug} {...props} />
         if (exercise.type === 'python') return <PythonExercise key={exercise.slug} {...props} />
+        if (exercise.type === 'quiz') return <QuizExercise key={exercise.slug} {...props} />
         return <Alert key={exercise.slug} tone="info">Tipo de ejercicio no soportado todavía: {exercise.type}</Alert>
       })}
 

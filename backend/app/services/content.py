@@ -2,7 +2,7 @@ from app.services.supabase_client import get_supabase
 
 # Del spec del ejercicio, solo lo que el navegador necesita para ejecutar y validar.
 # La rúbrica (la usa solo la IA en el backend) y las pistas no se envían.
-PUBLIC_SPEC_KEYS = ("setup_sql", "dataset", "expected", "tests")
+PUBLIC_SPEC_KEYS = ("setup_sql", "dataset", "expected", "tests", "options", "correct", "explanation")
 
 COURSE_TREE = "slug,title,description,position,modules(slug,title,position,lessons(id,slug,title,position,exercises(slug)))"
 
