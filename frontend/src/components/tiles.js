@@ -1,12 +1,21 @@
 const TILES = ['bg-c1', 'bg-c2', 'bg-c3', 'bg-c4']
 
-const BY_SLUG = {
-  'fundamentos-ia': TILES[0],
-  'sql-fundamentos': TILES[1],
-  'python-fundamentos': TILES[2],
-  'agentes-fundamentos': TILES[3],
-}
+// Mismo orden que la ruta de cursos (campo position de content/*/course.yaml).
+const ORDER = [
+  'como-funciona-una-app',
+  'herramientas-del-dia-a-dia',
+  'trabajar-con-ia',
+  'sql-para-tu-base',
+  'python-para-tu-backend',
+  'backend-fastapi',
+  'frontend-react',
+  'login-seguridad-pagos',
+  'agentes-ia',
+  'publica-tu-saas',
+  'proyecto-primer-saas',
+]
 
 export function tileFor(slug) {
-  return BY_SLUG[slug] ?? TILES[[...slug].reduce((sum, ch) => sum + ch.charCodeAt(0), 0) % TILES.length]
+  const index = ORDER.indexOf(slug)
+  return TILES[(index === -1 ? [...slug].reduce((sum, ch) => sum + ch.charCodeAt(0), 0) : index) % TILES.length]
 }

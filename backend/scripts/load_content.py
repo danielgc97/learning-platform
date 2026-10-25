@@ -106,9 +106,79 @@ def load(courses: list[dict]) -> None:
                     upsert("exercises", {"lesson_id": lesson_id, **ex}, "slug")
 
 
+def prune(courses: list[dict], confirm: bool) -> None:
+    """Lista (y con --yes borra) lo que está en la base pero ya no existe en /content."""
+    from app.services.supabase_client import get_supabase
+
+    keep_courses = {c["slug"] for c in courses}
+    keep_modules = {(c["slug"], m["slug"]) for c in courses for m in c["modules"]}
+    keep_lessons = {(c["slug"], m["slug"], les["slug"]) for c in courses for m in c["modules"] for les in m["lessons"]}
+    keep_exercises = {e["slug"] for c in courses for m in c["modules"] for les in m["lessons"] for e in les["exercises"]}
+
+    rows = (
+        get_supabase()
+        .table("courses")
+        .select("id,slug,modules(id,slug,lessons(id,slug,exercises(id,slug)))")
+        .execute()
+        .data
+    )
+
+    def live_exercises(table: str, node: dict) -> list[str]:
+        if table == "courses":
+            lessons = [les for m in node["modules"] for les in m["lessons"]]
+        elif table == "modules":
+            lessons = node["lessons"]
+        else:
+            lessons = [node]
+        return [e["slug"] for les in lessons for e in les["exercises"] if e["slug"] in keep_exercises]
+
+    to_delete: list[tuple[str, str, str, dict]] = []
+    for c in rows:
+        if c["slug"] not in keep_courses:
+            to_delete.append(("courses", c["id"], f"curso {c['slug']}", c))
+            continue
+        for m in c["modules"]:
+            if (c["slug"], m["slug"]) not in keep_modules:
+                to_delete.append(("modules", m["id"], f"modulo {c['slug']}/{m['slug']}", m))
+                continue
+            for les in m["lessons"]:
+                key = (c["slug"], m["slug"], les["slug"])
+                if key not in keep_lessons:
+                    to_delete.append(("lessons", les["id"], f"leccion {'/'.join(key)}", les))
+                    continue
+                for e in les["exercises"]:
+                    if e["slug"] not in keep_exercises:
+                        to_delete.append(("exercises", e["id"], f"ejercicio {e['slug']}", e))
+
+    if not to_delete:
+        print("Nada que borrar: la base coincide con /content.")
+        return
+
+    print("Sobra en la base (ya no esta en /content):")
+    for _, _, label, _ in to_delete:
+        print(f"  - {label}")
+
+    blocked = [(label, live_exercises(table, node)) for table, _, label, node in to_delete if table != "exercises" and live_exercises(table, node)]
+    if blocked:
+        for label, slugs in blocked:
+            print(f"ABORTADO: {label} aun contiene ejercicios vigentes {slugs}. Ejecuta primero la carga normal.")
+        sys.exit(1)
+
+    if not confirm:
+        print("Solo vista previa. Para borrar de verdad, ejecuta de nuevo con --yes.")
+        return
+
+    db = get_supabase()
+    for table, row_id, _, _ in to_delete:
+        db.table(table).delete().eq("id", row_id).execute()
+    print(f"Borrados {len(to_delete)} elementos.")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--dry-run", action="store_true", help="solo valida y muestra el resumen")
+    parser.add_argument("--prune", action="store_true", help="lista lo que sobra en la base (no carga contenido)")
+    parser.add_argument("--yes", action="store_true", help="con --prune, borra de verdad lo que sobra")
     args = parser.parse_args()
 
     courses = collect()
@@ -123,6 +193,9 @@ def main() -> None:
 
     load_dotenv(BACKEND / ".env")
     sys.path.insert(0, str(BACKEND))
+    if args.prune:
+        prune(courses, args.yes)
+        return
     load(courses)
     print("Carga completada.")
 

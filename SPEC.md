@@ -1,16 +1,18 @@
 # SPEC — Plataforma de práctica SQL, Python y agentes con feedback de IA
 
-> Versión 0.2 · 24-oct-2026 · Documento vivo: actualizarlo cuando cambie una decisión.
+> Versión 0.3 · 25-oct-2026 · Documento vivo: actualizarlo cuando cambie una decisión.
 > Cada decisión técnica incluye su razón. Las marcadas **[CONFIRMAR]** están abiertas.
 
 ## 1. Producto
 
 Plataforma web en español donde el usuario aprende y practica **SQL, Python y construcción de agentes**, más un curso de fundamentos para construir con IA, con ejercicios ejecutables en el navegador, quizzes y feedback de IA sobre su código. Acceso completo por suscripción. Nombre actual: **CortexLab** (provisorio: "Cortex" es muy usado en datos e IA, como Snowflake Cortex y Cortex de Palo Alto Networks; pendiente verificar dominio y registro de marca).
 
-- **Usuario objetivo:** personas que aprenden datos/programación (alumnos actuales y anteriores como primeros usuarios).
+**Finalidad (actualizada el 25-oct-2026):** que cualquier persona pueda construir su propio SaaS entendiendo lo mínimo indispensable de frontend, backend, base de datos y despliegue, con la IA como copiloto. La propia plataforma es la prueba: se construyó así (React, FastAPI, Supabase, Vercel y Render), con la IA escribiendo gran parte del código bajo dirección y revisión humana. SQL, Python y agentes de IA son **medios** para ese fin, no el fin. El mensaje público habla del resultado ("construye tu propio SaaS"), no del mecanismo ("practica en el navegador"); la práctica en el navegador sigue siendo el método para SQL y Python.
+
+- **Usuario objetivo:** personas con una idea de producto que quieren construirla con ayuda de la IA, sin necesidad de ser programadoras (20 a 40 años); alumnos actuales y anteriores como primeros usuarios.
 - **Precio inicial:** S/20 al mes, acceso completo. Planes trimestral/anual: por definir.
 - **Meta de validación:** ~100 suscriptores. Antes de eso, preventa de 15-20 pagos como señal.
-- **Diferenciador:** contenido propio en español + práctica ejecutable + feedback que explica el error sin regalar la solución + un curso de fundamentos del software pensado para quien construye con IA (vibecoding): "lo mínimo indispensable".
+- **Diferenciador:** una ruta de la idea al SaaS publicado + contenido propio en español + práctica ejecutable + feedback que explica el error sin regalar la solución + un curso de fundamentos del software pensado para quien construye con IA (vibecoding): "lo mínimo indispensable".
 
 ## 2. Alcance del MVP
 
@@ -25,6 +27,28 @@ Plataforma web en español donde el usuario aprende y practica **SQL, Python y c
 
 **No incluye (por ahora)**
 Certificados, foros, app móvil, modelo local, panel para otros docentes, inteligencia de precios, gamificación, ejecución de llamadas reales a LLM dentro de los ejercicios, videos (se evaluarán si los alumnos los piden; bastaría una columna `video_url` y un servicio de video).
+
+### 2.1 Estructura de cursos: ruta de la idea al SaaS publicado
+
+Once cursos cortos en tres fases; el orden es el del campo `position` de `content/*/course.yaml`. Cada curso tiene su propia carpeta y su slug en `content/`.
+
+| Fase | Curso (slug) | Qué cubre | Estado |
+|---|---|---|---|
+| 1. Entender | Cómo funciona una app (`como-funciona-una-app`) | Frontend, backend, API, base de datos, framework, desplegar | Escrito (borrador) |
+| | Herramientas del día a día (`herramientas-del-dia-a-dia`) | Terminal, Git, entornos virtuales, variables de entorno | Estructura |
+| | Trabajar con IA como copiloto (`trabajar-con-ia`) | Vibecoding, contexto, revisar, MCP, seguridad | Escrito (borrador) |
+| 2. Construir | SQL para tu base de datos (`sql-para-tu-base`) | Lo mínimo para modelar y consultar | 2 lecciones de ejemplo |
+| | Python para tu backend (`python-para-tu-backend`) | Lo mínimo para escribir la lógica | 1 lección de ejemplo |
+| | Tu backend con FastAPI (`backend-fastapi`) | Endpoints, validación, conectar la base | Estructura |
+| | Tu frontend con React (`frontend-react`) | Pantallas, estado, llamar a tu API | Estructura |
+| | Login, seguridad y pagos (`login-seguridad-pagos`) | Autenticación, secretos, cobros, webhooks | Estructura |
+| | Agentes de IA (`agentes-ia`) | Conceptos y construcción en el entorno del alumno | 3 lecciones conceptuales |
+| 3. Publicar | Publica tu SaaS (`publica-tu-saas`) | Despliegue, dominio, variables, revisión previa | Estructura |
+| Cierre | Proyecto: tu primer SaaS (`proyecto-primer-saas`) | Recorrido guiado con puntos de control | Estructura |
+
+**Prioridad de escritura:** completar la fase 1; luego el camino mínimo de la fase 2 (SQL, Python, FastAPI, React); agentes y pagos al final. "Estructura" significa carpetas y lecciones con texto de relleno ("Contenido en preparación"). Las lecciones escritas son borradores a revisar por el autor.
+
+**Al reorganizar contenido:** los ejercicios conservan su `id` (slug) para no perder el progreso de los alumnos. Tras cargar con `load_content.py`, `load_content.py --prune` lista lo que sobra en la base y solo borra con `--yes`; se niega a borrar algo que aún contenga ejercicios vigentes.
 
 ## 3. Decisiones técnicas
 
@@ -44,7 +68,7 @@ Certificados, foros, app móvil, modelo local, panel para otros docentes, inteli
 
 **Módulo de agentes (decisión del MVP):** como los ejercicios corren en el navegador y no deben exponer API keys, este módulo se limita a lecciones + ejercicios donde el alumno escribe el código del agente (herramientas, bucle, prompts) y se valida con **pruebas con un cliente LLM simulado (mock)** más revisión de la IA contra una rúbrica. Los proyectos con llamadas reales los ejecuta el alumno en su propio entorno.
 
-**Estado del módulo de agentes:** arranca con lecciones conceptuales y quizzes (sin ejecutar código). Antes de crear ejercicios de código hay que **comprobar si LangGraph puede correr dentro de Pyodide** en el navegador; si no, se evalúa otra vía.
+**Estado del módulo de agentes:** arranca con lecciones conceptuales y quizzes (sin ejecutar código). Con la nueva finalidad, orquestar agentes no se practica en el navegador: es una pieza que el alumno construye en su propio entorno, con la plataforma aportando lecciones, puntos de control y feedback. Antes de crear ejercicios de código hay que **comprobar si LangGraph puede correr dentro de Pyodide** en el navegador; si no, se evalúa otra vía.
 
 ## 4. Modelo de datos (borrador)
 
@@ -137,7 +161,7 @@ explanation: "..."     # se muestra al acertar
 1. ¿Qué pasarela de pago? (§7) — Validar con 2-3 proveedores locales (Yape/Plin)
 2. Nombre definitivo del producto y del dominio (hoy: CortexLab, con riesgo de colisión con marcas existentes; verificar dominio e INDECOPI)
 3. Precio de planes trimestral y anual
-4. Temario y contenido real de los cuatro cursos (hoy hay placeholders y ejemplos)
+4. Estructura de cursos alineada con la finalidad (ruta de la idea al SaaS publicado) y su contenido real; hoy hay placeholders y ejemplos
 5. ¿Funciona LangGraph dentro de Pyodide? (§3, módulo de agentes)
 
 ## 12. Pendientes antes de abrir la plataforma
