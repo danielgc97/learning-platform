@@ -19,8 +19,8 @@ export default function Landing() {
             entendiendo solo lo indispensable.
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-8 text-muted">
-            Frontend, backend, base de datos y despliegue, explicados para quien construye con IA. Esta misma plataforma se
-            hizo así.
+            Frontend, backend, base de datos y despliegue, explicados para quien construye con IA. Practica sin instalar
+            nada y recibe pistas cuando te atasques.
           </p>
         </div>
         <div className="flex lg:col-span-5 lg:justify-end">
@@ -30,6 +30,7 @@ export default function Landing() {
 
       <section className="pb-12">
         <h2 className="font-display text-3xl">De la idea al producto publicado</h2>
+        <p className="mt-2 text-muted">Así se construyó esta misma plataforma.</p>
         <ol className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
           {JOURNEY.map((step, i) => {
             const upcoming = step.tile === null

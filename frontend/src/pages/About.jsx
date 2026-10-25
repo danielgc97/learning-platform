@@ -5,7 +5,7 @@ import { AUTHOR } from '../contact'
 const PRINCIPLES = [
   { title: 'De la idea al producto', text: 'Una ruta en cuatro fases: entender, construir, publicar y un proyecto de cierre.' },
   { title: 'Lo mínimo indispensable', text: 'Lecciones cortas, con una sola idea cada una y sin jerga innecesaria.' },
-  { title: 'Práctica con pistas', text: 'SQL y Python se ejecutan en tu navegador, y la IA te orienta sin resolverte el ejercicio.' },
+  { title: 'Práctica con pistas', text: 'Practica SQL y Python sin instalar nada y recibe pistas de la IA cuando te atasques, sin que te resuelva el ejercicio.' },
 ]
 
 export default function About() {
