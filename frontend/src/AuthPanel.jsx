@@ -5,7 +5,7 @@ import Alert from './components/Alert'
 import Button from './components/Button'
 
 const inputClass =
-  'w-full rounded-lg border-2 border-ink bg-surface px-3.5 py-2.5 text-sm placeholder:text-muted focus:outline-2 focus:outline-offset-2 focus:outline-accent'
+  'w-full rounded-lg border-2 border-ink bg-surface px-3 py-2 text-sm placeholder:text-muted focus:outline-2 focus:outline-offset-2 focus:outline-accent'
 
 export function UserMenu() {
   const { session } = useSession()
@@ -51,15 +51,16 @@ export function AuthForm() {
   }
 
   return (
-    <form onSubmit={signIn} className="lab-card w-full max-w-sm p-6">
-      <h2 className="font-display text-2xl">Entra al laboratorio</h2>
-      <p className="mt-1 text-sm text-muted">Crea tu cuenta o entra con tu correo.</p>
-      <div className="mt-5 space-y-3">
+    <form onSubmit={signIn} className="lab-card w-full max-w-xs p-4">
+      <h2 className="font-display text-lg">Entra o crea tu cuenta</h2>
+      <div className="mt-3 space-y-2">
         <input type="email" placeholder="correo@ejemplo.com" autoComplete="email" className={inputClass} value={email} onChange={(e) => setEmail(e.target.value)} />
         <input type="password" placeholder="Contraseña (mínimo 6)" autoComplete="current-password" className={inputClass} value={password} onChange={(e) => setPassword(e.target.value)} />
       </div>
-      <Button type="submit" variant="primary" disabled={busy} className="mt-5 w-full">Entrar</Button>
-      <Button onClick={signUp} disabled={busy} className="mt-3 w-full">Crear cuenta</Button>
+      <div className="mt-3 flex gap-2">
+        <Button type="submit" variant="primary" disabled={busy} className="flex-1 px-3">Entrar</Button>
+        <Button onClick={signUp} disabled={busy} className="flex-1 px-3">Crear cuenta</Button>
+      </div>
       {message && <Alert tone="info">{message}</Alert>}
     </form>
   )
