@@ -23,6 +23,15 @@ const components = {
   code: el('code', 'rounded-md border border-line bg-panel px-1.5 py-0.5 font-mono text-[0.88em]'),
 }
 
-export default function Markdown({ children }) {
-  return <ReactMarkdown components={components}>{children}</ReactMarkdown>
+// Variante para respuestas cortas dentro de un cuadro (por ejemplo, las pistas de la IA).
+const compactComponents = {
+  ...components,
+  p: el('p', 'my-1 leading-6'),
+  ul: el('ul', 'my-1 list-disc space-y-1 pl-5'),
+  ol: el('ol', 'my-1 list-decimal space-y-1 pl-5'),
+  code: el('code', 'rounded bg-white/60 px-1 font-mono text-[0.9em]'),
+}
+
+export default function Markdown({ children, compact = false }) {
+  return <ReactMarkdown components={compact ? compactComponents : components}>{children}</ReactMarkdown>
 }
