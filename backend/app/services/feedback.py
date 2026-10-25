@@ -6,7 +6,14 @@ from anthropic import AsyncAnthropic
 from app.schemas.feedback import FeedbackRequest
 
 MODEL = "claude-haiku-5-5"
-MAX_OUTPUT_TOKENS = 400
+# Haiku 5.5 razona por defecto y esos tokens cuentan como salida: con un tope bajo
+# el razonamiento puede agotarlo y la respuesta visible queda vacía o cortada.
+MAX_OUTPUT_TOKENS = 1500
+REASONING_EFFORT = "low"
+
+
+class FeedbackUnavailable(Exception):
+    pass
 
 # USD por millón de tokens (referencia del SPEC al 22-oct-2026; verificar antes de lanzar).
 PRICE_INPUT_PER_M = 0.10
@@ -44,15 +51,19 @@ async def get_feedback(req: FeedbackRequest) -> FeedbackResult:
     response = await _client.messages.create(
         model=MODEL,
         max_tokens=MAX_OUTPUT_TOKENS,
+        output_config={"effort": REASONING_EFFORT},
         system=SYSTEM_PROMPT,
         messages=[{"role": "user", "content": user_message}],
     )
     latency_ms = int((time.monotonic() - started) * 1000)
+    text = "".join(block.text for block in response.content if block.type == "text").strip()
+    if not text:
+        raise FeedbackUnavailable(f"respuesta sin texto (stop_reason={response.stop_reason})")
     input_tokens = response.usage.input_tokens
     output_tokens = response.usage.output_tokens
     cost = input_tokens * PRICE_INPUT_PER_M / 1_000_000 + output_tokens * PRICE_OUTPUT_PER_M / 1_000_000
     return FeedbackResult(
-        text="".join(block.text for block in response.content if block.type == "text"),
+        text=text,
         model=MODEL,
         input_tokens=input_tokens,
         output_tokens=output_tokens,

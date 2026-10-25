@@ -5,7 +5,7 @@ from fastapi import APIRouter, Depends, HTTPException
 
 from app.api.deps import get_current_user_id
 from app.schemas.feedback import FeedbackRequest, FeedbackResponse
-from app.services.feedback import get_feedback
+from app.services.feedback import FeedbackUnavailable, get_feedback
 from app.services.progress import submission_belongs_to
 from app.services.usage import DAILY_FEEDBACK_LIMIT, feedback_used_today, record_feedback_event
 
@@ -24,7 +24,7 @@ async def feedback(req: FeedbackRequest, user_id: str = Depends(get_current_user
         )
     try:
         result = await get_feedback(req)
-    except APIError:
+    except (APIError, FeedbackUnavailable):
         raise HTTPException(status_code=502, detail="No se pudo obtener feedback de la IA.")
     await record_feedback_event(
         user_id,
