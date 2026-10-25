@@ -1,0 +1,26 @@
+id: python-if-001
+type: python
+statement: "Define una función estado_stock(stock) que devuelva el texto 'agotado' si el stock es 0, 'bajo' si es menor que 5 (pero no 0) y 'ok' en cualquier otro caso."
+starter_code: |
+  def estado_stock(stock):
+      pass
+tests: |
+  assert callable(estado_stock), "estado_stock debe ser una función"
+  assert estado_stock(0) == "agotado", "Con stock 0 se esperaba 'agotado'"
+  assert estado_stock(1) == "bajo", "Con stock 1 se esperaba 'bajo'"
+  assert estado_stock(4) == "bajo", "Con stock 4 se esperaba 'bajo'"
+  assert estado_stock(5) == "ok", "Con stock 5 se esperaba 'ok' (5 ya no es bajo)"
+  assert estado_stock(40) == "ok", "Con stock 40 se esperaba 'ok'"
+solution: |
+  def estado_stock(stock):
+      if stock == 0:
+          return "agotado"
+      elif stock < 5:
+          return "bajo"
+      else:
+          return "ok"
+rubric: "El alumno debe usar if/elif/else con las condiciones stock == 0 y stock < 5, devolviendo 'agotado', 'bajo' u 'ok' con return."
+hints:
+  - "Son tres casos, así que necesitas un if, un elif y un else."
+  - "Para comparar con 0 usa == (dos signos igual), no =."
+  - "El orden importa: pregunta primero por 0 y después por menos de 5."

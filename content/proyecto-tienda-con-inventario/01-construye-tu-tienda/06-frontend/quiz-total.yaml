@@ -1,0 +1,10 @@
+id: tienda-frontend-001
+type: quiz
+statement: "La pantalla de venta muestra un total estimado. ¿Quién calcula el total oficial que se guarda?"
+options:
+  - "El frontend, porque es el que lo muestra"
+  - "El backend, con los precios de la base de datos"
+  - "El usuario, escribiéndolo a mano"
+  - "Supabase Auth"
+correct: 1
+explanation: "El frontend muestra una estimación útil, pero la cifra que cuenta se recalcula en el backend con datos confiables."

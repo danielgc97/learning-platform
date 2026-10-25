@@ -1,0 +1,10 @@
+id: api-post-001
+type: quiz
+statement: "Un cliente envía POST /tareas con el cuerpo {\"hecha\": true}, sin titulo, que es un campo obligatorio. ¿Qué hace FastAPI?"
+options:
+  - "Crea la tarea con el título vacío"
+  - "Responde con un 422 que indica que falta titulo, y no ejecuta tu función"
+  - "Se cae el servidor"
+  - "Inventa un título"
+correct: 1
+explanation: "Pydantic valida el cuerpo antes de llamar a tu función. Si falta un campo obligatorio, la petición se rechaza con un 422 y un detalle del problema."

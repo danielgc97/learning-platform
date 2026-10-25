@@ -1,0 +1,10 @@
+id: agentes-grafo-002
+type: quiz
+statement: "En LangGraph, ¿qué es un nodo?"
+options:
+  - "Una flecha que une dos pasos"
+  - "Una función que recibe el estado y devuelve los cambios que quiere hacerle"
+  - "El modelo de lenguaje, siempre"
+  - "La base de datos donde se guarda todo"
+correct: 1
+explanation: "Los nodos hacen el trabajo (llamar al modelo, ejecutar una herramienta, validar un dato) y las aristas deciden el orden."

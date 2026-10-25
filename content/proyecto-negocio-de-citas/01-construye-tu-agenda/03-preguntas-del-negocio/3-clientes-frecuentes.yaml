@@ -1,0 +1,38 @@
+id: citas-consultas-003
+type: sql
+statement: "Muestra los 3 clientes con más visitas completadas: cliente (nombre) y visitas (cuántas citas completadas tiene), de mayor a menor."
+starter_code: "SELECT * FROM clientes;"
+setup_sql: |
+  CREATE TABLE servicios (id INTEGER PRIMARY KEY, nombre VARCHAR NOT NULL, precio DOUBLE NOT NULL, duracion_min INTEGER NOT NULL);
+  CREATE TABLE clientes (id INTEGER PRIMARY KEY, nombre VARCHAR NOT NULL, telefono VARCHAR);
+  CREATE TABLE citas (id INTEGER PRIMARY KEY, cliente_id INTEGER REFERENCES clientes(id), servicio_id INTEGER REFERENCES servicios(id), dia VARCHAR NOT NULL, hora VARCHAR NOT NULL, estado VARCHAR NOT NULL);
+  INSERT INTO servicios VALUES (1, 'Lavado básico', 15.0, 30), (2, 'Lavado completo', 35.0, 60), (3, 'Encerado', 50.0, 90);
+  INSERT INTO clientes VALUES (1, 'Ana', '999111222'), (2, 'Luis', '999333444'), (3, 'Marta', '999555666'), (4, 'Pedro', '999777888');
+  INSERT INTO citas VALUES
+    (1, 1, 1, '2026-10-26', '09:00', 'completada'),
+    (2, 2, 2, '2026-10-26', '10:00', 'completada'),
+    (3, 3, 3, '2026-10-26', '12:00', 'completada'),
+    (4, 1, 2, '2026-10-27', '09:30', 'completada'),
+    (5, 4, 1, '2026-10-27', '11:00', 'cancelada'),
+    (6, 2, 1, '2026-10-27', '15:00', 'completada'),
+    (7, 1, 3, '2026-10-28', '10:00', 'completada'),
+    (8, 3, 1, '2026-10-28', '14:00', 'pendiente');
+expected:
+  columns: [cliente, visitas]
+  rows:
+    - [Ana, 3]
+    - [Luis, 2]
+    - [Marta, 1]
+solution: |
+  SELECT c.nombre AS cliente, COUNT(*) AS visitas
+  FROM citas ci
+  JOIN clientes c ON c.id = ci.cliente_id
+  WHERE ci.estado = 'completada'
+  GROUP BY c.nombre
+  ORDER BY visitas DESC
+  LIMIT 3;
+rubric: "El alumno debe unir citas con clientes, filtrar por estado = 'completada', agrupar por cliente, contar con COUNT(*) como visitas, ordenar descendente y limitar a 3."
+hints:
+  - "Une citas con clientes para tener el nombre."
+  - "Cuenta solo las citas completadas: el WHERE va antes del GROUP BY."
+  - "COUNT(*) cuenta las citas de cada grupo; ordena por visitas de mayor a menor y usa LIMIT 3."

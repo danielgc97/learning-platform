@@ -1,0 +1,10 @@
+id: producto-mvp-001
+type: quiz
+statement: "Estás definiendo la versión 1 de una agenda de citas para un negocio. ¿Qué función dejarías para después?"
+options:
+  - "Registrar una cita nueva"
+  - "Ver las citas de hoy"
+  - "App móvil nativa con cobro en línea y recordatorios por WhatsApp"
+  - "Registrar a los clientes"
+correct: 2
+explanation: "El MVP resuelve el problema central (organizar citas) con lo mínimo. App móvil, cobros y recordatorios son mejoras valiosas, pero el producto ya sirve sin ellas."

@@ -1,0 +1,10 @@
+id: pagos-tarjeta-001
+type: quiz
+statement: "¿Quién debe manejar los datos de la tarjeta del cliente en tu producto?"
+options:
+  - "Tu base de datos, en una columna cifrada"
+  - "La pasarela de pago, con su página o campos seguros; tu app no los toca"
+  - "El frontend, guardándolos en el navegador"
+  - "Tu IA, para recordarlos"
+correct: 1
+explanation: "Manejar datos de tarjeta exige normas muy estrictas. Lo seguro y habitual es que los reciba solo la pasarela y que tu app reciba únicamente el resultado del pago."

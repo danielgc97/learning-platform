@@ -1,0 +1,10 @@
+id: citas-final-001
+type: quiz
+statement: "Alguien llama a POST /citas con un cliente_id que pertenece a OTRO negocio. ¿Qué debe hacer tu backend?"
+options:
+  - "Guardar la cita: el id existe"
+  - "Rechazarla, porque el cliente no pertenece al usuario que hace la petición"
+  - "Copiar al cliente al nuevo negocio"
+  - "Ignorar el cliente_id"
+correct: 1
+explanation: "Comprobar que cada dato relacionado pertenece al usuario evita que alguien enlace o lea información de otro negocio. Existir no es lo mismo que estar autorizado."

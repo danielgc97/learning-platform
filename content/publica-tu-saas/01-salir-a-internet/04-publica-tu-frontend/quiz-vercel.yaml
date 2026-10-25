@@ -1,0 +1,10 @@
+id: publicar-vercel-001
+type: quiz
+statement: "Cambiaste VITE_API_URL en el panel de Vercel, pero tu app publicada sigue usando la dirección vieja. ¿Qué falta?"
+options:
+  - "Reiniciar tu computadora"
+  - "Volver a desplegar el proyecto, porque las variables VITE_ se incorporan al construirlo"
+  - "Cambiar de navegador"
+  - "Nada: tarda un año en actualizarse"
+correct: 1
+explanation: "Vite escribe esos valores dentro del código al construir la app. Hasta que no se genere una nueva versión, el código publicado conserva los valores anteriores."

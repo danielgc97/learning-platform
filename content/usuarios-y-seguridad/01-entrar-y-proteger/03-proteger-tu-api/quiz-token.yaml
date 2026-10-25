@@ -1,0 +1,10 @@
+id: seg-token-001
+type: quiz
+statement: "Para devolver solo las tareas de la persona que hace la petición, ¿de dónde debe salir el user_id con el que filtras?"
+options:
+  - "De un parámetro que manda el frontend, como /tareas?user_id=5"
+  - "Del token validado en el backend"
+  - "De una lista fija en el código"
+  - "Se puede inventar: da igual"
+correct: 1
+explanation: "El frontend puede ser manipulado: si aceptas el user_id que manda, cualquiera podría pedir los datos de otra persona. El token validado es la única fuente confiable."

@@ -1,0 +1,10 @@
+id: publicar-repo-001
+type: quiz
+statement: "Antes de subir tu proyecto a GitHub, ¿qué archivo debes comprobar que NO esté en el repositorio?"
+options:
+  - "requirements.txt"
+  - ".env.example"
+  - ".env con tus claves reales"
+  - "README.md"
+correct: 2
+explanation: "El .env contiene secretos. Lo que se sube es .env.example, con valores falsos que muestran qué variables hacen falta."

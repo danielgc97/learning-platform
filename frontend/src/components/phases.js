@@ -3,21 +3,22 @@ export const PHASES = [
   {
     key: 'entender',
     title: 'Entender',
-    text: 'Cómo funciona una aplicación y cómo trabajar con la IA como copiloto.',
+    text: 'Cómo funciona una aplicación, cómo trabajar con la IA como copiloto y qué vas a construir.',
     tile: 'bg-c1',
-    courses: ['como-funciona-una-app', 'herramientas-del-dia-a-dia', 'trabajar-con-ia'],
+    courses: ['como-funciona-una-app', 'herramientas-del-dia-a-dia', 'trabajar-con-ia', 'define-tu-producto'],
   },
   {
     key: 'construir',
     title: 'Construir',
-    text: 'Tus datos, la lógica, el backend, el frontend, la seguridad y los agentes.',
+    text: 'Tus datos, la lógica, el backend, el frontend, los usuarios y, si quieres, cobros y agentes.',
     tile: 'bg-c2',
     courses: [
       'sql-para-tu-base',
       'python-para-tu-backend',
       'backend-fastapi',
       'frontend-react',
-      'login-seguridad-pagos',
+      'usuarios-y-seguridad',
+      'cobrar-a-tus-usuarios',
       'agentes-ia',
     ],
   },
@@ -31,8 +32,8 @@ export const PHASES = [
   {
     key: 'cierre',
     title: 'Cierre',
-    text: 'Un recorrido guiado de la idea al producto publicado.',
+    text: 'Elige un proyecto según el tipo de negocio y constrúyelo de punta a punta.',
     tile: 'bg-c4',
-    courses: ['proyecto-primer-saas'],
+    courses: ['proyecto-tienda-con-inventario', 'proyecto-negocio-de-citas'],
   },
 ]

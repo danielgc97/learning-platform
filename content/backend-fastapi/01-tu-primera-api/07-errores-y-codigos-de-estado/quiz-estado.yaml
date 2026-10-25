@@ -1,0 +1,10 @@
+id: api-errores-001
+type: quiz
+statement: "Alguien pide GET /tareas/999 y esa tarea no existe. ¿Qué debería responder tu API?"
+options:
+  - "200 con una lista vacía, siempre"
+  - "404 con un mensaje claro como 'Tarea no encontrada'"
+  - "500, porque algo salió mal en el servidor"
+  - "201, porque se procesó la petición"
+correct: 1
+explanation: "404 es el código para 'no existe'. Usar el código correcto permite al frontend reaccionar bien (por ejemplo, mostrar un aviso)."

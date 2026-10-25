@@ -1,0 +1,37 @@
+id: python-errores-001
+type: python
+statement: "Define una función descontar_stock(stock, cantidad) que devuelva el stock restante (stock - cantidad). Debe lanzar un ValueError si la cantidad es 0 o negativa, o si es mayor que el stock disponible."
+starter_code: |
+  def descontar_stock(stock, cantidad):
+      pass
+tests: |
+  assert callable(descontar_stock), "descontar_stock debe ser una función"
+  assert descontar_stock(10, 3) == 7, "Con stock 10 y cantidad 3 se esperaba 7"
+  assert descontar_stock(5, 5) == 0, "Con stock 5 y cantidad 5 se esperaba 0 (se puede vender todo)"
+  try:
+      descontar_stock(3, 5)
+      assert False, "Con cantidad mayor al stock se esperaba un ValueError"
+  except ValueError:
+      pass
+  try:
+      descontar_stock(10, 0)
+      assert False, "Con cantidad 0 se esperaba un ValueError"
+  except ValueError:
+      pass
+  try:
+      descontar_stock(10, -2)
+      assert False, "Con cantidad negativa se esperaba un ValueError"
+  except ValueError:
+      pass
+solution: |
+  def descontar_stock(stock, cantidad):
+      if cantidad <= 0:
+          raise ValueError("La cantidad debe ser positiva")
+      if cantidad > stock:
+          raise ValueError("No hay stock suficiente")
+      return stock - cantidad
+rubric: "El alumno debe validar con if que la cantidad sea positiva y no supere el stock, lanzar ValueError en los casos inválidos con raise, y devolver stock - cantidad en el caso válido."
+hints:
+  - "Primero revisa los casos inválidos; si el dato es incorrecto, no sigas calculando."
+  - "Para lanzar el error escribe: raise ValueError(\"un mensaje\")"
+  - "Si ninguna validación falla, termina con return stock - cantidad."

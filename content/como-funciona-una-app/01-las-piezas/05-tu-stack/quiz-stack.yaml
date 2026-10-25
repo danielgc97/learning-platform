@@ -1,0 +1,10 @@
+id: app-stack-001
+type: quiz
+statement: "Terminas tu app, la ves funcionar en tu computadora y le mandas el enlace a una amiga. Ella dice que no carga. ¿Cuál es la explicación más probable?"
+options:
+  - "Su navegador es demasiado antiguo"
+  - "Tu app solo existe en tu computadora todavía: aún no la has publicado"
+  - "Necesitas cambiar de lenguaje de programación"
+  - "La base de datos está llena"
+correct: 1
+explanation: "Una app que corre en localhost solo se ve desde tu propio equipo. Para que otros la usen hay que publicarla en un servidor conectado a internet."

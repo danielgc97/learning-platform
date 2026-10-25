@@ -1,0 +1,28 @@
+id: tienda-reglas-002
+type: python
+statement: "Define una función total_venta(items) donde items es una lista de diccionarios con las claves 'cantidad' y 'precio'. Calcula el subtotal (suma de cantidad * precio). Si el subtotal es 200 o más, aplica un 10% de descuento. Devuelve el total redondeado a 2 decimales."
+starter_code: |
+  def total_venta(items):
+      pass
+tests: |
+  assert callable(total_venta), "total_venta debe ser una función"
+  assert total_venta([]) == 0, "Con una lista vacía se esperaba 0"
+  assert total_venta([{"cantidad": 2, "precio": 25}]) == 50, "Subtotal 50 sin descuento: se esperaba 50"
+  assert total_venta([{"cantidad": 3, "precio": 9.5}]) == 28.5, "3 x 9.5 = 28.5"
+  assert total_venta([{"cantidad": 2, "precio": 100}]) == 180, "Subtotal 200 ya tiene descuento: se esperaba 180"
+  assert total_venta([{"cantidad": 1, "precio": 199.99}]) == 199.99, "Con 199.99 no hay descuento"
+  assert total_venta([{"cantidad": 10, "precio": 20}, {"cantidad": 1, "precio": 50}]) == 225, "Subtotal 250: se esperaba 225"
+  assert total_venta([{"cantidad": 1, "precio": 33.333}]) == 33.33, "Debe redondearse a 2 decimales"
+solution: |
+  def total_venta(items):
+      subtotal = 0
+      for item in items:
+          subtotal = subtotal + item["cantidad"] * item["precio"]
+      if subtotal >= 200:
+          subtotal = subtotal * 0.9
+      return round(subtotal, 2)
+rubric: "El alumno debe acumular cantidad * precio de cada ítem, aplicar el 10% de descuento si el subtotal es mayor o igual a 200 y devolver el resultado con round(..., 2)."
+hints:
+  - "Primero calcula el subtotal con un acumulador y un for sobre los ítems."
+  - "El descuento se aplica con un if: si el subtotal es >= 200, multiplícalo por 0.9."
+  - "Devuelve round(total, 2) al final."

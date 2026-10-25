@@ -1,0 +1,10 @@
+id: react-formularios-001
+type: quiz
+statement: "¿Qué hace evento.preventDefault() al enviar un formulario?"
+options:
+  - "Borra los datos escritos"
+  - "Evita que el navegador recargue la página, para que React maneje el envío"
+  - "Cancela la petición a la API"
+  - "Valida el correo electrónico"
+correct: 1
+explanation: "Por defecto, un formulario recarga la página al enviarse. Con preventDefault() tu código se encarga del envío (por ejemplo, con fetch) sin perder el estado de la pantalla."

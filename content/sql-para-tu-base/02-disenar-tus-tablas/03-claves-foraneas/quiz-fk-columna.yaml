@@ -1,0 +1,10 @@
+id: sql-fk-001
+type: quiz
+statement: "Tienes una tabla citas y una tabla servicios. Cada cita es de un solo servicio. ¿Cómo se relacionan?"
+options:
+  - "La tabla servicios guarda el id de cada cita"
+  - "La tabla citas lleva una columna servicio_id que apunta al id de servicios"
+  - "Se copia el nombre del servicio en cada cita, sin ninguna relación"
+  - "No se pueden relacionar tablas distintas"
+correct: 1
+explanation: "La cita pertenece a un servicio, así que la tabla citas guarda la clave foránea servicio_id. Varias citas pueden apuntar al mismo servicio sin repetir sus datos."

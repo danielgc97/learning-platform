@@ -1,0 +1,10 @@
+id: ia-seguridad-001
+type: quiz
+statement: "La IA te sugiere instalar con pip un paquete llamado 'fastapi-auth-super-pro' que no conoces. ¿Qué haces antes de instalarlo?"
+options:
+  - "Lo instalo: si la IA lo dice, existe"
+  - "Lo busco en pypi.org y reviso su antigüedad, descargas y repositorio; si no encuentro nada fiable, pido otra alternativa"
+  - "Lo instalo con permisos de administrador por si acaso"
+  - "Le pido a la IA que lo instale sin mostrarme nada"
+correct: 1
+explanation: "Las IA pueden recomendar paquetes inexistentes o maliciosos con nombres engañosos. Comprobar el origen antes de instalar es una defensa sencilla y eficaz."

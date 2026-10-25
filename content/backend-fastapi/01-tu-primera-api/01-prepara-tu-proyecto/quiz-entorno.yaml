@@ -1,0 +1,10 @@
+id: api-entorno-001
+type: quiz
+statement: "Con el entorno virtual activo ejecutas pip install \"fastapi[standard]\". ¿Dónde queda instalado FastAPI?"
+options:
+  - "En todo tu computador, para todos los proyectos"
+  - "Solo dentro del entorno virtual (la carpeta venv) de este proyecto"
+  - "En GitHub"
+  - "En la base de datos"
+correct: 1
+explanation: "El entorno virtual mantiene los paquetes de cada proyecto separados. Por eso se guarda la lista en requirements.txt y la carpeta venv no se sube a Git."

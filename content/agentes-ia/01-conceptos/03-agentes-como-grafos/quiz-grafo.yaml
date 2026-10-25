@@ -1,9 +1,0 @@
-id: agentes-concepto-003
-type: quiz
-statement: "En un grafo de LangGraph, ¿qué representa un nodo?"
-options:
-  - "Un paso: una función que lee y actualiza el estado"
-  - "Un usuario de la aplicación"
-  - "Una base de datos"
-correct: 0
-explanation: "Cada nodo es un paso del agente (por ejemplo, llamar al modelo o ejecutar una herramienta) que recibe el estado y devuelve cambios sobre él."

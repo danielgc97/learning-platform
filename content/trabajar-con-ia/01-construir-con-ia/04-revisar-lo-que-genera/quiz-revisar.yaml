@@ -1,0 +1,10 @@
+id: ia-revisar-001
+type: quiz
+statement: "La IA te dice que arregló un error de permisos 'permitiendo que cualquiera lea todos los datos para que no falle'. ¿Cómo reaccionas?"
+options:
+  - "Acepto: el error desapareció"
+  - "No lo acepto tal cual: pregunto qué riesgo introduce y pido una solución que mantenga la protección"
+  - "Lo acepto, pero lo reviso el año que viene"
+  - "Le pido que borre las pruebas"
+correct: 1
+explanation: "Quitar una protección hace desaparecer el error, pero deja tus datos expuestos. Lo correcto es entender por qué fallaba y arreglarlo sin debilitar la seguridad."

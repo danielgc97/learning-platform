@@ -1,0 +1,33 @@
+id: citas-reglas-002
+type: python
+statement: "Define una función primer_hueco(citas, duracion, apertura, cierre). citas es una lista de diccionarios con 'inicio' y 'duracion' (minutos desde la medianoche), posiblemente desordenada. Devuelve el primer minuto en el que cabe un servicio de esa duración entre apertura y cierre sin chocar con ninguna cita, o None si no hay lugar."
+starter_code: |
+  def primer_hueco(citas, duracion, apertura, cierre):
+      pass
+tests: |
+  assert callable(primer_hueco), "primer_hueco debe ser una función"
+  agenda = [{"inicio": 540, "duracion": 60}, {"inicio": 600, "duracion": 30}]
+  assert primer_hueco([], 60, 480, 1080) == 480, "Con la agenda vacía, el primer hueco es la hora de apertura"
+  assert primer_hueco(agenda, 60, 480, 1080) == 480, "Entre las 8:00 y las 9:00 caben 60 minutos"
+  assert primer_hueco(agenda, 90, 480, 1080) == 630, "Para 90 minutos, el primer hueco empieza a las 10:30 (630)"
+  assert primer_hueco(list(reversed(agenda)), 90, 480, 1080) == 630, "Las citas pueden venir desordenadas"
+  assert primer_hueco([{"inicio": 480, "duracion": 600}], 30, 480, 1080) == None, "Si el día está lleno, se esperaba None"
+  assert primer_hueco([{"inicio": 480, "duracion": 570}], 30, 480, 1080) == 1050, "Queda libre de 17:30 a 18:00 (1050 a 1080)"
+  assert primer_hueco([{"inicio": 480, "duracion": 570}], 40, 480, 1080) == None, "Solo quedan 30 minutos libres: no cabe un servicio de 40"
+solution: |
+  def primer_hueco(citas, duracion, apertura, cierre):
+      cursor = apertura
+      for cita in sorted(citas, key=lambda c: c["inicio"]):
+          if cita["inicio"] - cursor >= duracion:
+              return cursor
+          fin = cita["inicio"] + cita["duracion"]
+          if fin > cursor:
+              cursor = fin
+      if cierre - cursor >= duracion:
+          return cursor
+      return None
+rubric: "El alumno debe ordenar las citas por inicio, recorrerlas con un cursor que parte de la apertura, devolver el cursor si antes de una cita caben los minutos necesarios, avanzar el cursor al fin de cada cita (sin retroceder) y comprobar al final contra el cierre, devolviendo None si no hay lugar."
+hints:
+  - "Ordena las citas por inicio con sorted(citas, key=lambda c: c[\"inicio\"]) y empieza con una variable cursor igual a apertura."
+  - "Por cada cita: si cita[\"inicio\"] - cursor ya alcanza para la duración, ese cursor es el hueco. Si no, el cursor pasa al fin de esa cita (inicio + duracion), sin retroceder nunca."
+  - "Después del bucle, comprueba si entre el cursor y el cierre cabe el servicio; si no cabe, devuelve None."

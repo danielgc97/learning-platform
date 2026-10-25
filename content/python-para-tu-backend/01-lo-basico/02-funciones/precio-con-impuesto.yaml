@@ -1,0 +1,20 @@
+id: python-igv-001
+type: python
+statement: "Define una función precio_con_impuesto(precio) que reciba un precio y devuelva ese precio multiplicado por 1.18 (un impuesto del 18%, como el IGV)."
+starter_code: |
+  def precio_con_impuesto(precio):
+      pass
+tests: |
+  assert callable(precio_con_impuesto), "precio_con_impuesto debe ser una función"
+  assert precio_con_impuesto(100) is not None, "Tu función no devuelve nada: falta un return"
+  assert abs(precio_con_impuesto(100) - 118) < 1e-9, "Con 100 se esperaba 118.0"
+  assert abs(precio_con_impuesto(50) - 59) < 1e-9, "Con 50 se esperaba 59.0"
+  assert precio_con_impuesto(0) == 0, "Con 0 se esperaba 0"
+solution: |
+  def precio_con_impuesto(precio):
+      return precio * 1.18
+rubric: "La función debe multiplicar el precio recibido por 1.18 y devolver el resultado con return."
+hints:
+  - "La función recibe un solo número y debe calcular algo con él."
+  - "El cálculo es precio * 1.18."
+  - "No uses print: usa return para entregar el resultado."

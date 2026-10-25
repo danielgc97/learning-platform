@@ -1,0 +1,10 @@
+id: seg-claves-001
+type: quiz
+statement: "Encuentras en tu frontend la variable VITE_SUPABASE_SECRET_KEY con la clave secreta. ¿Qué haces?"
+options:
+  - "Nada: solo yo uso la app"
+  - "Genero una clave nueva, saco la secreta del frontend y la dejo solo en el backend"
+  - "La cambio por mayúsculas"
+  - "La subo a GitHub para tener copia"
+correct: 1
+explanation: "Todo lo que empieza con VITE_ se incluye en el navegador, donde cualquiera puede verlo. La clave quedó expuesta, así que hay que cambiarla y mantener la secreta únicamente en el servidor."

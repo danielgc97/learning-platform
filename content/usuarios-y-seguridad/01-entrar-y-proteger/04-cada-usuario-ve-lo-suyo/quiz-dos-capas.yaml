@@ -1,0 +1,10 @@
+id: seg-rls-002
+type: quiz
+statement: "Tu backend usa la clave secreta de Supabase, que se salta RLS. ¿Qué implica para tu código?"
+options:
+  - "Nada: RLS protege todo automáticamente"
+  - "Que tu código debe filtrar por el user_id del token en cada consulta"
+  - "Que puedes dejar de validar tokens"
+  - "Que no necesitas columna user_id"
+correct: 1
+explanation: "La clave secreta no pasa por las políticas, así que la protección de ese camino depende de tu código. RLS protege los otros caminos, como una clave pública usada directamente."

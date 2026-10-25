@@ -1,0 +1,10 @@
+id: citas-backend-001
+type: quiz
+statement: "Un cliente intenta agendar a las 9:30 un servicio de 60 minutos, y ya hay una cita de 9:00 a 10:00. ¿Qué debe hacer POST /citas?"
+options:
+  - "Guardarla igual: el dueño verá el problema en la agenda"
+  - "Responder 409 con un mensaje claro y no guardar nada"
+  - "Guardarla a las 10:00 sin avisar"
+  - "Responder 200 con una lista vacía"
+correct: 1
+explanation: "Un choque es un conflicto con el estado actual de la agenda. 409 es el código habitual y el mensaje permite al frontend sugerir otro horario."

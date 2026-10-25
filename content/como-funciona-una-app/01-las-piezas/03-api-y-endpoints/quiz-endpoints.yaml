@@ -1,0 +1,10 @@
+id: app-endpoints-001
+type: quiz
+statement: "En la app de tareas, ¿qué petición usarías para borrar la tarea número 12?"
+options:
+  - "GET /tareas/12"
+  - "POST /tareas"
+  - "DELETE /tareas/12"
+  - "PUT /tareas"
+correct: 2
+explanation: "El verbo DELETE indica que se quiere borrar, y /tareas/12 señala cuál. GET solo lee, POST crea y PUT modifica."

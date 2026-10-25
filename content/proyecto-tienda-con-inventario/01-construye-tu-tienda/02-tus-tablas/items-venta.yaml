@@ -1,0 +1,42 @@
+id: tienda-tablas-001
+type: sql
+statement: "Las tablas productos (id, nombre, precio, stock, stock_minimo) y ventas (id, mes) ya existen. Define la tabla items_venta con estas columnas, en este orden: id (INTEGER, clave primaria), venta_id (INTEGER que referencie a ventas), producto_id (INTEGER que referencie a productos), cantidad (INTEGER, obligatorio) y precio_unitario (DOUBLE, obligatorio). El INSERT y el SELECT final ya están escritos."
+starter_code: |
+  CREATE OR REPLACE TABLE items_venta (
+    -- id, venta_id, producto_id, cantidad y precio_unitario
+  );
+  INSERT INTO items_venta VALUES (1, 1, 1, 2, 25.0), (2, 1, 2, 3, 9.5);
+  SELECT v.mes, p.nombre, i.cantidad
+  FROM items_venta i
+  JOIN ventas v ON v.id = i.venta_id
+  JOIN productos p ON p.id = i.producto_id
+  ORDER BY i.id;
+setup_sql: |
+  CREATE TABLE productos (id INTEGER PRIMARY KEY, nombre VARCHAR NOT NULL, precio DOUBLE NOT NULL, stock INTEGER NOT NULL, stock_minimo INTEGER NOT NULL);
+  CREATE TABLE ventas (id INTEGER PRIMARY KEY, mes VARCHAR NOT NULL);
+  INSERT INTO productos VALUES (1, 'Arroz 5kg', 25.0, 40, 10), (2, 'Aceite 1L', 9.5, 6, 10);
+  INSERT INTO ventas VALUES (1, '2026-08');
+expected:
+  columns: [mes, nombre, cantidad]
+  rows:
+    - ["2026-08", Arroz 5kg, 2]
+    - ["2026-08", Aceite 1L, 3]
+solution: |
+  CREATE OR REPLACE TABLE items_venta (
+    id INTEGER PRIMARY KEY,
+    venta_id INTEGER REFERENCES ventas(id),
+    producto_id INTEGER REFERENCES productos(id),
+    cantidad INTEGER NOT NULL,
+    precio_unitario DOUBLE NOT NULL
+  );
+  INSERT INTO items_venta VALUES (1, 1, 1, 2, 25.0), (2, 1, 2, 3, 9.5);
+  SELECT v.mes, p.nombre, i.cantidad
+  FROM items_venta i
+  JOIN ventas v ON v.id = i.venta_id
+  JOIN productos p ON p.id = i.producto_id
+  ORDER BY i.id;
+rubric: "El alumno debe declarar las cinco columnas en el orden pedido: id INTEGER PRIMARY KEY, venta_id y producto_id INTEGER con REFERENCES a ventas(id) y productos(id), cantidad INTEGER NOT NULL y precio_unitario DOUBLE NOT NULL."
+hints:
+  - "Cada columna se escribe como: nombre tipo. Sepáralas con comas; la última no lleva coma."
+  - "Una clave foránea se escribe con REFERENCES tabla(columna) después del tipo, por ejemplo: venta_id INTEGER REFERENCES ventas(id)."
+  - "cantidad y precio_unitario llevan NOT NULL después de su tipo; id lleva PRIMARY KEY."

@@ -1,0 +1,10 @@
+id: herr-instalacion-001
+type: quiz
+statement: "Instalaste Node.js, pero al escribir node --version la terminal dice que no reconoce el comando. ¿Qué haces primero?"
+options:
+  - "Reinstalar Windows"
+  - "Cerrar la terminal (y VS Code), abrirla de nuevo y volver a probar"
+  - "Instalar Python también"
+  - "Borrar la carpeta de tu proyecto"
+correct: 1
+explanation: "Una terminal que ya estaba abierta no se entera de los programas recién instalados. Al abrirla de nuevo suele funcionar. Si sigue fallando, repite la instalación con las opciones por defecto."

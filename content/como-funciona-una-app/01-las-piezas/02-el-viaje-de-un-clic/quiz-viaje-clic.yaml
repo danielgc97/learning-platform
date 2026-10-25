@@ -1,0 +1,10 @@
+id: app-viaje-001
+type: quiz
+statement: "Pulsas Guardar en una app de tareas y la tarea aparece en la lista. Pero al recargar la página, desaparece. ¿Qué paso del viaje falló con más probabilidad?"
+options:
+  - "El navegador no sabe dibujar listas"
+  - "La tarea no llegó a guardarse en la base de datos (la petición o el backend fallaron)"
+  - "Faltó cambiar el formato de JSON a HTTP"
+  - "La base de datos tiene demasiadas tareas"
+correct: 1
+explanation: "El frontend puede mostrar la tarea sin que nadie la haya guardado. Si desaparece al recargar, la petición no llegó al backend o el backend no la guardó en la base de datos, que es lo único que recuerda los datos."

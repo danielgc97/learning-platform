@@ -1,0 +1,10 @@
+id: ia-errores-001
+type: quiz
+statement: "Ves este error: 'File \"app.py\", line 12 ... KeyError: \"email\"'. ¿Qué información te da?"
+options:
+  - "Que el archivo app.py no existe"
+  - "Que en la línea 12 de app.py se buscó una clave llamada 'email' que no existe en los datos"
+  - "Que internet está caído"
+  - "Que hay que reinstalar Python"
+correct: 1
+explanation: "La última línea dice el tipo (KeyError: se pidió una clave inexistente) y su valor ('email'); la línea anterior dice dónde ocurrió: app.py, línea 12."

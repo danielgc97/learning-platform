@@ -1,10 +1,10 @@
-id: fundamentos-construir-001
+id: ia-vibecoding-001
 type: quiz
-statement: "¿Cuál es el mayor riesgo de aceptar todo lo que genera un asistente de IA sin entenderlo?"
+statement: "Cuando construyes con ayuda de una IA, ¿qué parte sigue siendo responsabilidad tuya?"
 options:
-  - "Que el código sea demasiado corto"
-  - "Que tenga errores o fallos de seguridad que no detectas y que terminan publicados"
-  - "Que use demasiados colores"
-  - "Que tarde unos segundos más en responder"
-correct: 1
-explanation: "La IA puede equivocarse con total seguridad. Si no revisas ni entiendes lo que publicas, los errores y fallos de seguridad llegan a tus usuarios."
+  - "Ninguna: la IA responde por su código"
+  - "Solo escribir los nombres de las variables"
+  - "Decidir qué construir, revisar lo que genera y comprobar que funciona de forma segura"
+  - "Solo pagar la suscripción de la herramienta"
+correct: 2
+explanation: "La IA acelera la escritura, pero la dirección del producto y la verificación son tuyas. Si algo falla o expone datos de tus usuarios, la responsabilidad es de quien publica el producto."

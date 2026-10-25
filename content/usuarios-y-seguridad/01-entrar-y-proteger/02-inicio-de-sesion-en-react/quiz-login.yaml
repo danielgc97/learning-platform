@@ -1,0 +1,10 @@
+id: seg-login-001
+type: quiz
+statement: "¿Qué debes hacer con el campo error que devuelve supabase.auth.signInWithPassword?"
+options:
+  - "Ignorarlo: Supabase lo resuelve"
+  - "Revisarlo y mostrar un mensaje claro al usuario si tiene algo"
+  - "Guardarlo en el .env"
+  - "Enviarlo a la IA para que lo borre"
+correct: 1
+explanation: "Si la contraseña es incorrecta o el correo no está confirmado, el error lo explica. Mostrarlo evita que la persona se quede sin saber qué pasó."

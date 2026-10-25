@@ -1,0 +1,10 @@
+id: pagos-webhook-002
+type: quiz
+statement: "Tu backend recibe dos veces el mismo aviso de pago aprobado (mismo identificador de evento). ¿Qué debe hacer?"
+options:
+  - "Activar la suscripción dos veces y sumar dos meses"
+  - "Reconocer que ya lo procesó y no repetirlo, respondiendo 200"
+  - "Responder con error para que la pasarela deje de avisar"
+  - "Borrar al usuario"
+correct: 1
+explanation: "Los avisos pueden duplicarse. Guardar el identificador de cada evento procesado evita cobros o activaciones repetidas."

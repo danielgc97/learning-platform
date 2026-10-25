@@ -1,6 +1,6 @@
 # SPEC — Plataforma de práctica SQL, Python y agentes con feedback de IA
 
-> Versión 0.3 · 25-oct-2026 · Documento vivo: actualizarlo cuando cambie una decisión.
+> Versión 0.4 · 25-oct-2026 · Documento vivo: actualizarlo cuando cambie una decisión.
 > Cada decisión técnica incluye su razón. Las marcadas **[CONFIRMAR]** están abiertas.
 
 ## 1. Producto
@@ -30,25 +30,38 @@ Certificados, foros, app móvil, modelo local, panel para otros docentes, inteli
 
 ### 2.1 Estructura de cursos: ruta de la idea al SaaS publicado
 
-Once cursos cortos en tres fases; el orden es el del campo `position` de `content/*/course.yaml`. Cada curso tiene su propia carpeta y su slug en `content/`.
+Catorce cursos en cuatro fases (Entender, Construir, Publicar y Cierre); el orden es el del campo `position` de `content/*/course.yaml` y la agrupación por fase está en `frontend/src/components/phases.js`. Contenido escrito el 25-oct-2026: 90 lecciones y 109 ejercicios (18 de SQL, 15 de Python, 76 quizzes). Todo es **borrador pendiente de revisión del autor**; las dudas de hechos técnicos quedan marcadas con comentarios `<!-- REVISAR -->` en las lecciones.
 
-| Fase | Curso (slug) | Qué cubre | Estado |
-|---|---|---|---|
-| 1. Entender | Cómo funciona una app (`como-funciona-una-app`) | Frontend, backend, API, base de datos, framework, desplegar | Escrito (borrador) |
-| | Herramientas del día a día (`herramientas-del-dia-a-dia`) | Terminal, Git, entornos virtuales, variables de entorno | Estructura |
-| | Trabajar con IA como copiloto (`trabajar-con-ia`) | Vibecoding, contexto, revisar, MCP, seguridad | Escrito (borrador) |
-| 2. Construir | SQL para tu base de datos (`sql-para-tu-base`) | Lo mínimo para modelar y consultar | 2 lecciones de ejemplo |
-| | Python para tu backend (`python-para-tu-backend`) | Lo mínimo para escribir la lógica | 1 lección de ejemplo |
-| | Tu backend con FastAPI (`backend-fastapi`) | Endpoints, validación, conectar la base | Estructura |
-| | Tu frontend con React (`frontend-react`) | Pantallas, estado, llamar a tu API | Estructura |
-| | Login, seguridad y pagos (`login-seguridad-pagos`) | Autenticación, secretos, cobros, webhooks | Estructura |
-| | Agentes de IA (`agentes-ia`) | Conceptos y construcción en el entorno del alumno | 3 lecciones conceptuales |
-| 3. Publicar | Publica tu SaaS (`publica-tu-saas`) | Despliegue, dominio, variables, revisión previa | Estructura |
-| Cierre | Proyecto: tu primer SaaS (`proyecto-primer-saas`) | Recorrido guiado con puntos de control | Estructura |
+| Fase | Curso (slug) | Lecciones | Qué cubre | Tipo de práctica |
+|---|---|---|---|---|
+| 1. Entender | Cómo funciona una app (`como-funciona-una-app`) | 5 | Capas, petición y respuesta, API, tablas, stack | Quiz |
+| | Tu caja de herramientas (`herramientas-del-dia-a-dia`) | 6 | Instalación, terminal, Git, GitHub, entornos, variables de entorno | Guiada + quiz |
+| | Trabajar con IA como copiloto (`trabajar-con-ia`) | 6 | Vibecoding, contexto, pasos pequeños, revisar, errores, seguridad | Quiz |
+| | Define tu producto (`define-tu-producto`) | 2 | MVP, datos y pantallas en papel | Quiz |
+| 2. Construir | SQL para tu base de datos (`sql-para-tu-base`) | 12 | Consultar, diseñar tablas, JOIN, Supabase | SQL en el navegador |
+| | Python para tu backend (`python-para-tu-backend`) | 9 | Lo básico, errores, JSON, clases | Python en el navegador |
+| | Tu backend con FastAPI (`backend-fastapi`) | 8 | Endpoints, Pydantic, Supabase, CRUD, errores, CORS | Guiada + quiz |
+| | Tu frontend con React (`frontend-react`) | 8 | Componentes, estado, fetch, formularios, rutas | Guiada + quiz |
+| | Usuarios y seguridad (`usuarios-y-seguridad`) | 5 | Autenticación, token, RLS, claves y secretos | Guiada + quiz |
+| | Cobrar a tus usuarios (`cobrar-a-tus-usuarios`), **opcional** | 3 | Pagos, webhooks, planes y acceso (neutral respecto a la pasarela) | Quiz |
+| | Agentes de IA con LangGraph (`agentes-ia`), **opcional** | 5 | Agentes, grafos, ciclos, memoria, riesgos | Quiz (sin ejecutar código) |
+| 3. Publicar | Publica tu SaaS (`publica-tu-saas`) | 7 | Render, Vercel, CORS, dominio, revisión final | Guiada + quiz |
+| 4. Cierre | Proyecto: tienda con inventario (`proyecto-tienda-con-inventario`) | 7 | Tablas, consultas, reglas de stock, backend, frontend, publicación | SQL + Python + guiada |
+| | Proyecto: negocio de citas (`proyecto-negocio-de-citas`) | 7 | Agenda sin choques de horario (ejemplo: carwash) | SQL + Python + guiada |
 
-**Prioridad de escritura:** completar la fase 1; luego el camino mínimo de la fase 2 (SQL, Python, FastAPI, React); agentes y pagos al final. "Estructura" significa carpetas y lecciones con texto de relleno ("Contenido en preparación"). Las lecciones escritas son borradores a revisar por el autor.
+**Decisiones de diseño:**
+- El orden va de lo conceptual a lo concreto: mapa de piezas, herramientas, método con IA, producto, datos, lógica, backend, frontend, usuarios, publicación y proyecto.
+- Los cursos base usan un ejemplo común (una app de tareas); los proyectos de Cierre suben a varias tablas.
+- Cada proyecto es un curso independiente y el alumno elige uno. Las lecciones 5 a 7 de cada proyecto son especificaciones y puntos de control, no reenseñan.
+- Cobrar y Agentes son opcionales: se puede publicar sin ellos. Se marcan solo en el título del curso.
+- Lo que no corre en la plataforma (FastAPI, React, Git, despliegues) se enseña como práctica guiada en el entorno del alumno, con quiz de comprobación y plantillas de prompt para la IA.
 
 **Al reorganizar contenido:** los ejercicios conservan su `id` (slug) para no perder el progreso de los alumnos. Tras cargar con `load_content.py`, `load_content.py --prune` lista lo que sobra en la base y solo borra con `--yes`; se niega a borrar algo que aún contenga ejercicios vigentes.
+
+**Limitaciones del ejecutor de ejercicios (condicionan cómo se escriben):**
+- En SQL, con varias sentencias el motor devuelve el resultado del primer `SELECT`; cada ejercicio termina con uno solo.
+- El estado de la base persiste mientras la página siga abierta: un `INSERT` repetido duplica filas. Los ejercicios usan `CREATE OR REPLACE`, `UPDATE` y `DELETE`.
+- Los resultados esperados evitan `DECIMAL` y fechas (llegan al navegador en un formato que la comparación no entiende) y siempre llevan `ORDER BY`.
 
 ## 3. Decisiones técnicas
 
@@ -68,7 +81,7 @@ Once cursos cortos en tres fases; el orden es el del campo `position` de `conten
 
 **Módulo de agentes (decisión del MVP):** como los ejercicios corren en el navegador y no deben exponer API keys, este módulo se limita a lecciones + ejercicios donde el alumno escribe el código del agente (herramientas, bucle, prompts) y se valida con **pruebas con un cliente LLM simulado (mock)** más revisión de la IA contra una rúbrica. Los proyectos con llamadas reales los ejecuta el alumno en su propio entorno.
 
-**Estado del módulo de agentes:** arranca con lecciones conceptuales y quizzes (sin ejecutar código). Con la nueva finalidad, orquestar agentes no se practica en el navegador: es una pieza que el alumno construye en su propio entorno, con la plataforma aportando lecciones, puntos de control y feedback. Antes de crear ejercicios de código hay que **comprobar si LangGraph puede correr dentro de Pyodide** en el navegador; si no, se evalúa otra vía.
+**Estado del módulo de agentes:** el curso de agentes es opcional y se evalúa solo con lecciones y quizzes de opción múltiple (con código de LangGraph para leer, que no se ejecuta en la plataforma). Por eso ya no hace falta comprobar si LangGraph corre dentro de Pyodide. Los ejemplos del curso se verificaron localmente con LangGraph 1.2.
 
 ## 4. Modelo de datos (borrador)
 
@@ -161,8 +174,7 @@ explanation: "..."     # se muestra al acertar
 1. ¿Qué pasarela de pago? (§7) — Validar con 2-3 proveedores locales (Yape/Plin)
 2. Nombre definitivo del producto y del dominio (hoy: CortexLab, con riesgo de colisión con marcas existentes; verificar dominio e INDECOPI)
 3. Precio de planes trimestral y anual
-4. Estructura de cursos alineada con la finalidad (ruta de la idea al SaaS publicado) y su contenido real; hoy hay placeholders y ejemplos
-5. ¿Funciona LangGraph dentro de Pyodide? (§3, módulo de agentes)
+4. Revisión del contenido escrito (90 lecciones en borrador): resolver los comentarios `REVISAR` y probar las lecciones guiadas de punta a punta
 
 ## 12. Pendientes antes de abrir la plataforma
 

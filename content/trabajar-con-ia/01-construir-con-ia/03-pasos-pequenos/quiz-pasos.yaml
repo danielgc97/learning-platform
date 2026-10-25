@@ -1,0 +1,10 @@
+id: ia-pasos-001
+type: quiz
+statement: "La IA modificó doce archivos de golpe y ahora tu app no arranca. ¿Qué habría evitado el problema?"
+options:
+  - "Usar una IA más grande"
+  - "Pedir pasos pequeños y hacer un commit cuando cada paso funciona, para poder volver atrás"
+  - "Pedir lo mismo con más mayúsculas"
+  - "Borrar el proyecto y empezar de cero cada vez"
+correct: 1
+explanation: "Con pasos pequeños el error está en el último cambio, y con commits puedes volver a la última versión que funcionaba."

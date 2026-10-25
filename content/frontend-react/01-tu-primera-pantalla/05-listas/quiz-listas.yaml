@@ -1,0 +1,10 @@
+id: react-listas-001
+type: quiz
+statement: "¿Para qué sirve la prop key en cada elemento de una lista y qué valor conviene usar?"
+options:
+  - "Para darle color; cualquier texto sirve"
+  - "Para que React identifique cada elemento; conviene un valor único y estable, como el id"
+  - "Para ordenar la lista alfabéticamente"
+  - "No sirve para nada; es opcional"
+correct: 1
+explanation: "key permite a React saber qué elemento es cuál cuando la lista cambia (se agrega, borra o reordena). El id de la base de datos es ideal porque no se repite ni cambia."

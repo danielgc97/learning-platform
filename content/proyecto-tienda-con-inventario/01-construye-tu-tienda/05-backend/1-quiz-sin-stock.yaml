@@ -1,0 +1,10 @@
+id: tienda-backend-001
+type: quiz
+statement: "POST /ventas recibe 5 unidades de un producto que tiene 3 en stock. ¿Qué debe hacer tu API?"
+options:
+  - "Guardar la venta y dejar el stock en -2"
+  - "Responder 400 con un mensaje claro y no guardar nada"
+  - "Guardar solo 3 unidades sin avisar"
+  - "Responder 200 igualmente"
+correct: 1
+explanation: "La regla de que el stock no sea negativo se comprueba antes de guardar. El mensaje claro permite al frontend avisarle al dueño qué ocurrió."

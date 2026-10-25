@@ -1,0 +1,10 @@
+id: api-parametros-001
+type: quiz
+statement: "Tu endpoint es /tareas/{tarea_id} con tarea_id: int. Alguien visita /tareas/abc. ¿Qué ocurre?"
+options:
+  - "FastAPI ejecuta tu función con el texto 'abc'"
+  - "FastAPI responde con un error de validación (422) y no ejecuta tu función"
+  - "El servidor se apaga"
+  - "FastAPI convierte 'abc' en 0"
+correct: 1
+explanation: "El tipo declarado (int) se usa para validar. Si el dato no encaja, FastAPI responde con un error 422 que explica el problema."

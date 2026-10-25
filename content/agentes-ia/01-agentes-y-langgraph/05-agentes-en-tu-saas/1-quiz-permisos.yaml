@@ -1,0 +1,10 @@
+id: agentes-saas-001
+type: quiz
+statement: "Quieres que tu agente consulte pedidos. ¿Qué herramienta le das?"
+options:
+  - "Una que ejecute cualquier consulta SQL, para que sea flexible"
+  - "Una función específica que solo lea el estado de un pedido del usuario actual"
+  - "Tu clave secreta de la base de datos, para que no se quede sin acceso"
+  - "Ninguna restricción: confías en el modelo"
+correct: 1
+explanation: "El agente debe tener el mínimo poder necesario. Una herramienta acotada limita el daño si el modelo se equivoca o es engañado."

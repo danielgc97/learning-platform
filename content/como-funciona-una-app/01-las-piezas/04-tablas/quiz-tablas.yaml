@@ -1,0 +1,10 @@
+id: app-tablas-001
+type: quiz
+statement: "En una tabla de clientes hay dos personas llamadas Ana Pérez. ¿Qué permite distinguirlas con seguridad?"
+options:
+  - "El orden en que aparecen en la tabla"
+  - "Su clave primaria (id), que es distinta para cada fila"
+  - "El color con el que se muestran en pantalla"
+  - "Nada: la base de datos no admite nombres repetidos"
+correct: 1
+explanation: "La clave primaria es un valor único por fila. Los nombres pueden repetirse, por eso cada fila lleva su propio id."

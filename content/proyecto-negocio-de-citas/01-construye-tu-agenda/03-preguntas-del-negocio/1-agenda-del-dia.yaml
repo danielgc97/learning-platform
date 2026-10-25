@@ -1,0 +1,37 @@
+id: citas-consultas-001
+type: sql
+statement: "Muestra la agenda del día '2026-10-26': hora, cliente (nombre) y servicio (nombre), ordenada por hora."
+starter_code: "SELECT * FROM citas;"
+setup_sql: |
+  CREATE TABLE servicios (id INTEGER PRIMARY KEY, nombre VARCHAR NOT NULL, precio DOUBLE NOT NULL, duracion_min INTEGER NOT NULL);
+  CREATE TABLE clientes (id INTEGER PRIMARY KEY, nombre VARCHAR NOT NULL, telefono VARCHAR);
+  CREATE TABLE citas (id INTEGER PRIMARY KEY, cliente_id INTEGER REFERENCES clientes(id), servicio_id INTEGER REFERENCES servicios(id), dia VARCHAR NOT NULL, hora VARCHAR NOT NULL, estado VARCHAR NOT NULL);
+  INSERT INTO servicios VALUES (1, 'Lavado básico', 15.0, 30), (2, 'Lavado completo', 35.0, 60), (3, 'Encerado', 50.0, 90);
+  INSERT INTO clientes VALUES (1, 'Ana', '999111222'), (2, 'Luis', '999333444'), (3, 'Marta', '999555666'), (4, 'Pedro', '999777888');
+  INSERT INTO citas VALUES
+    (1, 1, 1, '2026-10-26', '09:00', 'completada'),
+    (2, 2, 2, '2026-10-26', '10:00', 'completada'),
+    (3, 3, 3, '2026-10-26', '12:00', 'completada'),
+    (4, 1, 2, '2026-10-27', '09:30', 'completada'),
+    (5, 4, 1, '2026-10-27', '11:00', 'cancelada'),
+    (6, 2, 1, '2026-10-27', '15:00', 'completada'),
+    (7, 1, 3, '2026-10-28', '10:00', 'completada'),
+    (8, 3, 1, '2026-10-28', '14:00', 'pendiente');
+expected:
+  columns: [hora, cliente, servicio]
+  rows:
+    - ["09:00", Ana, Lavado básico]
+    - ["10:00", Luis, Lavado completo]
+    - ["12:00", Marta, Encerado]
+solution: |
+  SELECT ci.hora, c.nombre AS cliente, s.nombre AS servicio
+  FROM citas ci
+  JOIN clientes c ON c.id = ci.cliente_id
+  JOIN servicios s ON s.id = ci.servicio_id
+  WHERE ci.dia = '2026-10-26'
+  ORDER BY ci.hora;
+rubric: "El alumno debe unir citas con clientes y servicios, filtrar con WHERE por el día indicado, renombrar las columnas como cliente y servicio, y ordenar por hora."
+hints:
+  - "Los nombres están en otras tablas: une citas con clientes y con servicios usando las claves foráneas."
+  - "Dos columnas se llaman nombre; usa AS para llamarlas cliente y servicio."
+  - "Filtra con WHERE ci.dia = '2026-10-26' (el texto va entre comillas simples) y ordena por ci.hora."

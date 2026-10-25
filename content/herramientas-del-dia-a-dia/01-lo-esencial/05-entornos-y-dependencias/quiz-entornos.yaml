@@ -1,0 +1,10 @@
+id: herr-entornos-001
+type: quiz
+statement: "Descargas un proyecto de Python que incluye un archivo requirements.txt. ¿Qué comando instala todo lo que necesita (con el entorno virtual activo)?"
+options:
+  - "python requirements.txt"
+  - "pip install -r requirements.txt"
+  - "npm install"
+  - "git init"
+correct: 1
+explanation: "pip install -r lee la lista de requirements.txt e instala cada paquete. npm install es el equivalente, pero para proyectos de Node."

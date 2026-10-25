@@ -1,0 +1,10 @@
+id: herr-git-001
+type: quiz
+statement: "Cambiaste varios archivos y quieres guardar una versión. ¿En qué orden se ejecutan los comandos?"
+options:
+  - "git commit -m \"mensaje\" y después git add ."
+  - "git add . y después git commit -m \"mensaje\""
+  - "Solo git status; guarda solo"
+  - "git init y después git status"
+correct: 1
+explanation: "Primero se preparan los cambios con git add y después se guardan con git commit. Si haces commit sin add, no se guarda nada."

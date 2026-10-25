@@ -1,0 +1,23 @@
+id: python-errores-002
+type: python
+statement: "Define una función convertir_cantidad(texto) que reciba un texto (por ejemplo, lo que escribió un usuario en un formulario) y devuelva el número entero que representa. Si el texto no se puede convertir, debe devolver None en lugar de fallar."
+starter_code: |
+  def convertir_cantidad(texto):
+      pass
+tests: |
+  assert callable(convertir_cantidad), "convertir_cantidad debe ser una función"
+  assert convertir_cantidad("5") == 5, "Con '5' se esperaba 5"
+  assert convertir_cantidad(" 7 ") == 7, "Con ' 7 ' se esperaba 7"
+  assert convertir_cantidad("abc") is None, "Con 'abc' se esperaba None"
+  assert convertir_cantidad("") is None, "Con un texto vacío se esperaba None"
+solution: |
+  def convertir_cantidad(texto):
+      try:
+          return int(texto)
+      except ValueError:
+          return None
+rubric: "El alumno debe usar try/except ValueError alrededor de int(texto), devolviendo el número si funciona y None si no."
+hints:
+  - "int(texto) convierte un texto en entero, pero lanza un ValueError si no puede."
+  - "Pon la conversión dentro de try y captura el error con except ValueError."
+  - "En el except devuelve None."

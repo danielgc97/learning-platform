@@ -1,9 +1,0 @@
-id: agentes-concepto-002
-type: quiz
-statement: "En el bucle de un agente, ¿quién ejecuta realmente una herramienta?"
-options:
-  - "El modelo, directamente"
-  - "El código de tu programa, cuando el modelo lo solicita"
-  - "El usuario, manualmente"
-correct: 1
-explanation: "El modelo solo pide usar la herramienta con ciertos argumentos. Tu código la ejecuta y le devuelve el resultado para que decida el siguiente paso."

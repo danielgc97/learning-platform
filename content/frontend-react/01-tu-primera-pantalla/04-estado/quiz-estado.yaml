@@ -1,0 +1,10 @@
+id: react-estado-001
+type: quiz
+statement: "En un componente escribes veces = veces + 1 dentro del botón, en vez de usar setVeces. ¿Qué pasa?"
+options:
+  - "Funciona igual"
+  - "La pantalla no se actualiza, porque React no se entera del cambio"
+  - "Se borra el proyecto"
+  - "Se guarda en la base de datos"
+correct: 1
+explanation: "React solo vuelve a dibujar cuando se usa la función que devuelve useState. Cambiar la variable directamente no avisa a React."

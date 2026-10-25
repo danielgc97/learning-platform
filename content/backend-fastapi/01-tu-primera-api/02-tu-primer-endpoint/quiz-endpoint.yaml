@@ -1,0 +1,10 @@
+id: api-primer-endpoint-001
+type: quiz
+statement: "Con el servidor en marcha, ¿qué dirección abres para ver y probar tus endpoints desde el navegador, sin escribir código?"
+options:
+  - "http://127.0.0.1:8000/docs"
+  - "http://127.0.0.1:8000/probar"
+  - "https://fastapi.com/mi-api"
+  - "No existe: hay que programarla aparte"
+correct: 0
+explanation: "FastAPI genera automáticamente la documentación interactiva en /docs a partir de tu código."

@@ -1,0 +1,25 @@
+id: citas-reglas-001
+type: python
+statement: "Define una función hay_choque(a, b) donde a y b son diccionarios con las claves 'inicio' y 'duracion' (en minutos desde la medianoche). Devuelve True si las dos citas se solapan y False si no. Si una termina justo cuando empieza la otra, NO chocan."
+starter_code: |
+  def hay_choque(a, b):
+      pass
+tests: |
+  assert callable(hay_choque), "hay_choque debe ser una función"
+  nueve = {"inicio": 540, "duracion": 60}
+  assert hay_choque(nueve, {"inicio": 570, "duracion": 30}) is True, "9:00-10:00 y 9:30-10:00 se solapan"
+  assert hay_choque({"inicio": 570, "duracion": 30}, nueve) is True, "El orden de los argumentos no debe importar"
+  assert hay_choque(nueve, {"inicio": 600, "duracion": 30}) is False, "9:00-10:00 y 10:00-10:30 no chocan: una termina cuando empieza la otra"
+  assert hay_choque(nueve, {"inicio": 480, "duracion": 30}) is False, "8:00-8:30 y 9:00-10:00 no se tocan"
+  assert hay_choque(nueve, {"inicio": 500, "duracion": 120}) is True, "Una cita larga que contiene a la otra choca"
+  assert hay_choque(nueve, nueve) is True, "Dos citas idénticas chocan"
+solution: |
+  def hay_choque(a, b):
+      fin_a = a["inicio"] + a["duracion"]
+      fin_b = b["inicio"] + b["duracion"]
+      return a["inicio"] < fin_b and b["inicio"] < fin_a
+rubric: "El alumno debe calcular el fin de cada cita (inicio + duracion) y devolver True solo si el inicio de cada una es estrictamente menor que el fin de la otra."
+hints:
+  - "Calcula primero cuándo termina cada cita: su inicio más su duración."
+  - "Dos citas chocan cuando cada una empieza antes de que termine la otra."
+  - "Usa comparaciones estrictas (<, no <=) para que dos citas pegadas, una a continuación de la otra, no cuenten como choque."

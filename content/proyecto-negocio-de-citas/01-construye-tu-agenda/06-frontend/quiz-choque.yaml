@@ -1,0 +1,10 @@
+id: citas-frontend-001
+type: quiz
+statement: "El formulario de nueva cita ya impide elegir horas ocupadas en la pantalla. ¿Es suficiente para evitar choques?"
+options:
+  - "Sí: si el usuario no puede elegirlas, no existen choques"
+  - "No: el backend debe comprobarlo siempre, porque dos personas pueden reservar a la vez o alguien puede llamar a la API directamente"
+  - "Sí, siempre que la pantalla sea bonita"
+  - "No hace falta nada más si usa Vercel"
+correct: 1
+explanation: "El frontend mejora la experiencia, pero la regla real vive en el backend. Además, la agenda puede cambiar entre que se carga la pantalla y se envía el formulario."

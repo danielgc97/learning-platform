@@ -1,0 +1,10 @@
+id: publicar-orden-001
+type: quiz
+statement: "¿Por qué se publica primero el backend y después el frontend?"
+options:
+  - "Porque el frontend es más fácil"
+  - "Porque el frontend necesita conocer la dirección pública del backend para llamarlo"
+  - "Porque Vercel no acepta proyectos nuevos"
+  - "No importa el orden"
+correct: 1
+explanation: "El frontend publicado debe apuntar a la dirección real del backend (por ejemplo, en la variable VITE_API_URL). Sin esa dirección, no sabe a dónde enviar sus peticiones."

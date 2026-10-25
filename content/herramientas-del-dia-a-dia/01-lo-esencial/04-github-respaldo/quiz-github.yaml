@@ -1,0 +1,10 @@
+id: herr-github-001
+type: quiz
+statement: "¿Cuál de estos archivos debe aparecer siempre en .gitignore?"
+options:
+  - "README.md"
+  - "main.py"
+  - ".env, que contiene tus claves y contraseñas"
+  - "requirements.txt"
+correct: 2
+explanation: "El archivo .env guarda secretos. Si lo subes a GitHub, cualquiera con acceso al repositorio podría usarlos. Los otros archivos son parte normal de tu proyecto."

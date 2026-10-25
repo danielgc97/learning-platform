@@ -1,0 +1,24 @@
+id: python-listas-001
+type: python
+statement: "Define una función contar_caros(precios, limite) que reciba una lista de precios y un número límite, y devuelva cuántos precios son estrictamente mayores que el límite."
+starter_code: |
+  def contar_caros(precios, limite):
+      pass
+tests: |
+  assert callable(contar_caros), "contar_caros debe ser una función"
+  assert contar_caros([10, 50, 30, 80], 40) == 2, "Con [10, 50, 30, 80] y límite 40 se esperaba 2"
+  assert contar_caros([], 10) == 0, "Con una lista vacía se esperaba 0"
+  assert contar_caros([5, 5], 5) == 0, "Un precio igual al límite no cuenta: solo los mayores"
+  assert contar_caros([100, 200, 300], 0) == 3, "Con límite 0 todos son mayores: se esperaba 3"
+solution: |
+  def contar_caros(precios, limite):
+      cantidad = 0
+      for precio in precios:
+          if precio > limite:
+              cantidad = cantidad + 1
+      return cantidad
+rubric: "El alumno debe recorrer la lista con for, contar con un acumulador los precios estrictamente mayores que el límite y devolver el contador con return."
+hints:
+  - "Empieza con una variable contador en 0 antes del bucle."
+  - "Dentro del for, usa un if para comprobar si el precio es mayor que el límite."
+  - "Suma 1 al contador cuando se cumpla, y haz el return fuera del bucle (sin indentar dentro de él)."

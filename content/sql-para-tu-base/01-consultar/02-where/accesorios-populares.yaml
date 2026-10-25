@@ -1,0 +1,27 @@
+id: sql-where-001
+type: sql
+statement: "La tabla ventas tiene las columnas id, producto, categoria, cantidad y precio. Muestra el producto y la cantidad de los productos de la categoría 'Accesorios' cuya cantidad vendida sea mayor que 5."
+starter_code: "SELECT * FROM ventas;"
+setup_sql: |
+  CREATE TABLE ventas (id INTEGER, producto VARCHAR, categoria VARCHAR, cantidad INTEGER, precio DOUBLE);
+  INSERT INTO ventas VALUES
+    (1, 'Laptop', 'Cómputo', 2, 3200.0),
+    (2, 'Mouse', 'Accesorios', 10, 45.5),
+    (3, 'Teclado', 'Accesorios', 5, 120.0),
+    (4, 'Monitor', 'Cómputo', 3, 850.0),
+    (5, 'Cable HDMI', 'Accesorios', 8, 15.0),
+    (6, 'Silla', 'Muebles', 1, 400.0);
+expected:
+  columns: [producto, cantidad]
+  rows:
+    - [Mouse, 10]
+    - [Cable HDMI, 8]
+solution: |
+  SELECT producto, cantidad
+  FROM ventas
+  WHERE categoria = 'Accesorios' AND cantidad > 5;
+rubric: "El alumno debe filtrar con WHERE combinando con AND la categoría 'Accesorios' (texto entre comillas simples) y cantidad > 5, mostrando solo producto y cantidad."
+hints:
+  - "Necesitas dos condiciones a la vez: una sobre la categoría y otra sobre la cantidad."
+  - "El texto 'Accesorios' va entre comillas simples; el número 5 va sin comillas."
+  - "Une las dos condiciones con AND después de WHERE."

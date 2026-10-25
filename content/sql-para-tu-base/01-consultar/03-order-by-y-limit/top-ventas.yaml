@@ -1,0 +1,29 @@
+id: sql-ventas-001
+type: sql
+statement: "La tabla ventas tiene las columnas id, producto, categoria, cantidad y precio. Muestra los 3 productos con mayor total vendido (cantidad * precio). Las columnas deben llamarse producto y total, ordenadas de mayor a menor total."
+starter_code: "SELECT * FROM ventas;"
+setup_sql: |
+  CREATE TABLE ventas (id INTEGER, producto VARCHAR, categoria VARCHAR, cantidad INTEGER, precio DOUBLE);
+  INSERT INTO ventas VALUES
+    (1, 'Laptop', 'Cómputo', 2, 3200.0),
+    (2, 'Mouse', 'Accesorios', 10, 45.5),
+    (3, 'Teclado', 'Accesorios', 5, 120.0),
+    (4, 'Monitor', 'Cómputo', 3, 850.0),
+    (5, 'Cable HDMI', 'Accesorios', 8, 15.0),
+    (6, 'Silla', 'Muebles', 1, 400.0);
+expected:
+  columns: [producto, total]
+  rows:
+    - [Laptop, 6400]
+    - [Monitor, 2550]
+    - [Teclado, 600]
+solution: |
+  SELECT producto, cantidad * precio AS total
+  FROM ventas
+  ORDER BY total DESC
+  LIMIT 3;
+rubric: "El alumno debe calcular cantidad * precio con el alias total, ordenar de forma descendente por ese total y limitar el resultado a 3 filas."
+hints:
+  - "Puedes hacer cálculos entre columnas dentro del SELECT y ponerles nombre con AS."
+  - "ORDER BY puede usar el alias que creaste; para el mayor primero necesitas DESC."
+  - "LIMIT va al final de la consulta, después de ORDER BY."

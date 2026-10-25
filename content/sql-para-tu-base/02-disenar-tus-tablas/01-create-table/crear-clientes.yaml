@@ -1,0 +1,26 @@
+id: sql-create-001
+type: sql
+statement: "Completa la definición de la tabla clientes con tres columnas, en este orden: id (INTEGER, clave primaria), nombre (VARCHAR, obligatorio) y activo (BOOLEAN). El INSERT y el SELECT final ya están escritos; el resultado debe mostrar la fila de Ana."
+starter_code: |
+  CREATE OR REPLACE TABLE clientes (
+    -- escribe aquí las columnas: id, nombre y activo
+  );
+  INSERT INTO clientes VALUES (1, 'Ana', true);
+  SELECT * FROM clientes;
+expected:
+  columns: [id, nombre, activo]
+  rows:
+    - [1, Ana, true]
+solution: |
+  CREATE OR REPLACE TABLE clientes (
+    id INTEGER PRIMARY KEY,
+    nombre VARCHAR NOT NULL,
+    activo BOOLEAN
+  );
+  INSERT INTO clientes VALUES (1, 'Ana', true);
+  SELECT * FROM clientes;
+rubric: "El alumno debe declarar las columnas id INTEGER PRIMARY KEY, nombre VARCHAR NOT NULL y activo BOOLEAN, en ese orden, separadas por comas."
+hints:
+  - "Cada columna se escribe como: nombre tipo. Las columnas se separan con comas, sin coma después de la última."
+  - "La primera es id INTEGER, y añade PRIMARY KEY al final de esa línea."
+  - "Para que nombre sea obligatorio, escribe NOT NULL después de su tipo."

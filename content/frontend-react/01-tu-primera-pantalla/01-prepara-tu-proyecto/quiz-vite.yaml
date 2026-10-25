@@ -1,0 +1,10 @@
+id: react-vite-001
+type: quiz
+statement: "Creaste tu proyecto con Vite. ¿Qué comando usas cada día para ver tu app mientras trabajas?"
+options:
+  - "npm install"
+  - "npm run dev"
+  - "git commit"
+  - "pip install vite"
+correct: 1
+explanation: "npm run dev arranca el servidor de desarrollo (en localhost:5173) que se actualiza solo cuando guardas un archivo. npm install solo se usa para bajar las dependencias."

@@ -1,0 +1,10 @@
+id: sql-fk-002
+type: quiz
+statement: "La tabla pedidos tiene cliente_id REFERENCES clientes(id). Intentas guardar un pedido con cliente_id = 99, pero no existe ningún cliente con ese id. ¿Qué pasa?"
+options:
+  - "Se guarda sin problema y queda un pedido huérfano"
+  - "La base crea automáticamente el cliente 99"
+  - "La base rechaza el pedido con un error"
+  - "Se borran todos los pedidos anteriores"
+correct: 2
+explanation: "La clave foránea obliga a que cada cliente_id exista en clientes. Es una protección: evita datos que apuntan a algo que no existe."

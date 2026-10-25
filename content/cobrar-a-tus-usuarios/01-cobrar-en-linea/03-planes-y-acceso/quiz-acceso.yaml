@@ -1,0 +1,10 @@
+id: pagos-acceso-001
+type: quiz
+statement: "Tu app muestra el botón 'Exportar datos' solo a quienes pagaron. ¿Es suficiente con ocultar el botón?"
+options:
+  - "Sí: si no lo ven, no pueden usarlo"
+  - "No: el backend también debe comprobar la suscripción en cada petición, porque cualquiera puede llamar a la API directamente"
+  - "Sí, siempre que el botón sea gris"
+  - "No hace falta nada más si usan la app móvil"
+correct: 1
+explanation: "Lo que se oculta en la pantalla sigue existiendo en la API. La regla de acceso real debe aplicarse en el backend."

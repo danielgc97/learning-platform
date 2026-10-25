@@ -1,0 +1,10 @@
+id: app-capas-001
+type: quiz
+statement: "Quieres que cada usuario solo vea sus propios pedidos. ¿En qué capa deben vivir esa regla y su comprobación?"
+options:
+  - "Solo en el frontend, escondiendo los botones de los demás"
+  - "En el backend, que decide qué datos entrega a cada persona"
+  - "En el navegador del usuario, para que sea más rápido"
+  - "En ninguna: las bases de datos lo hacen solas"
+correct: 1
+explanation: "Todo lo que llega al navegador puede ser visto o manipulado por quien lo use. Las reglas de acceso se aplican en el backend (y en la base de datos), que son las capas que el usuario no controla."

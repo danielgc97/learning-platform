@@ -1,0 +1,10 @@
+id: react-fetch-001
+type: quiz
+statement: "¿Por qué la pantalla guarda los estados 'cargando' y 'error' además de la lista de tareas?"
+options:
+  - "Porque React lo exige para funcionar"
+  - "Para que el usuario vea que algo está pasando, o qué falló, en lugar de una pantalla en blanco"
+  - "Para que la API vaya más rápido"
+  - "Para guardar las tareas en la base de datos"
+correct: 1
+explanation: "Pedir datos toma tiempo y puede fallar. Mostrar 'Cargando...' y los errores hace que el producto se sienta confiable."

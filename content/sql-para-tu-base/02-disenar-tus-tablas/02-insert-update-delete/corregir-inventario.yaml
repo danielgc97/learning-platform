@@ -1,0 +1,29 @@
+id: sql-modificar-001
+type: sql
+statement: "La tabla inventario tiene las columnas producto y stock. Escribe dos instrucciones: una que cambie el stock de Mouse a 12 y otra que borre el producto Silla. Deja al final el SELECT que muestra el resultado."
+starter_code: |
+  -- 1) Cambia el stock de Mouse a 12
+  -- 2) Borra el producto Silla
+  SELECT producto, stock FROM inventario ORDER BY producto;
+setup_sql: |
+  CREATE TABLE inventario (producto VARCHAR, stock INTEGER);
+  INSERT INTO inventario VALUES
+    ('Mouse', 8),
+    ('Silla', 3),
+    ('Teclado', 15),
+    ('Monitor', 4);
+expected:
+  columns: [producto, stock]
+  rows:
+    - [Monitor, 4]
+    - [Mouse, 12]
+    - [Teclado, 15]
+solution: |
+  UPDATE inventario SET stock = 12 WHERE producto = 'Mouse';
+  DELETE FROM inventario WHERE producto = 'Silla';
+  SELECT producto, stock FROM inventario ORDER BY producto;
+rubric: "El alumno debe usar UPDATE ... SET stock = 12 WHERE producto = 'Mouse' y DELETE FROM inventario WHERE producto = 'Silla', ambos con WHERE, antes del SELECT final."
+hints:
+  - "Necesitas dos instrucciones antes del SELECT, cada una terminada en punto y coma."
+  - "UPDATE tabla SET columna = valor WHERE condición; no olvides el WHERE o cambiarías todas las filas."
+  - "DELETE FROM tabla WHERE condición; el texto 'Silla' va entre comillas simples."

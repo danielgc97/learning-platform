@@ -1,0 +1,10 @@
+id: publicar-dominio-001
+type: quiz
+statement: "Conectaste tu dominio propio a Vercel y la app abre. ¿Qué otros dos lugares debes actualizar con la nueva dirección?"
+options:
+  - "El README y el logo"
+  - "CORS_ORIGINS en el backend y la Site URL / Redirect URLs de Supabase"
+  - "El archivo requirements.txt"
+  - "Nada más"
+correct: 1
+explanation: "El backend debe autorizar el nuevo origen y Supabase debe enviar los correos con enlaces a la nueva dirección. Si no, fallarán las peticiones o los enlaces de confirmación."

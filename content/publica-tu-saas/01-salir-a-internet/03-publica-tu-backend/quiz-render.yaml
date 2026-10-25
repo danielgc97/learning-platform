@@ -1,0 +1,10 @@
+id: publicar-render-001
+type: quiz
+statement: "Abres tu app publicada después de una hora sin usarla, y la primera carga tarda cerca de un minuto. ¿Qué pasó?"
+options:
+  - "Tu código tiene un error grave"
+  - "El plan gratuito apaga el servicio cuando no hay visitas, y la primera petición lo despierta"
+  - "Supabase borró tus datos"
+  - "Vercel está caído"
+correct: 1
+explanation: "Los servicios del plan gratuito de Render se suspenden tras un tiempo sin tráfico. Al volver a recibir una petición, arrancan de nuevo, y eso demora."

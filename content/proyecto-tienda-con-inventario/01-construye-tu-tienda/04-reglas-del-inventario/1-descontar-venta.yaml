@@ -1,0 +1,37 @@
+id: tienda-reglas-001
+type: python
+statement: "Define una función descontar_venta(inventario, items). inventario es un diccionario {nombre: stock} e items es una lista de pares (nombre, cantidad). Devuelve un NUEVO diccionario con el stock descontado, sin modificar el original. Lanza ValueError si un producto no existe, si una cantidad no es positiva o si no alcanza el stock."
+starter_code: |
+  def descontar_venta(inventario, items):
+      pass
+tests: |
+  inicial = {"Arroz": 10, "Aceite": 3}
+  assert callable(descontar_venta), "descontar_venta debe ser una función"
+  nuevo = descontar_venta(inicial, [("Arroz", 4), ("Aceite", 1)])
+  assert nuevo == {"Arroz": 6, "Aceite": 2}, "Se esperaba {'Arroz': 6, 'Aceite': 2}"
+  assert inicial == {"Arroz": 10, "Aceite": 3}, "No debes modificar el inventario original: devuelve uno nuevo"
+  assert descontar_venta(inicial, [("Aceite", 3)]) == {"Arroz": 10, "Aceite": 0}, "Vender todo el stock está permitido"
+  assert descontar_venta(inicial, [("Arroz", 3), ("Arroz", 2)]) == {"Arroz": 5, "Aceite": 3}, "Un mismo producto repetido debe descontarse dos veces"
+  for malo in ([("Pan", 1)], [("Arroz", 0)], [("Arroz", -1)], [("Aceite", 4)], [("Arroz", 6), ("Arroz", 6)]):
+      try:
+          descontar_venta(inicial, malo)
+          assert False, f"Con {malo} se esperaba un ValueError"
+      except ValueError:
+          pass
+solution: |
+  def descontar_venta(inventario, items):
+      nuevo = dict(inventario)
+      for nombre, cantidad in items:
+          if nombre not in nuevo:
+              raise ValueError(f"No existe el producto {nombre}")
+          if cantidad <= 0:
+              raise ValueError("La cantidad debe ser positiva")
+          if cantidad > nuevo[nombre]:
+              raise ValueError(f"No hay stock suficiente de {nombre}")
+          nuevo[nombre] = nuevo[nombre] - cantidad
+      return nuevo
+rubric: "El alumno debe copiar el inventario, recorrer los pares (nombre, cantidad) validando existencia, cantidad positiva y stock suficiente con ValueError, descontar sobre la copia (acumulando productos repetidos) y devolver la copia sin modificar el original."
+hints:
+  - "Empieza haciendo una copia: nuevo = dict(inventario). Trabaja siempre sobre la copia."
+  - "Dentro del for, haz tres validaciones antes de descontar: que el nombre esté en la copia, que la cantidad sea mayor que 0 y que no supere el stock actual de la copia."
+  - "Si todo es válido, resta la cantidad en la copia. Al final devuelve la copia; como validas contra la copia, los productos repetidos se acumulan solos."

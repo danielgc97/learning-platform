@@ -1,0 +1,10 @@
+id: react-componentes-001
+type: quiz
+statement: "¿Cuál de estas definiciones crea un componente que React puede usar como <TareaItem />?"
+options:
+  - "function tareaItem() { return <li>Hola</li> }"
+  - "function TareaItem() { return <li>Hola</li> }"
+  - "const TareaItem = 'Hola'"
+  - "function TareaItem() { <li>Hola</li> }"
+correct: 1
+explanation: "El nombre debe empezar con mayúscula y la función debe devolver (return) el JSX. Sin mayúscula, React lo trata como una etiqueta HTML; sin return, no dibuja nada."

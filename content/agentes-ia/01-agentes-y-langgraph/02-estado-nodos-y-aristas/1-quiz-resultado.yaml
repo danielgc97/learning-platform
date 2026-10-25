@@ -1,0 +1,10 @@
+id: agentes-grafo-001
+type: quiz
+statement: "Con el grafo de la lección, ¿qué devuelve grafo.invoke({\"pregunta\": \"Hola\"})?"
+options:
+  - "Solo {'respuesta': 'Recibí: Hola'}"
+  - "{'pregunta': 'Hola', 'respuesta': 'Recibí: Hola'}: el estado final con ambos campos"
+  - "Solo {'pregunta': 'Hola'}"
+  - "Un error, porque falta el campo respuesta en la entrada"
+correct: 1
+explanation: "El resultado es el estado final: la entrada se conserva y se combina con lo que devolvió el nodo. Por eso trae pregunta y respuesta."

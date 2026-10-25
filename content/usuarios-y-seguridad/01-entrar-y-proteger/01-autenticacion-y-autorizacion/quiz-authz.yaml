@@ -1,0 +1,10 @@
+id: seg-authz-001
+type: quiz
+statement: "Ana inició sesión correctamente y pide GET /tareas/7, una tarea que pertenece a Luis. ¿Qué debe hacer el sistema?"
+options:
+  - "Entregársela: Ana ya está autenticada"
+  - "Rechazar la petición: Ana está autenticada, pero no autorizada para esa tarea"
+  - "Pedirle que vuelva a iniciar sesión"
+  - "Borrar la tarea para evitar problemas"
+correct: 1
+explanation: "Autenticación es saber quién es Ana; autorización es decidir qué puede ver. Aunque haya iniciado sesión, solo debe acceder a sus propios datos."

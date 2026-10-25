@@ -1,0 +1,10 @@
+id: api-crud-001
+type: quiz
+statement: "¿Qué línea de supabase-py equivale a DELETE FROM tareas WHERE id = 5?"
+options:
+  - "supabase.table(\"tareas\").delete().eq(\"id\", 5).execute()"
+  - "supabase.table(\"tareas\").delete().execute()"
+  - "supabase.table(\"tareas\").select(\"id\").execute()"
+  - "supabase.table(\"tareas\").insert({\"id\": 5}).execute()"
+correct: 0
+explanation: "delete() indica la acción y eq(\"id\", 5) es el WHERE. Sin eq, la segunda opción borraría todas las filas de la tabla."

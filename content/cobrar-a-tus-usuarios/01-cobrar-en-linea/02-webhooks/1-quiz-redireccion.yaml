@@ -1,0 +1,10 @@
+id: pagos-webhook-001
+type: quiz
+statement: "El cliente paga y vuelve a la dirección /gracias de tu app. ¿Cuándo debes activar su suscripción?"
+options:
+  - "Apenas llegue a /gracias"
+  - "Cuando tu backend reciba y verifique el webhook de pago aprobado"
+  - "Cuando el cliente escriba 'ya pagué'"
+  - "Nunca; se hace a mano"
+correct: 1
+explanation: "Cualquiera puede escribir la dirección /gracias sin haber pagado. El webhook firmado es la confirmación confiable de la pasarela."

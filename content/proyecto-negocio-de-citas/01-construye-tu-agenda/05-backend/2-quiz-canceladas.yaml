@@ -1,0 +1,10 @@
+id: citas-backend-002
+type: quiz
+statement: "Al comprobar choques, ¿qué citas del día debes considerar?"
+options:
+  - "Todas, incluidas las canceladas"
+  - "Solo las que no están canceladas, porque una cancelada libera ese horario"
+  - "Ninguna"
+  - "Solo las completadas"
+correct: 1
+explanation: "Una cita cancelada ya no ocupa tiempo. Las pendientes y las completadas sí lo ocupan."

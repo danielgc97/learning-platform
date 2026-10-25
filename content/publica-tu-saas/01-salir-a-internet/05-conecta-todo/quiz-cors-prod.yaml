@@ -1,0 +1,10 @@
+id: publicar-conectar-001
+type: quiz
+statement: "Tu app en Vercel carga, pero la consola dice 'blocked by CORS policy' al pedir datos al backend. ¿Qué revisas?"
+options:
+  - "La variable CORS_ORIGINS del backend en Render: debe incluir la dirección exacta de tu frontend"
+  - "El .gitignore del frontend"
+  - "El nombre de tu repositorio"
+  - "La contraseña de tu computadora"
+correct: 0
+explanation: "El navegador solo deja pasar la petición si el backend autoriza el origen del frontend. En producción ese origen es la dirección de Vercel, no localhost."

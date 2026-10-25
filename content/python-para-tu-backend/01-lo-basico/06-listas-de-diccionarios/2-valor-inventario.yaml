@@ -1,0 +1,27 @@
+id: python-filtrar-002
+type: python
+statement: "Define una función valor_inventario(productos) que reciba la misma lista de diccionarios (con 'nombre', 'precio' y 'stock') y devuelva el valor total del inventario: la suma de precio * stock de todos los productos."
+starter_code: |
+  def valor_inventario(productos):
+      pass
+tests: |
+  catalogo = [
+      {"nombre": "Mouse", "precio": 45.5, "stock": 10},
+      {"nombre": "Silla", "precio": 400, "stock": 0},
+      {"nombre": "Teclado", "precio": 120, "stock": 3},
+  ]
+  assert callable(valor_inventario), "valor_inventario debe ser una función"
+  assert abs(valor_inventario(catalogo) - 815) < 1e-9, "Se esperaba 815.0 (455 + 0 + 360)"
+  assert valor_inventario([]) == 0, "Con una lista vacía se esperaba 0"
+  assert abs(valor_inventario([{"nombre": "X", "precio": 2, "stock": 5}]) - 10) < 1e-9, "Con un producto de precio 2 y stock 5 se esperaba 10"
+solution: |
+  def valor_inventario(productos):
+      valor = 0
+      for p in productos:
+          valor = valor + p["precio"] * p["stock"]
+      return valor
+rubric: "El alumno debe usar un acumulador que sume precio * stock de cada diccionario recorrido con for y devolverlo con return."
+hints:
+  - "Necesitas un acumulador que empiece en 0 antes del bucle."
+  - "En cada vuelta suma al acumulador el precio multiplicado por el stock de ese producto."
+  - "El return va después del bucle, no dentro."

@@ -1,0 +1,22 @@
+id: python-dict-001
+type: python
+statement: "Define una función nuevo_cliente(nombre, correo) que devuelva un diccionario con las claves 'nombre' y 'correo' (con los valores recibidos) y la clave 'activo' con el valor True."
+starter_code: |
+  def nuevo_cliente(nombre, correo):
+      pass
+tests: |
+  assert callable(nuevo_cliente), "nuevo_cliente debe ser una función"
+  resultado = nuevo_cliente("Ana", "ana@mail.com")
+  assert isinstance(resultado, dict), "La función debe devolver un diccionario"
+  assert resultado.get("nombre") == "Ana", "La clave 'nombre' debe tener el nombre recibido"
+  assert resultado.get("correo") == "ana@mail.com", "La clave 'correo' debe tener el correo recibido"
+  assert resultado.get("activo") is True, "La clave 'activo' debe valer True"
+  assert nuevo_cliente("Luis", "l@mail.com")["nombre"] == "Luis", "Debe usar los valores recibidos, no los de un ejemplo"
+solution: |
+  def nuevo_cliente(nombre, correo):
+      return {"nombre": nombre, "correo": correo, "activo": True}
+rubric: "El alumno debe devolver un diccionario con las claves nombre, correo y activo=True, usando los parámetros recibidos como valores."
+hints:
+  - "Un diccionario se escribe con llaves y pares clave: valor separados por comas."
+  - "Los valores de 'nombre' y 'correo' son los parámetros de la función, sin comillas."
+  - "Devuélvelo con return: {\"nombre\": nombre, ...}"

@@ -1,0 +1,10 @@
+id: agentes-saas-003
+type: quiz
+statement: "Lanzas una función con agente y no pusiste ningún límite. ¿Qué riesgo corres?"
+options:
+  - "Ninguno: los modelos son gratuitos"
+  - "Que un solo usuario, un ciclo o un error multiplique las llamadas y te llegue una factura enorme"
+  - "Que el agente se canse"
+  - "Que Git deje de funcionar"
+correct: 1
+explanation: "Cada paso del agente es una llamada con costo. Los límites por usuario, por ejecución y por mes protegen tu presupuesto."

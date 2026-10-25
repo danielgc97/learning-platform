@@ -1,0 +1,10 @@
+id: tienda-alcance-001
+type: quiz
+statement: "Para la versión 1 de la tienda, ¿qué funcionalidad dejarías para después?"
+options:
+  - "Registrar productos con precio y stock"
+  - "Descontar el stock al registrar una venta"
+  - "Facturación electrónica y varias sucursales"
+  - "Avisar cuando queda poco stock"
+correct: 2
+explanation: "El MVP resuelve el control básico de inventario y ventas. La facturación y las sucursales añaden mucha complejidad y pueden esperar a que el producto esté en uso."

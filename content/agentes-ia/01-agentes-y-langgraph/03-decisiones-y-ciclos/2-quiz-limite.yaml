@@ -1,0 +1,10 @@
+id: agentes-ciclos-002
+type: quiz
+statement: "Tu agente puede volver una y otra vez al modelo. ¿Cuál es la mejor protección contra un ciclo infinito (y una factura enorme)?"
+options:
+  - "Confiar en que el modelo siempre se detiene"
+  - "Una condición de término clara y un contador de pasos o límite máximo"
+  - "Reiniciar el servidor cada hora"
+  - "Pedirle al modelo que sea breve"
+correct: 1
+explanation: "Un ciclo debe tener siempre una salida garantizada por código, no por la buena voluntad del modelo."

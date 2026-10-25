@@ -1,0 +1,10 @@
+id: sql-supabase-001
+type: quiz
+statement: "En tu tabla aparece 'id bigint generated always as identity primary key'. ¿Qué efecto tiene en la columna id?"
+options:
+  - "Obliga a escribir el id a mano en cada fila"
+  - "La base asigna sola un número nuevo y único a cada fila que agregas"
+  - "Hace que el id sea un texto"
+  - "Permite repetir el mismo id en varias filas"
+correct: 1
+explanation: "identity genera automáticamente un número nuevo para cada fila, y primary key garantiza que nunca se repita. Así no tienes que inventar ids."

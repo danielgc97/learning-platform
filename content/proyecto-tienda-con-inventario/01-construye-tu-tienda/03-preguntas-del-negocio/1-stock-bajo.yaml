@@ -1,0 +1,40 @@
+id: tienda-consultas-001
+type: sql
+statement: "Muestra el nombre y el stock de los productos cuyo stock es menor o igual a su stock_minimo, ordenados por nombre."
+starter_code: "SELECT * FROM productos;"
+setup_sql: |
+  CREATE TABLE productos (id INTEGER PRIMARY KEY, nombre VARCHAR NOT NULL, precio DOUBLE NOT NULL, stock INTEGER NOT NULL, stock_minimo INTEGER NOT NULL);
+  CREATE TABLE ventas (id INTEGER PRIMARY KEY, mes VARCHAR NOT NULL);
+  CREATE TABLE items_venta (id INTEGER PRIMARY KEY, venta_id INTEGER REFERENCES ventas(id), producto_id INTEGER REFERENCES productos(id), cantidad INTEGER NOT NULL, precio_unitario DOUBLE NOT NULL);
+  INSERT INTO productos VALUES
+    (1, 'Arroz 5kg', 25.0, 40, 10),
+    (2, 'Aceite 1L', 9.5, 6, 10),
+    (3, 'Azúcar 1kg', 4.2, 12, 12),
+    (4, 'Leche', 5.0, 30, 15),
+    (5, 'Fideos', 3.5, 3, 8);
+  INSERT INTO ventas VALUES (1, '2026-08'), (2, '2026-08'), (3, '2026-09'), (4, '2026-09'), (5, '2026-09');
+  INSERT INTO items_venta VALUES
+    (1, 1, 1, 2, 25.0),
+    (2, 1, 4, 5, 5.0),
+    (3, 2, 2, 3, 9.5),
+    (4, 3, 1, 1, 25.0),
+    (5, 3, 5, 10, 3.5),
+    (6, 4, 4, 6, 5.0),
+    (7, 4, 2, 2, 9.5),
+    (8, 5, 5, 4, 3.5);
+expected:
+  columns: [nombre, stock]
+  rows:
+    - [Aceite 1L, 6]
+    - [Azúcar 1kg, 12]
+    - [Fideos, 3]
+solution: |
+  SELECT nombre, stock
+  FROM productos
+  WHERE stock <= stock_minimo
+  ORDER BY nombre;
+rubric: "El alumno debe filtrar con WHERE stock <= stock_minimo (comparando dos columnas, con igualdad incluida), mostrar nombre y stock, y ordenar por nombre."
+hints:
+  - "La condición compara dos columnas de la misma fila, sin números fijos."
+  - "Si el stock es igual al mínimo, también cuenta como bajo: usa <= en lugar de <."
+  - "Termina con ORDER BY nombre."

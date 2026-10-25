@@ -1,0 +1,10 @@
+id: herr-terminal-001
+type: quiz
+statement: "Estás en la carpeta mis-proyectos y quieres entrar a la carpeta tareas que está dentro. ¿Qué comando usas?"
+options:
+  - "ls tareas"
+  - "mkdir tareas"
+  - "cd tareas"
+  - "cd .."
+correct: 2
+explanation: "cd (change directory) es el comando para entrar a una carpeta. ls solo lista, mkdir crearía una nueva y cd .. subiría de nivel."

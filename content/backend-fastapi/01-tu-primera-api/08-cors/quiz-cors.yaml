@@ -1,0 +1,10 @@
+id: api-cors-001
+type: quiz
+statement: "Tu React en http://localhost:5173 llama a tu API y la consola muestra 'blocked by CORS policy'. ¿Qué haces?"
+options:
+  - "Desactivar la seguridad del navegador"
+  - "Agregar http://localhost:5173 a allow_origins en el backend"
+  - "Cambiar el frontend a otro lenguaje"
+  - "Borrar el archivo .env"
+correct: 1
+explanation: "El navegador solo deja pasar la petición si el backend declara que ese origen está autorizado. Se configura en el backend con CORSMiddleware."

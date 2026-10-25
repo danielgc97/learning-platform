@@ -1,0 +1,29 @@
+id: sql-groupby-001
+type: sql
+statement: "La tabla ventas tiene las columnas id, producto, categoria, cantidad y precio. Muestra cada categoría con su total vendido (suma de cantidad * precio) en una columna llamada total, ordenado de mayor a menor total."
+starter_code: "SELECT * FROM ventas;"
+setup_sql: |
+  CREATE TABLE ventas (id INTEGER, producto VARCHAR, categoria VARCHAR, cantidad INTEGER, precio DOUBLE);
+  INSERT INTO ventas VALUES
+    (1, 'Laptop', 'Cómputo', 2, 3200.0),
+    (2, 'Mouse', 'Accesorios', 10, 45.5),
+    (3, 'Teclado', 'Accesorios', 5, 120.0),
+    (4, 'Monitor', 'Cómputo', 3, 850.0),
+    (5, 'Cable HDMI', 'Accesorios', 8, 15.0),
+    (6, 'Silla', 'Muebles', 1, 400.0);
+expected:
+  columns: [categoria, total]
+  rows:
+    - [Cómputo, 8950]
+    - [Accesorios, 1175]
+    - [Muebles, 400]
+solution: |
+  SELECT categoria, SUM(cantidad * precio) AS total
+  FROM ventas
+  GROUP BY categoria
+  ORDER BY total DESC;
+rubric: "El alumno debe agrupar por categoria con GROUP BY, calcular SUM(cantidad * precio) con el alias total y ordenar de forma descendente por ese total."
+hints:
+  - "Quieres una fila por categoría, así que la columna categoria va en el SELECT y también en el GROUP BY."
+  - "El total de cada grupo es SUM(cantidad * precio). Ponle el nombre total con AS."
+  - "ORDER BY va al final. Para el mayor primero, usa DESC."

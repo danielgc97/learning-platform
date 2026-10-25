@@ -1,0 +1,10 @@
+id: producto-datos-001
+type: quiz
+statement: "Para la frase 'Un cliente reserva una cita para un servicio de lavado', ¿cuántas tablas darían un buen punto de partida?"
+options:
+  - "Una: todo en una sola tabla"
+  - "Dos: clientes y servicios"
+  - "Tres: clientes, servicios y citas"
+  - "Diez: una por cada palabra de la frase"
+correct: 2
+explanation: "Hay tres cosas distintas: el cliente, el servicio y la cita que los conecta. Cada una tiene sus propios datos, así que cada una tiene su tabla."

@@ -1,0 +1,10 @@
+id: citas-alcance-001
+type: quiz
+statement: "Para la versión 1 de la agenda, ¿qué dejarías para después?"
+options:
+  - "Agendar una cita sin choques de horario"
+  - "Ver la agenda de un día"
+  - "Que los clientes reserven solos y reciban recordatorios por WhatsApp"
+  - "Registrar servicios con su duración"
+correct: 2
+explanation: "El MVP resuelve el trabajo del dueño: agendar bien y ver su día. La reserva por parte de los clientes y los recordatorios automáticos añaden mucha complejidad y pueden esperar."

@@ -1,0 +1,10 @@
+id: ia-contexto-001
+type: quiz
+statement: "¿Cuál de estos prompts tiene más probabilidades de darte un buen resultado?"
+options:
+  - "Hazme la página de tareas"
+  - "Crea una app de tareas"
+  - "Tengo una app de tareas con React. Crea un componente que muestre la lista que viene de GET /tareas. No toques otros archivos y muestra 'Cargando...' mientras espera"
+  - "Arréglalo todo, por favor"
+correct: 2
+explanation: "El tercer prompt dice el stack, la fuente de los datos, lo que no debe tocar y el comportamiento esperado. Los otros obligan a la IA a adivinar."

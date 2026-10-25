@@ -1,0 +1,10 @@
+id: agentes-concepto-002
+type: quiz
+statement: "Tu producto siempre hace los mismos tres pasos con cada factura: extraer los datos, validarlos y guardarlos. ¿Qué te conviene construir?"
+options:
+  - "Un agente totalmente autónomo, porque es más moderno"
+  - "Un workflow con los pasos definidos, que es más predecible y barato"
+  - "Nada: la IA no puede extraer datos"
+  - "Un agente que además decida si guardar o no, sin reglas"
+correct: 1
+explanation: "Cuando conoces el camino, un flujo fijo es más fiable, rápido y económico. Los agentes valen la pena cuando los pasos dependen de lo que se encuentre en el camino."

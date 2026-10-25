@@ -1,0 +1,28 @@
+id: python-clases-001
+type: python
+statement: "Define una clase Producto cuyo constructor reciba nombre, precio y stock y los guarde como atributos. Agrega un método hay_stock(cantidad) que devuelva True si el stock alcanza para esa cantidad y False si no."
+starter_code: |
+  class Producto:
+      pass
+tests: |
+  p = Producto("Mouse", 45.5, 10)
+  assert p.nombre == "Mouse", "El atributo nombre debe guardar el nombre recibido"
+  assert p.precio == 45.5, "El atributo precio debe guardar el precio recibido"
+  assert p.stock == 10, "El atributo stock debe guardar el stock recibido"
+  assert p.hay_stock(10) is True, "Con stock 10 y cantidad 10 se esperaba True"
+  assert p.hay_stock(11) is False, "Con stock 10 y cantidad 11 se esperaba False"
+  assert Producto("Silla", 400, 0).hay_stock(1) is False, "Con stock 0 no alcanza para 1 unidad"
+solution: |
+  class Producto:
+      def __init__(self, nombre, precio, stock):
+          self.nombre = nombre
+          self.precio = precio
+          self.stock = stock
+
+      def hay_stock(self, cantidad):
+          return self.stock >= cantidad
+rubric: "El alumno debe definir __init__(self, nombre, precio, stock) guardando los tres atributos con self, y un método hay_stock(self, cantidad) que devuelva self.stock >= cantidad."
+hints:
+  - "El constructor se llama __init__ y su primer parámetro siempre es self."
+  - "Dentro de __init__ guarda cada dato con self.nombre = nombre, y lo mismo para precio y stock."
+  - "hay_stock es otra función dentro de la clase, también con self, que compara self.stock con la cantidad."

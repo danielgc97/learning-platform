@@ -1,0 +1,27 @@
+id: sql-resumen-001
+type: sql
+statement: "La tabla ventas tiene las columnas id, producto, categoria, cantidad y precio. En una sola fila, muestra tres columnas: productos (cuántas filas hay), unidades (suma de cantidad) y ventas_totales (suma de cantidad * precio)."
+starter_code: "SELECT * FROM ventas;"
+setup_sql: |
+  CREATE TABLE ventas (id INTEGER, producto VARCHAR, categoria VARCHAR, cantidad INTEGER, precio DOUBLE);
+  INSERT INTO ventas VALUES
+    (1, 'Laptop', 'Cómputo', 2, 3200.0),
+    (2, 'Mouse', 'Accesorios', 10, 45.5),
+    (3, 'Teclado', 'Accesorios', 5, 120.0),
+    (4, 'Monitor', 'Cómputo', 3, 850.0),
+    (5, 'Cable HDMI', 'Accesorios', 8, 15.0),
+    (6, 'Silla', 'Muebles', 1, 400.0);
+expected:
+  columns: [productos, unidades, ventas_totales]
+  rows:
+    - [6, 29, 10525]
+solution: |
+  SELECT COUNT(*) AS productos,
+         SUM(cantidad) AS unidades,
+         SUM(cantidad * precio) AS ventas_totales
+  FROM ventas;
+rubric: "El alumno debe usar COUNT(*), SUM(cantidad) y SUM(cantidad * precio) con los alias pedidos, en una sola consulta que devuelva una fila."
+hints:
+  - "Las tres columnas se piden en el mismo SELECT, separadas por comas."
+  - "COUNT(*) cuenta filas; SUM(columna) suma los valores de una columna."
+  - "Para el total vendido, el cálculo va dentro de la función: SUM(cantidad * precio)."

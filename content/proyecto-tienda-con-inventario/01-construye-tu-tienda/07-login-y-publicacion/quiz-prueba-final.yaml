@@ -1,0 +1,10 @@
+id: tienda-final-001
+type: quiz
+statement: "La tabla items_venta no tiene user_id. ¿Cómo se asegura que un dueño no vea las líneas de venta de otro?"
+options:
+  - "No se puede asegurar"
+  - "Con una política RLS que comprueba que la venta a la que pertenece la línea es del usuario"
+  - "Escondiendo la tabla en el frontend"
+  - "Poniéndole un nombre difícil a la tabla"
+correct: 1
+explanation: "La política consulta la tabla ventas para saber a quién pertenece la línea. Así el acceso se hereda de la venta, sin repetir user_id en cada fila."

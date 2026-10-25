@@ -1,0 +1,10 @@
+id: react-router-001
+type: quiz
+statement: "Para ir de /tareas a /acerca sin recargar toda la página, ¿qué usas en React Router?"
+options:
+  - "<a href=\"/acerca\">"
+  - "<Link to=\"/acerca\">"
+  - "window.reload()"
+  - "<Route to=\"/acerca\">"
+correct: 1
+explanation: "Link cambia la dirección y la pantalla sin recargar. Un <a href> normal pide la página completa al servidor."

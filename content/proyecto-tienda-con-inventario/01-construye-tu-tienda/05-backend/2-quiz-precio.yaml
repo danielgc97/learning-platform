@@ -1,0 +1,10 @@
+id: tienda-backend-002
+type: quiz
+statement: "El frontend envía en POST /ventas el precio de cada producto junto a la cantidad. ¿Qué haces en el backend?"
+options:
+  - "Usar el precio que manda el frontend"
+  - "Ignorarlo y leer el precio de la base de datos, porque el frontend puede ser manipulado"
+  - "Pedirle al usuario que lo confirme"
+  - "Guardar ambos"
+correct: 1
+explanation: "Cualquiera puede alterar lo que envía el navegador. El precio oficial es el que está en tu base."

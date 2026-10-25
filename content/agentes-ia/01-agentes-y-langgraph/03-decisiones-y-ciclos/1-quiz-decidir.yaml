@@ -1,0 +1,10 @@
+id: agentes-ciclos-001
+type: quiz
+statement: "En el grafo de la lección, el nodo revisar termina y el estado es {'aprobado': False, 'intentos': 3}. ¿A dónde va la ejecución?"
+options:
+  - "Vuelve al nodo escribir"
+  - "Termina (END), porque se agotaron los intentos"
+  - "Da un error"
+  - "Va a START"
+correct: 1
+explanation: "La función decidir devuelve END si el texto está aprobado o si intentos llegó a 3. Con intentos = 3 se cumple la segunda condición."

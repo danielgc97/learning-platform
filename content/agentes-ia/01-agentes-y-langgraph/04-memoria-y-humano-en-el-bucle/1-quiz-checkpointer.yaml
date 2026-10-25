@@ -1,0 +1,10 @@
+id: agentes-memoria-001
+type: quiz
+statement: "¿Por qué interrupt() necesita un checkpointer y un thread_id?"
+options:
+  - "Para que el grafo sea más rápido"
+  - "Para guardar el estado en pausa y volver a encontrarlo cuando la persona responda"
+  - "Para que el modelo use más herramientas"
+  - "No los necesita"
+correct: 1
+explanation: "Al pausar, el programa puede terminar. El checkpointer guarda el estado, y el thread_id indica cuál retomar al reanudar."

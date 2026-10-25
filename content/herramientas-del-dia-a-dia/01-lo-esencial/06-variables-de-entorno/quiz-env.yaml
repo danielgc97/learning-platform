@@ -1,0 +1,10 @@
+id: herr-env-001
+type: quiz
+statement: "Te das cuenta de que subiste tu archivo .env con una clave real a GitHub. ¿Qué haces?"
+options:
+  - "Borro el archivo y listo"
+  - "Cambio la clave en el servicio que la emitió, porque ya quedó en el historial; luego corrijo el repositorio"
+  - "Hago privado el repositorio y no hago nada más"
+  - "No pasa nada si nadie lo ha visto"
+correct: 1
+explanation: "Una clave subida debe considerarse comprometida: puede haber sido copiada por bots que rastrean repositorios. Cambiarla es lo único que lo resuelve; después puedes limpiar el repositorio y agregar .env a .gitignore."

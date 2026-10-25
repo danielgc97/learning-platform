@@ -1,0 +1,10 @@
+id: publicar-revision-001
+type: quiz
+statement: "¿Qué prueba confirma mejor que cada usuario ve solo sus propios datos?"
+options:
+  - "Revisar que el botón de salir funcione"
+  - "Crear dos cuentas, registrar datos con la primera y comprobar que la segunda no los ve"
+  - "Ver que la página cargue rápido"
+  - "Cambiar el color del menú"
+correct: 1
+explanation: "Es la verificación directa del aislamiento entre usuarios, que es lo más grave si falla. Conviene repetirla cada vez que cambies cómo se consultan los datos."

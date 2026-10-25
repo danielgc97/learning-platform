@@ -1,0 +1,10 @@
+id: agentes-memoria-002
+type: quiz
+statement: "Tu producto atiende a muchos clientes a la vez con el mismo grafo. ¿Qué debe ser distinto para que no se mezclen sus conversaciones?"
+options:
+  - "El nombre de la función de cada nodo"
+  - "El thread_id de cada conversación"
+  - "El tamaño del modelo"
+  - "Nada: LangGraph los separa solo"
+correct: 1
+explanation: "Cada thread_id es un hilo de estado independiente. Si dos clientes compartieran el mismo, verían o mezclarían datos del otro."

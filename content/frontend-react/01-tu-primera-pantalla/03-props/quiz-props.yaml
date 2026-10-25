@@ -1,0 +1,10 @@
+id: react-props-001
+type: quiz
+statement: "Tienes el componente Tarea({ titulo, hecha }). ¿Cómo le pasas el título 'Llamar al dentista' y que no esté hecha?"
+options:
+  - "<Tarea titulo=\"Llamar al dentista\" hecha={false} />"
+  - "<Tarea('Llamar al dentista', false) />"
+  - "Tarea.titulo = 'Llamar al dentista'"
+  - "<Tarea>Llamar al dentista</Tarea> sin más datos"
+correct: 0
+explanation: "Las props se pasan como atributos del componente: los textos entre comillas y los demás valores entre llaves."

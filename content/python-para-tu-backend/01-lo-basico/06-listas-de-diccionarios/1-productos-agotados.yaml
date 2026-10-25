@@ -1,0 +1,29 @@
+id: python-filtrar-001
+type: python
+statement: "Define una función productos_agotados(productos) que reciba una lista de diccionarios con las claves 'nombre', 'precio' y 'stock', y devuelva una lista con los nombres de los productos cuyo stock sea 0, en el mismo orden."
+starter_code: |
+  def productos_agotados(productos):
+      pass
+tests: |
+  catalogo = [
+      {"nombre": "Mouse", "precio": 45.5, "stock": 10},
+      {"nombre": "Silla", "precio": 400, "stock": 0},
+      {"nombre": "Teclado", "precio": 120, "stock": 3},
+      {"nombre": "Cable", "precio": 15, "stock": 0},
+  ]
+  assert callable(productos_agotados), "productos_agotados debe ser una función"
+  assert productos_agotados(catalogo) == ["Silla", "Cable"], "Se esperaba ['Silla', 'Cable']"
+  assert productos_agotados([]) == [], "Con una lista vacía se esperaba []"
+  assert productos_agotados(catalogo[:1]) == [], "Si ninguno está agotado, se esperaba una lista vacía"
+solution: |
+  def productos_agotados(productos):
+      agotados = []
+      for p in productos:
+          if p["stock"] == 0:
+              agotados.append(p["nombre"])
+      return agotados
+rubric: "El alumno debe recorrer la lista con for, comprobar stock == 0 con if, agregar el nombre a una lista nueva con append y devolverla."
+hints:
+  - "Crea una lista vacía antes del bucle para ir guardando los nombres."
+  - "Dentro del for, p es un diccionario: p[\"stock\"] te da el stock y p[\"nombre\"] el nombre."
+  - "Usa append para agregar el nombre cuando el stock sea 0, y devuelve la lista después del bucle."

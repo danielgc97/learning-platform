@@ -1,0 +1,10 @@
+id: seg-rls-001
+type: quiz
+statement: "Activas RLS en una tabla pero no creas ninguna política. ¿Qué pasa cuando alguien usa la clave pública para leerla?"
+options:
+  - "Puede leer todas las filas"
+  - "No ve ninguna fila, hasta que existan políticas que lo permitan"
+  - "La tabla se borra"
+  - "Se desactiva RLS solo"
+correct: 1
+explanation: "Con RLS activado, todo está denegado por defecto. Cada política abre un acceso concreto. Por eso se crean políticas mínimas, solo para lo que el usuario necesita."

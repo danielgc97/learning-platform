@@ -1,0 +1,21 @@
+id: python-variables-001
+type: python
+statement: "Crea cuatro variables: precio con el valor 80, cantidad con el valor 3, total con el resultado de multiplicar precio por cantidad, y mensaje con el texto Total: 240 construido con una f-string que use la variable total."
+starter_code: |
+  # Crea las variables precio, cantidad, total y mensaje
+tests: |
+  assert precio == 80, "La variable precio debe valer 80"
+  assert cantidad == 3, "La variable cantidad debe valer 3"
+  assert total == precio * cantidad, "total debe ser precio multiplicado por cantidad"
+  assert total == 240, "total debería valer 240"
+  assert mensaje == "Total: 240", "mensaje debe ser exactamente 'Total: 240' (usa f\"Total: {total}\")"
+solution: |
+  precio = 80
+  cantidad = 3
+  total = precio * cantidad
+  mensaje = f"Total: {total}"
+rubric: "El alumno debe crear precio=80, cantidad=3, total como precio * cantidad y mensaje con una f-string que incluya total."
+hints:
+  - "Crear una variable es escribir su nombre, un signo = y el valor."
+  - "total se calcula con las otras dos variables: no escribas 240 a mano."
+  - "La f-string empieza con f antes de las comillas y pone la variable entre llaves: f\"Total: {total}\""
