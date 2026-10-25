@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { apiFetch } from './api'
 import Alert from './components/Alert'
 import Button from './components/Button'
@@ -42,6 +43,11 @@ export default function FeedbackButton({ exerciseType, statement, studentCode, t
         <div className="mt-3 rounded-lg border-2 border-ink bg-c2 px-4 py-3 text-sm text-[#111]">
           <Markdown compact>{feedback}</Markdown>
         </div>
+      )}
+      {feedback && (
+        <p className="mt-2 text-xs text-muted">
+          ¿Sigues atascado? <Link to="/contacto#asesorias">También hay asesorías 1 a 1</Link>.
+        </p>
       )}
     </div>
   )
