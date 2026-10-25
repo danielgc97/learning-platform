@@ -1,0 +1,10 @@
+id: fundamentos-construir-005
+type: quiz
+statement: "Subiste por error una clave secreta de API a un repositorio público de GitHub. ¿Qué haces primero?"
+options:
+  - "Nada: seguramente nadie la verá"
+  - "Revocarla y crear una nueva, y luego corregir cómo se guarda"
+  - "Borrar el archivo y dar el problema por resuelto"
+  - "Cambiarle el nombre al repositorio"
+correct: 1
+explanation: "Borrar el archivo no basta, porque el historial de Git conserva la clave. Hay que revocarla, crear una nueva y guardar los secretos en variables de entorno."

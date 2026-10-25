@@ -1,0 +1,10 @@
+id: fundamentos-construir-001
+type: quiz
+statement: "¿Cuál es el mayor riesgo de aceptar todo lo que genera un asistente de IA sin entenderlo?"
+options:
+  - "Que el código sea demasiado corto"
+  - "Que tenga errores o fallos de seguridad que no detectas y que terminan publicados"
+  - "Que use demasiados colores"
+  - "Que tarde unos segundos más en responder"
+correct: 1
+explanation: "La IA puede equivocarse con total seguridad. Si no revisas ni entiendes lo que publicas, los errores y fallos de seguridad llegan a tus usuarios."

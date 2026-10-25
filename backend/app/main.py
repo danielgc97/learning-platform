@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -15,7 +16,7 @@ app = FastAPI(title="Learning Platform API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=[o.strip() for o in os.environ.get("CORS_ORIGINS", "http://localhost:5173").split(",") if o.strip()],
     allow_methods=["GET", "POST"],
     allow_headers=["Content-Type", "Authorization"],
 )

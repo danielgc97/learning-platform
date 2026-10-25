@@ -1,0 +1,10 @@
+id: fundamentos-app-004
+type: quiz
+statement: "¿Cuál es la diferencia principal entre una librería y un framework?"
+options:
+  - "La librería es de pago y el framework es gratuito"
+  - "Con una librería tú controlas la estructura y la llamas cuando quieres; un framework impone la estructura y llama a tu código"
+  - "Los frameworks solo existen en Python"
+  - "No hay ninguna diferencia"
+correct: 1
+explanation: "La clave es quién controla el flujo: con una librería decides tú cuándo usarla; un framework define la estructura y llama a tu código en los momentos que él establece."

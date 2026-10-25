@@ -1,0 +1,10 @@
+id: fundamentos-app-001
+type: quiz
+statement: "¿Por qué la clave secreta de una API de IA debe guardarse en el backend y no en el frontend?"
+options:
+  - "Porque el backend es más rápido"
+  - "Porque el código del frontend se descarga en el navegador del usuario y cualquiera puede verlo"
+  - "Porque el frontend no puede usar claves"
+  - "Porque así ocupa menos espacio"
+correct: 1
+explanation: "Todo lo que corre en el navegador es visible para quien use la aplicación. Una clave secreta puesta ahí quedaría expuesta; en el backend permanece privada."

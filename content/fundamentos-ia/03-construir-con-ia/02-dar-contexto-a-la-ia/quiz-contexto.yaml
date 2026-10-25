@@ -1,0 +1,10 @@
+id: fundamentos-construir-002
+type: quiz
+statement: "¿Qué mejora más los resultados cuando le pides algo a un asistente de código?"
+options:
+  - "Escribir el pedido en mayúsculas"
+  - "Darle contexto del proyecto y pedir tareas pequeñas con un criterio claro de éxito"
+  - "Pedirle todo el proyecto en un solo mensaje"
+  - "No explicarle qué tecnología usas"
+correct: 1
+explanation: "El asistente solo conoce lo que le das. Contexto claro, tareas pequeñas y un criterio de éxito hacen que el resultado sea más acertado y más fácil de revisar."

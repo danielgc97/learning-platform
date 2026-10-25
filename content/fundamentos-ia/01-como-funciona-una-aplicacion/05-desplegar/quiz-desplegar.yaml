@@ -1,0 +1,10 @@
+id: fundamentos-app-005
+type: quiz
+statement: "¿Qué significa «desplegar» una aplicación?"
+options:
+  - "Borrarla de tu computador"
+  - "Publicarla en un servidor de internet para que otras personas puedan usarla"
+  - "Convertirla en un archivo PDF"
+  - "Cambiarle el nombre"
+correct: 1
+explanation: "Desplegar es llevar la aplicación del entorno local (tu PC) a producción: servidores accesibles por internet donde otras personas pueden usarla."
