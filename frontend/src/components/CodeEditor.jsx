@@ -7,9 +7,9 @@ function defineThemes(monaco) {
     inherit: true,
     rules: [],
     colors: {
-      'editor.background': '#fbfaf6',
+      'editor.background': '#ffffff',
       'editorLineNumber.foreground': '#9a9484',
-      'editor.lineHighlightBackground': '#f1ede2',
+      'editor.lineHighlightBackground': '#f7f3e6',
     },
   })
   monaco.editor.defineTheme('cvb-dark', {
@@ -17,9 +17,9 @@ function defineThemes(monaco) {
     inherit: true,
     rules: [],
     colors: {
-      'editor.background': '#12110d',
+      'editor.background': '#0b0b0b',
       'editorLineNumber.foreground': '#6b665b',
-      'editor.lineHighlightBackground': '#1b1914',
+      'editor.lineHighlightBackground': '#171715',
     },
   })
 }
@@ -27,7 +27,7 @@ function defineThemes(monaco) {
 export default function CodeEditor({ value, onChange, language, height = 180 }) {
   const dark = useDarkMode()
   return (
-    <div className="overflow-hidden border border-line">
+    <div className="overflow-hidden rounded-lg border-2 border-ink">
       <Editor
         height={height}
         language={language}
@@ -45,7 +45,6 @@ export default function CodeEditor({ value, onChange, language, height = 180 }) 
           padding: { top: 12, bottom: 12 },
           tabSize: language === 'python' ? 4 : 2,
           lineNumbersMinChars: 3,
-          renderLineHighlight: 'line',
         }}
       />
     </div>

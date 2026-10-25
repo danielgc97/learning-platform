@@ -13,14 +13,14 @@ export default function App() {
 
   return (
     <div className="min-h-screen">
-      <header className="sticky top-0 z-10 border-b border-ink bg-paper/95 backdrop-blur">
+      <header className="sticky top-0 z-10 border-b-2 border-ink bg-surface/95 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
           <Link to="/" className="no-underline" aria-label="Inicio">
             <Logo />
           </Link>
-          <nav className="flex items-center gap-1 sm:gap-3">
+          <nav className="flex items-center gap-1 sm:gap-2">
             {session && (
-              <Link to="/" className="px-2 font-mono text-xs tracking-wider text-muted uppercase no-underline hover:text-ink">
+              <Link to="/" className="rounded-lg px-3 py-2 text-sm font-semibold text-ink no-underline hover:bg-panel">
                 Mis cursos
               </Link>
             )}
@@ -31,7 +31,7 @@ export default function App() {
       </header>
       <main className="mx-auto max-w-6xl px-5 py-10">
         {loading ? (
-          <p className="font-mono text-sm text-muted">Cargando...</p>
+          <p className="text-muted">Cargando...</p>
         ) : session ? (
           <Routes>
             <Route path="/" element={<Catalog />} />

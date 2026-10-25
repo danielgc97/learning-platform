@@ -3,35 +3,44 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --paper: #f4f1ea;
-  --panel: #ebe7dc;
-  --ink: #15130f;
-  --muted: #6b665b;
-  --line: #cfc9bb;
-  --accent: #c7381a;
+  --paper: #fbf7ec;
+  --surface: #ffffff;
+  --panel: #f3eedd;
+  --ink: #111111;
+  --muted: #5b5b52;
+  --line: #ddd6c3;
+  --accent: #2f54eb;
   --accent-ink: #ffffff;
-  --ok: #26703f;
-  --bad: #b3261e;
-  --code: #15130f;
-  --code-ink: #efebe1;
+  --ok: #1f7a45;
+  --bad: #c62828;
+  --c1: #ffd93d;
+  --c2: #b9c7ff;
+  --c3: #b8f0cf;
+  --c4: #ffc4b0;
+  --code: #111111;
+  --code-ink: #f4f1e8;
+  --shadow: #111111;
 }
 
 .dark {
-  --paper: #0e0d0a;
-  --panel: #181612;
-  --ink: #efebe1;
-  --muted: #9a9484;
-  --line: #2d2a23;
-  --accent: #ff6a3d;
-  --accent-ink: #0e0d0a;
-  --ok: #5bbe86;
-  --bad: #ff7a70;
-  --code: #181612;
-  --code-ink: #efebe1;
+  --paper: #121211;
+  --surface: #1c1c1a;
+  --panel: #262623;
+  --ink: #f4f1e8;
+  --muted: #a8a397;
+  --line: #3a3933;
+  --accent: #7d97ff;
+  --accent-ink: #0b0b0b;
+  --ok: #4cd08a;
+  --bad: #ff7b7b;
+  --code: #0b0b0b;
+  --code-ink: #f4f1e8;
+  --shadow: #3a3933;
 }
 
 @theme inline {
   --color-paper: var(--paper);
+  --color-surface: var(--surface);
   --color-panel: var(--panel);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
@@ -40,15 +49,38 @@
   --color-accent-ink: var(--accent-ink);
   --color-ok: var(--ok);
   --color-bad: var(--bad);
+  --color-c1: var(--c1);
+  --color-c2: var(--c2);
+  --color-c3: var(--c3);
+  --color-c4: var(--c4);
   --color-code: var(--code);
   --color-code-ink: var(--code-ink);
-  --font-display: 'Fraunces', Georgia, serif;
+  --font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
   --font-sans: 'Figtree', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, Consolas, monospace;
 }
 
 .font-display {
-  font-weight: 500;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.lab-card {
+  background: var(--surface);
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  box-shadow: 4px 4px 0 0 var(--shadow);
+}
+
+.lab-lift {
+  transition:
+    transform 0.12s,
+    box-shadow 0.12s;
+}
+
+.lab-lift:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 0 var(--shadow);
 }
 
 @layer base {
@@ -57,11 +89,11 @@
   }
 
   a {
-    @apply underline decoration-line underline-offset-4 hover:decoration-accent;
+    @apply font-medium text-accent underline decoration-2 underline-offset-4;
   }
 
   ::selection {
-    background: var(--accent);
-    color: var(--accent-ink);
+    background: var(--c1);
+    color: #111;
   }
 }

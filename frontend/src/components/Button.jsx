@@ -1,12 +1,15 @@
+const press =
+  'shadow-[3px_3px_0_0_var(--shadow)] hover:-translate-x-px hover:-translate-y-px hover:shadow-[4px_4px_0_0_var(--shadow)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none'
+
 const variants = {
-  primary: 'border border-ink bg-ink text-paper hover:border-accent hover:bg-accent hover:text-accent-ink',
-  secondary: 'border border-ink bg-transparent text-ink hover:bg-panel',
-  ghost: 'border border-transparent text-muted hover:text-ink',
+  primary: `border-2 border-ink bg-accent text-accent-ink ${press}`,
+  secondary: `border-2 border-ink bg-surface text-ink ${press}`,
+  ghost: 'border-2 border-transparent text-muted hover:bg-panel hover:text-ink',
 }
 
 // También sirve para enlaces que deben verse como botón.
 export function buttonClass(variant = 'secondary', className = '') {
-  return `inline-flex cursor-pointer items-center justify-center gap-1.5 px-4 py-2 font-mono text-xs font-medium tracking-wider uppercase no-underline transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-40 ${variants[variant]} ${className}`
+  return `inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-lg px-4 py-2 text-sm font-semibold no-underline transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none ${variants[variant]} ${className}`
 }
 
 export default function Button({ variant = 'secondary', className = '', ...props }) {

@@ -21,26 +21,25 @@ export default function QuizExercise({ exercise, completed, onPassed }) {
   }
 
   return (
-    <section className="my-12 border border-ink">
-      <header className="flex items-center justify-between gap-3 border-b border-ink px-4 py-2 font-mono text-xs tracking-widest uppercase">
+    <section className="lab-card my-12 overflow-hidden">
+      <header className="flex items-center justify-between gap-3 border-b-2 border-ink bg-c2 px-5 py-2.5 text-sm font-bold text-[#111]">
         <span>Comprueba lo aprendido</span>
         {completed && (
-          <span className="inline-flex items-center gap-1 text-ok">
-            <CheckIcon width={14} height={14} strokeWidth={3} /> Completado
+          <span className="inline-flex items-center gap-1 rounded-full border-2 border-ink bg-c3 px-2.5 py-0.5 text-xs">
+            <CheckIcon width={13} height={13} strokeWidth={3} /> Completado
           </span>
         )}
       </header>
       <fieldset className="p-5">
-        <legend className="mb-5 font-display text-2xl leading-snug">{exercise.statement}</legend>
-        <div className="space-y-2">
+        <legend className="mb-5 font-display text-xl leading-snug">{exercise.statement}</legend>
+        <div className="space-y-3">
           {options.map((option, i) => (
             <label
               key={option}
-              className={`flex cursor-pointer items-start gap-3 border px-4 py-3 transition-colors ${
-                selected === i ? 'border-ink bg-panel' : 'border-line hover:bg-panel'
+              className={`flex cursor-pointer items-start gap-3 rounded-lg border-2 px-4 py-3 transition-colors ${
+                selected === i ? 'border-ink bg-c1 text-[#111]' : 'border-line hover:border-ink'
               }`}
             >
-              <span className="mt-0.5 font-mono text-xs text-muted">{String.fromCharCode(65 + i)}</span>
               <input
                 type="radio"
                 name={exercise.slug}
@@ -51,7 +50,7 @@ export default function QuizExercise({ exercise, completed, onPassed }) {
                 }}
                 className="mt-1.5 accent-[var(--accent)]"
               />
-              <span>{option}</span>
+              <span className="leading-6">{option}</span>
             </label>
           ))}
         </div>
@@ -60,7 +59,7 @@ export default function QuizExercise({ exercise, completed, onPassed }) {
         </Button>
         {verdict && (
           <Alert tone={verdict.ok ? 'success' : 'error'}>
-            {verdict.ok ? `✓ Correcto. ${explanation ?? ''}` : '✗ No es esa. Intenta con otra opción.'}
+            {verdict.ok ? `✓ ¡Correcto! ${explanation ?? ''}` : '✗ No es esa. Intenta con otra opción.'}
           </Alert>
         )}
       </fieldset>

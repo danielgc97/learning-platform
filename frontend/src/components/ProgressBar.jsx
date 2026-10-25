@@ -6,7 +6,7 @@ export default function ProgressBar({ value, max, className = '' }) {
       aria-valuenow={percent}
       aria-valuemin={0}
       aria-valuemax={100}
-      className={`h-0.5 w-full bg-line ${className}`}
+      className={`h-3.5 w-full overflow-hidden rounded-full border-2 border-ink bg-surface ${className}`}
     >
       <div className="h-full bg-accent transition-all" style={{ width: `${percent}%` }} />
     </div>

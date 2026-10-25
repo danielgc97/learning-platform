@@ -1,11 +1,11 @@
 export default function ResultTable({ columns, rows }) {
   return (
-    <div className="mt-3 overflow-x-auto border border-line">
+    <div className="mt-3 overflow-x-auto rounded-lg border-2 border-ink">
       <table className="w-full font-mono text-sm">
         <thead className="bg-panel text-left">
           <tr>
             {columns.map((c) => (
-              <th key={c} className="px-3 py-2 text-xs font-medium tracking-wider text-muted uppercase">{c}</th>
+              <th key={c} className="px-3 py-2 text-xs font-medium">{c}</th>
             ))}
           </tr>
         </thead>
