@@ -42,9 +42,13 @@
   --color-bad: var(--bad);
   --color-code: var(--code);
   --color-code-ink: var(--code-ink);
-  --font-display: 'Instrument Serif', Georgia, serif;
-  --font-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-sans: 'Figtree', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, Consolas, monospace;
+}
+
+.font-display {
+  font-weight: 500;
 }
 
 @layer base {

@@ -5,7 +5,7 @@
 
 ## 1. Producto
 
-Plataforma web en español donde el usuario aprende y practica **SQL, Python y construcción de agentes**, más un curso de fundamentos para construir con IA, con ejercicios ejecutables en el navegador, quizzes y feedback de IA sobre su código. Acceso completo por suscripción. Nombre provisorio: **CodeVibeBooster** (pendiente verificar disponibilidad de nombre y dominio).
+Plataforma web en español donde el usuario aprende y practica **SQL, Python y construcción de agentes**, más un curso de fundamentos para construir con IA, con ejercicios ejecutables en el navegador, quizzes y feedback de IA sobre su código. Acceso completo por suscripción. Nombre actual: **Cortex** (provisorio: hay productos de datos e IA con ese nombre, como Snowflake Cortex y Cortex de Palo Alto Networks; pendiente verificar dominio y registro de marca).
 
 - **Usuario objetivo:** personas que aprenden datos/programación (alumnos actuales y anteriores como primeros usuarios).
 - **Precio inicial:** S/20 al mes, acceso completo. Planes trimestral/anual: por definir.
@@ -135,7 +135,7 @@ explanation: "..."     # se muestra al acertar
 ## 11. Preguntas abiertas
 
 1. ¿Qué pasarela de pago? (§7) — Validar con 2-3 proveedores locales (Yape/Plin)
-2. Nombre definitivo del producto y del dominio (hoy: CodeVibeBooster, sin verificar disponibilidad)
+2. Nombre definitivo del producto y del dominio (hoy: Cortex, con riesgo de colisión con marcas existentes; verificar dominio e INDECOPI)
 3. Precio de planes trimestral y anual
 4. Temario y contenido real de los cuatro cursos (hoy hay placeholders y ejemplos)
 5. ¿Funciona LangGraph dentro de Pyodide? (§3, módulo de agentes)
