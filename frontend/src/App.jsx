@@ -3,15 +3,14 @@ import { UserMenu } from './AuthPanel'
 import { useSession } from './useSession'
 import Footer from './components/Footer'
 import Logo from './components/Logo'
+import NavItem from './components/NavItem'
 import ThemeToggle from './components/ThemeToggle'
 import About from './pages/About'
 import Catalog from './pages/Catalog'
-import Contact from './pages/Contact'
+import Support from './pages/Support'
 import Course from './pages/Course'
 import Landing from './pages/Landing'
 import Lesson from './pages/Lesson'
-
-const navLink = 'rounded-lg px-3 py-2 text-sm font-semibold text-ink no-underline hover:bg-panel'
 
 export default function App() {
   const { session, loading } = useSession()
@@ -27,14 +26,13 @@ export default function App() {
             <Logo />
           </Link>
           <nav className="flex items-center gap-1 sm:gap-2">
-            {session ? (
-              <Link to="/" className={navLink}>Mis cursos</Link>
-            ) : (
-              <>
-                <Link to="/nosotros" className={`${navLink} hidden sm:inline-block`}>Nosotros</Link>
-                <Link to="/contacto" className={`${navLink} hidden sm:inline-block`}>Contacto</Link>
-              </>
+            {session && (
+              <NavItem to="/" matches={(p) => p === '/' || p.startsWith('/cursos') || p.startsWith('/lecciones')}>
+                Mis cursos
+              </NavItem>
             )}
+            <NavItem to="/nosotros" className="hidden sm:inline-block">Nosotros</NavItem>
+            <NavItem to="/soporte" className="hidden sm:inline-block">Soporte</NavItem>
             <ThemeToggle />
             <UserMenu />
           </nav>
@@ -43,7 +41,7 @@ export default function App() {
       <main className="mx-auto w-full max-w-6xl flex-1 px-5 py-10">
         <Routes>
           <Route path="/nosotros" element={<About />} />
-          <Route path="/contacto" element={<Contact />} />
+          <Route path="/soporte" element={<Support />} />
           <Route path="/" element={gated(<Catalog />)} />
           <Route path="/cursos/:slug" element={gated(<Course />)} />
           <Route path="/lecciones/:id" element={gated(<Lesson />)} />

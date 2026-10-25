@@ -1,7 +1,5 @@
-import { Link } from 'react-router-dom'
 import { BRAND_NAME } from '../brand'
-
-const link = 'text-sm font-medium text-muted no-underline hover:text-ink hover:underline'
+import NavItem from './NavItem'
 
 export default function Footer() {
   return (
@@ -10,10 +8,9 @@ export default function Footer() {
         <p className="text-sm text-muted">
           © {new Date().getFullYear()} <span className="font-semibold text-ink">{BRAND_NAME}</span>
         </p>
-        <nav className="flex flex-wrap gap-x-6 gap-y-2">
-          <Link to="/nosotros" className={link}>Nosotros</Link>
-          <Link to="/contacto" className={link}>Contacto</Link>
-          <Link to="/contacto#asesorias" className={link}>Clases y asesorías</Link>
+        <nav className="flex flex-wrap gap-x-3 gap-y-2">
+          <NavItem to="/nosotros" compact>Nosotros</NavItem>
+          <NavItem to="/soporte" compact>Soporte</NavItem>
         </nav>
       </div>
     </footer>

@@ -3,9 +3,9 @@ import { buttonClass } from '../components/Button'
 import { AUTHOR } from '../contact'
 
 const PRINCIPLES = [
-  { title: 'Una idea por lección', text: 'Lecciones cortas que se leen en minutos y se practican al momento.' },
-  { title: 'Practicar para entender', text: 'SQL y Python corren en tu navegador, sin instalar nada.' },
-  { title: 'Pistas, no soluciones', text: 'Si te atascas, la IA te orienta sin quitarte el descubrimiento.' },
+  { title: 'De la idea al producto', text: 'Una ruta en cuatro fases: entender, construir, publicar y un proyecto de cierre.' },
+  { title: 'Lo mínimo indispensable', text: 'Lecciones cortas, con una sola idea cada una y sin jerga innecesaria.' },
+  { title: 'Práctica con pistas', text: 'SQL y Python se ejecutan en tu navegador, y la IA te orienta sin resolverte el ejercicio.' },
 ]
 
 export default function About() {
@@ -18,19 +18,22 @@ export default function About() {
     <>
       <span className="inline-flex rounded-full border-2 border-ink bg-c2 px-3.5 py-1 text-sm font-bold text-[#111]">Nosotros</span>
       <h1 className="mt-5 max-w-3xl font-display text-4xl leading-tight sm:text-5xl">
-        Lo indispensable para construir con IA, explicado sin vueltas.
+        Que cualquiera pueda construir{' '}
+        <span className="box-decoration-clone rounded-md bg-c1 px-2 text-[#111]">su propio SaaS</span>.
       </h1>
 
       <div className="mt-12 grid gap-10 lg:grid-cols-12">
         <div className="lg:col-span-7">
           <h2 className="font-display text-2xl">Por qué existe CortexLab</h2>
           <p className="mt-3 text-[1.05rem] leading-8">
-            Hoy es posible construir herramientas y proyectos propios con ayuda de la IA, aunque no seas programador. Pero
-            para dirigirla bien, revisar lo que genera y no perderte, hace falta entender unas pocas bases: cómo se consultan
-            los datos, cómo funciona el código y cómo se conectan las piezas de una aplicación.
+            Hoy una idea de producto ya no depende de un equipo grande de ingenieros: con la IA como copiloto, una sola persona
+            puede construir y publicar su propio SaaS. Lo que hace falta no es programarlo todo a mano, sino entender las piezas:
+            cómo se conectan el frontend, el backend, la base de datos y el despliegue, para dirigir bien a la IA y revisar lo
+            que genera.
           </p>
           <p className="mt-4 text-[1.05rem] leading-8">
-            CortexLab reúne justo eso: lo mínimo indispensable, en español, con práctica real en lugar de teoría larga.
+            CortexLab reúne ese mínimo indispensable en una ruta que va de la idea al producto publicado, en español y con
+            práctica real. La propia plataforma se construyó de esta manera.
           </p>
 
           <h2 className="mt-10 font-display text-2xl">Cómo enseñamos</h2>
@@ -74,8 +77,8 @@ export default function About() {
       </div>
 
       <div className="lab-card mt-14 flex flex-col items-start gap-4 bg-c1 p-6 text-[#111] sm:flex-row sm:items-center sm:justify-between">
-        <p className="font-display text-xl">¿Tienes preguntas o quieres acompañamiento?</p>
-        <Link to="/contacto" className={buttonClass('primary')}>Escríbeme</Link>
+        <p className="font-display text-xl">¿Tienes preguntas o sugerencias?</p>
+        <Link to="/soporte" className={buttonClass('primary')}>Escríbenos</Link>
       </div>
     </>
   )
