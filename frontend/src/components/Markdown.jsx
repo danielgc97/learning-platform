@@ -1,4 +1,5 @@
 import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 const el = (Tag, className) =>
   function Styled({ node, ...props }) {
@@ -21,6 +22,17 @@ const components = {
     'my-6 overflow-x-auto rounded-xl border-2 border-ink bg-code p-4 font-mono text-sm leading-6 text-code-ink shadow-[4px_4px_0_0_var(--shadow)] [&>code]:border-0 [&>code]:bg-transparent [&>code]:p-0',
   ),
   code: el('code', 'rounded-md border border-line bg-panel px-1.5 py-0.5 font-mono text-[0.88em]'),
+  table: function Table({ node, ...props }) {
+    void node
+    return (
+      <div className="my-6 overflow-x-auto rounded-lg border-2 border-ink">
+        <table className="w-full text-sm" {...props} />
+      </div>
+    )
+  },
+  thead: el('thead', 'bg-panel'),
+  th: el('th', 'px-3 py-2 text-left font-bold whitespace-nowrap'),
+  td: el('td', 'border-t border-line px-3 py-2 align-top'),
 }
 
 // Variante para respuestas cortas dentro de un cuadro (por ejemplo, las pistas de la IA).
@@ -33,5 +45,9 @@ const compactComponents = {
 }
 
 export default function Markdown({ children, compact = false }) {
-  return <ReactMarkdown components={compact ? compactComponents : components}>{children}</ReactMarkdown>
+  return (
+    <ReactMarkdown remarkPlugins={[remarkGfm]} components={compact ? compactComponents : components}>
+      {children}
+    </ReactMarkdown>
+  )
 }
