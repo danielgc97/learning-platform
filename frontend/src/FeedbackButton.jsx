@@ -34,7 +34,7 @@ export default function FeedbackButton({ exerciseType, statement, studentCode, t
   return (
     <div className="mt-3">
       <Button onClick={ask} disabled={loading}>
-        {loading ? 'Pensando...' : '💡 Pedir ayuda'}
+        {loading ? 'Pensando...' : 'Pedir ayuda'}
       </Button>
       {error && <Alert tone="error">{error}</Alert>}
       {feedback && <Alert tone="info">{feedback}</Alert>}

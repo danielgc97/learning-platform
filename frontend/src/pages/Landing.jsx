@@ -1,40 +1,38 @@
 import { AuthForm } from '../AuthPanel'
 import { BRAND_TAGLINE } from '../brand'
-import { CheckIcon, SparkIcon } from '../components/Icons'
 
-const BENEFITS = [
-  'Practica en el navegador, sin instalar nada.',
-  'Pistas de IA que te orientan sin regalarte la solución.',
-  'Contenido en español, directo a lo que necesitas.',
+const PRINCIPLES = [
+  { title: 'Practica en el navegador', text: 'SQL y Python se ejecutan al instante, sin instalar nada.' },
+  { title: 'Pistas, no soluciones', text: 'Si fallas, la IA te explica el error sin entregarte la respuesta.' },
+  { title: 'Solo lo indispensable', text: 'Contenido en español, directo a lo que necesitas para construir.' },
 ]
 
 const STEPS = [
   { title: 'Lee una lección corta', text: 'Un concepto por lección, con ejemplos que puedes copiar.' },
-  { title: 'Escribe y ejecuta', text: 'SQL y Python corren al instante en tu navegador.' },
-  { title: 'Verifica y pide una pista', text: 'Si fallas, la IA te explica el error sin darte la respuesta.' },
+  { title: 'Escribe y ejecuta', text: 'El código corre en tu navegador y ves el resultado al momento.' },
+  { title: 'Verifica y pide una pista', text: 'Las pruebas dicen si está bien; la IA ayuda cuando te atascas.' },
 ]
 
-function DemoCard() {
+function Terminal() {
   return (
-    <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
-      <div className="flex items-center gap-1.5 border-b border-slate-200 px-4 py-2.5 dark:border-slate-800">
-        <span className="size-2.5 rounded-full bg-slate-300 dark:bg-slate-700" />
-        <span className="size-2.5 rounded-full bg-slate-300 dark:bg-slate-700" />
-        <span className="size-2.5 rounded-full bg-slate-300 dark:bg-slate-700" />
-        <span className="ml-2 text-xs text-slate-500">ejercicio.sql</span>
-      </div>
-      <pre className="bg-slate-900 px-4 py-4 font-mono text-sm leading-6 text-slate-100">
-        <span className="text-teal-300">SELECT</span> producto, cantidad * precio <span className="text-teal-300">AS</span> total{'\n'}
-        <span className="text-teal-300">FROM</span> ventas{'\n'}
-        <span className="text-teal-300">ORDER BY</span> total;
+    <div className="border border-ink">
+      <div className="border-b border-ink px-4 py-2 font-mono text-xs tracking-widest uppercase">ejercicio.sql</div>
+      <pre className="bg-code px-4 py-4 font-mono text-sm leading-6 text-code-ink">
+        <span className="text-accent">SELECT</span> producto, cantidad * precio <span className="text-accent">AS</span> total{'\n'}
+        <span className="text-accent">FROM</span> ventas{'\n'}
+        <span className="text-accent">ORDER BY</span> total;
       </pre>
       <div className="space-y-3 p-4 text-sm">
-        <p className="rounded-md border border-red-300 bg-red-50 px-3 py-2 text-red-900 dark:border-red-900 dark:bg-red-950 dark:text-red-200">
-          ✗ La fila 1 no coincide con lo esperado.
+        <p className="border-l-4 border-bad bg-panel px-3 py-2">
+          <span className="font-mono text-xs tracking-wider text-bad uppercase">Error</span>
+          <br />
+          La fila 1 no coincide con lo esperado.
         </p>
-        <p className="flex gap-2 rounded-md border border-teal-300 bg-teal-50 px-3 py-2 text-teal-900 dark:border-teal-800 dark:bg-teal-950 dark:text-teal-100">
-          <SparkIcon width={16} height={16} className="mt-0.5 shrink-0" />
-          Tu cálculo está bien, pero el orden no: el enunciado pide de mayor a menor. ¿Qué palabra invierte el orden de ORDER BY?
+        <p className="border-l-4 border-accent bg-panel px-3 py-2">
+          <span className="font-mono text-xs tracking-wider text-accent uppercase">Pista</span>
+          <br />
+          Tu cálculo está bien, pero el orden no: el enunciado pide de mayor a menor. ¿Qué palabra invierte el orden de{' '}
+          <code className="font-mono">ORDER BY</code>?
         </p>
       </div>
     </div>
@@ -44,49 +42,45 @@ function DemoCard() {
 export default function Landing() {
   return (
     <>
-      <section className="grid gap-12 py-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:py-14">
-        <div>
-          <span className="inline-flex rounded-full border border-teal-300 bg-teal-50 px-3 py-1 text-xs font-semibold text-teal-800 dark:border-teal-800 dark:bg-teal-950 dark:text-teal-200">
-            SQL · Python · Agentes de IA
-          </span>
-          <h1 className="mt-5 text-4xl leading-tight font-bold tracking-tight sm:text-5xl">
-            Aprende lo indispensable para <span className="text-teal-600 dark:text-teal-400">construir con IA</span>.
+      <section className="grid gap-12 border-b border-ink pb-16 lg:grid-cols-12 lg:items-end">
+        <div className="lg:col-span-7">
+          <p className="font-mono text-xs tracking-widest text-muted uppercase">SQL · Python · Agentes de IA</p>
+          <h1 className="mt-6 font-display text-6xl leading-[0.95] tracking-tight sm:text-7xl">
+            Aprende lo indispensable para <em className="text-accent">construir con IA</em>.
           </h1>
-          <p className="mt-5 max-w-xl text-lg leading-8 text-slate-600 dark:text-slate-400">{BRAND_TAGLINE}</p>
-          <ul className="mt-6 space-y-3">
-            {BENEFITS.map((b) => (
-              <li key={b} className="flex items-start gap-3">
-                <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-teal-100 text-teal-700 dark:bg-teal-900 dark:text-teal-300">
-                  <CheckIcon width={12} height={12} strokeWidth={3} />
-                </span>
-                <span className="text-slate-700 dark:text-slate-300">{b}</span>
-              </li>
-            ))}
-          </ul>
+          <p className="mt-6 max-w-xl text-lg leading-8 text-muted">{BRAND_TAGLINE}</p>
         </div>
-        <div className="flex lg:justify-end">
+        <div className="flex lg:col-span-5 lg:justify-end">
           <AuthForm />
         </div>
       </section>
 
-      <section className="grid gap-10 border-t border-slate-200 py-14 lg:grid-cols-2 lg:items-center dark:border-slate-800">
+      <section className="grid gap-px border-b border-ink bg-line sm:grid-cols-3">
+        {PRINCIPLES.map((p, i) => (
+          <div key={p.title} className="bg-paper py-8 sm:px-6 sm:first:pl-0">
+            <p className="font-mono text-xs text-accent">0{i + 1}</p>
+            <h2 className="mt-3 font-display text-2xl">{p.title}</h2>
+            <p className="mt-2 text-sm leading-6 text-muted">{p.text}</p>
+          </div>
+        ))}
+      </section>
+
+      <section className="grid gap-12 py-16 lg:grid-cols-2 lg:items-center">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight">Así se practica</h2>
-          <ol className="mt-6 space-y-5">
+          <h2 className="font-display text-4xl">Así se practica</h2>
+          <ol className="mt-8 border-t border-line">
             {STEPS.map((s, i) => (
-              <li key={s.title} className="flex gap-4">
-                <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-slate-900 text-sm font-semibold text-white dark:bg-slate-100 dark:text-slate-900">
-                  {i + 1}
-                </span>
+              <li key={s.title} className="grid grid-cols-[3rem_1fr] gap-2 border-b border-line py-5">
+                <span className="font-mono text-sm text-accent">0{i + 1}</span>
                 <div>
                   <p className="font-semibold">{s.title}</p>
-                  <p className="text-slate-600 dark:text-slate-400">{s.text}</p>
+                  <p className="text-sm leading-6 text-muted">{s.text}</p>
                 </div>
               </li>
             ))}
           </ol>
         </div>
-        <DemoCard />
+        <Terminal />
       </section>
     </>
   )

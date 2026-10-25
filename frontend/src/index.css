@@ -2,17 +2,62 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-@theme {
-  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+:root {
+  --paper: #f4f1ea;
+  --panel: #ebe7dc;
+  --ink: #15130f;
+  --muted: #6b665b;
+  --line: #cfc9bb;
+  --accent: #c7381a;
+  --accent-ink: #ffffff;
+  --ok: #26703f;
+  --bad: #b3261e;
+  --code: #15130f;
+  --code-ink: #efebe1;
+}
+
+.dark {
+  --paper: #0e0d0a;
+  --panel: #181612;
+  --ink: #efebe1;
+  --muted: #9a9484;
+  --line: #2d2a23;
+  --accent: #ff6a3d;
+  --accent-ink: #0e0d0a;
+  --ok: #5bbe86;
+  --bad: #ff7a70;
+  --code: #181612;
+  --code-ink: #efebe1;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-panel: var(--panel);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-ok: var(--ok);
+  --color-bad: var(--bad);
+  --color-code: var(--code);
+  --color-code-ink: var(--code-ink);
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, Consolas, monospace;
 }
 
 @layer base {
   body {
-    @apply bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100;
+    @apply bg-paper font-sans text-ink antialiased;
   }
 
   a {
-    @apply text-teal-700 hover:underline dark:text-teal-400;
+    @apply underline decoration-line underline-offset-4 hover:decoration-accent;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-ink);
   }
 }

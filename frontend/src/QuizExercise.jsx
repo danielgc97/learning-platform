@@ -21,27 +21,26 @@ export default function QuizExercise({ exercise, completed, onPassed }) {
   }
 
   return (
-    <section className="my-10 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
-      <header className="flex items-center justify-between gap-3 border-b border-slate-200 px-5 py-3 dark:border-slate-800">
-        <span className="text-xs font-semibold tracking-wide text-teal-700 uppercase dark:text-teal-400">Comprueba lo aprendido</span>
+    <section className="my-12 border border-ink">
+      <header className="flex items-center justify-between gap-3 border-b border-ink px-4 py-2 font-mono text-xs tracking-widest uppercase">
+        <span>Comprueba lo aprendido</span>
         {completed && (
-          <span className="inline-flex items-center gap-1 text-sm font-medium text-emerald-600 dark:text-emerald-400">
-            <CheckIcon width={16} height={16} /> Completado
+          <span className="inline-flex items-center gap-1 text-ok">
+            <CheckIcon width={14} height={14} strokeWidth={3} /> Completado
           </span>
         )}
       </header>
       <fieldset className="p-5">
-        <legend className="mb-4 font-semibold leading-7">{exercise.statement}</legend>
+        <legend className="mb-5 font-display text-2xl leading-snug">{exercise.statement}</legend>
         <div className="space-y-2">
           {options.map((option, i) => (
             <label
               key={option}
-              className={`flex cursor-pointer items-start gap-3 rounded-lg border px-4 py-3 transition-colors ${
-                selected === i
-                  ? 'border-teal-500 bg-teal-50 dark:bg-teal-950'
-                  : 'border-slate-200 hover:bg-slate-50 dark:border-slate-700 dark:hover:bg-slate-800'
+              className={`flex cursor-pointer items-start gap-3 border px-4 py-3 transition-colors ${
+                selected === i ? 'border-ink bg-panel' : 'border-line hover:bg-panel'
               }`}
             >
+              <span className="mt-0.5 font-mono text-xs text-muted">{String.fromCharCode(65 + i)}</span>
               <input
                 type="radio"
                 name={exercise.slug}
@@ -50,19 +49,18 @@ export default function QuizExercise({ exercise, completed, onPassed }) {
                   setSelected(i)
                   setVerdict(null)
                 }}
-                className="mt-1.5 accent-teal-600"
+                className="mt-1.5 accent-[var(--accent)]"
               />
               <span>{option}</span>
             </label>
           ))}
         </div>
-        <Button variant="primary" className="mt-4" onClick={verify} disabled={selected === null || busy}>
+        <Button variant="primary" className="mt-5" onClick={verify} disabled={selected === null || busy}>
           Verificar
         </Button>
         {verdict && (
           <Alert tone={verdict.ok ? 'success' : 'error'}>
-            {verdict.ok ? '✓ ¡Correcto! ' : '✗ No es esa. Intenta con otra opción. '}
-            {verdict.ok && explanation}
+            {verdict.ok ? `✓ Correcto. ${explanation ?? ''}` : '✗ No es esa. Intenta con otra opción.'}
           </Alert>
         )}
       </fieldset>

@@ -10,9 +10,9 @@ export default function ThemeToggle() {
       onClick={() => setDark(!dark)}
       aria-label={label}
       title={label}
-      className="flex size-9 cursor-pointer items-center justify-center rounded-md text-slate-600 transition-colors hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-teal-600 dark:text-slate-300 dark:hover:bg-slate-800"
+      className="flex size-9 cursor-pointer items-center justify-center text-muted transition-colors hover:text-ink focus-visible:outline-2 focus-visible:outline-accent"
     >
-      {dark ? <SunIcon width={18} height={18} /> : <MoonIcon width={18} height={18} />}
+      {dark ? <SunIcon width={17} height={17} /> : <MoonIcon width={17} height={17} />}
     </button>
   )
 }

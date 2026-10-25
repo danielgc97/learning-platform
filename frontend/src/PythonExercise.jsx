@@ -48,7 +48,7 @@ export default function PythonExercise({ exercise, completed, onPassed }) {
 
   let result = null
   if (running) {
-    result = <p className="text-sm text-slate-500">Ejecutando... (la primera vez descarga Python, unos segundos)</p>
+    result = <p className="font-mono text-sm text-muted">Ejecutando... (la primera vez descarga Python, unos segundos)</p>
   } else if (output || error) {
     result = (
       <>
@@ -62,12 +62,12 @@ export default function PythonExercise({ exercise, completed, onPassed }) {
             submissionId={submissionId}
           />
         )}
-        {error && !verdict && <pre className="overflow-x-auto font-mono text-sm text-red-600 dark:text-red-400">{error}</pre>}
+        {error && !verdict && <pre className="overflow-x-auto font-mono text-sm text-bad">{error}</pre>}
         {output && !hasOutput && !verdict && (
-          <p className="text-sm text-slate-500">El código se ejecutó sin errores y no produjo salida.</p>
+          <p className="text-sm text-muted">El código se ejecutó sin errores y no produjo salida.</p>
         )}
         {hasOutput && (
-          <pre className="mt-3 overflow-x-auto rounded-md bg-slate-100 p-3 font-mono text-sm dark:bg-slate-800">
+          <pre className="mt-3 overflow-x-auto bg-panel p-3 font-mono text-sm">
             {output.stdout}
             {output.result !== null && `=> ${output.result}`}
           </pre>

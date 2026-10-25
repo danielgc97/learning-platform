@@ -7,19 +7,20 @@ const el = (Tag, className) =>
   }
 
 const components = {
-  h1: el('h1', 'mt-2 mb-4 text-3xl font-semibold tracking-tight'),
-  h2: el('h2', 'mt-8 mb-3 text-2xl font-semibold tracking-tight'),
-  h3: el('h3', 'mt-6 mb-2 text-xl font-semibold'),
-  p: el('p', 'my-4 leading-7 text-slate-700 dark:text-slate-300'),
-  ul: el('ul', 'my-4 list-disc space-y-1 pl-6'),
-  ol: el('ol', 'my-4 list-decimal space-y-1 pl-6'),
-  a: el('a', 'font-medium underline underline-offset-2'),
-  blockquote: el('blockquote', 'my-4 border-l-4 border-teal-500 pl-4 text-slate-600 italic dark:text-slate-400'),
+  h1: el('h1', 'mt-2 mb-6 font-display text-5xl leading-[1.05] tracking-tight'),
+  h2: el('h2', 'mt-12 mb-3 border-t border-line pt-6 font-display text-3xl leading-tight'),
+  h3: el('h3', 'mt-8 mb-2 font-mono text-xs font-medium tracking-widest text-muted uppercase'),
+  p: el('p', 'my-4 leading-7'),
+  ul: el('ul', 'my-4 list-disc space-y-1.5 pl-6 marker:text-accent'),
+  ol: el('ol', 'my-4 list-decimal space-y-1.5 pl-6 marker:font-mono marker:text-accent'),
+  a: el('a', 'font-medium'),
+  strong: el('strong', 'font-semibold'),
+  blockquote: el('blockquote', 'my-6 border-l-4 border-accent pl-5 font-display text-xl leading-snug italic'),
   pre: el(
     'pre',
-    'my-4 overflow-x-auto rounded-md bg-slate-900 p-4 text-sm text-slate-100 [&>code]:bg-transparent [&>code]:p-0',
+    'my-6 overflow-x-auto bg-code p-4 font-mono text-sm leading-6 text-code-ink [&>code]:bg-transparent [&>code]:p-0',
   ),
-  code: el('code', 'rounded bg-slate-200 px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-slate-800'),
+  code: el('code', 'bg-panel px-1.5 py-0.5 font-mono text-[0.88em]'),
 }
 
 export default function Markdown({ children }) {

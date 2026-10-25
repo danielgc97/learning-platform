@@ -1,52 +1,42 @@
 import { Link } from 'react-router-dom'
 import Alert from '../components/Alert'
-import { ArrowRightIcon } from '../components/Icons'
 import ProgressBar from '../components/ProgressBar'
-import { courseVisual } from '../components/courseVisual'
 import { useApi } from '../useApi'
 
 export default function Catalog() {
   const { data, error, loading } = useApi('/courses')
 
-  if (loading) return <p className="text-slate-500">Cargando cursos...</p>
+  if (loading) return <p className="font-mono text-sm text-muted">Cargando cursos...</p>
   if (error) return <Alert tone="error">{error}</Alert>
 
   return (
     <>
-      <h1 className="text-3xl font-bold tracking-tight">Tus cursos</h1>
-      <p className="mt-1 text-slate-600 dark:text-slate-400">Elige por dónde seguir. Todo se practica en el navegador.</p>
-      <div className="mt-8 grid gap-5 sm:grid-cols-2">
-        {data.map((course) => {
-          const { Icon, tile } = courseVisual(course.slug)
-          const started = course.completed_count > 0
+      <p className="font-mono text-xs tracking-widest text-muted uppercase">Catálogo</p>
+      <h1 className="mt-3 font-display text-6xl leading-none tracking-tight">Cursos</h1>
+      <p className="mt-4 max-w-xl text-muted">Elige por dónde seguir. Todo se practica en el navegador.</p>
+
+      <div className="mt-12 border-b border-ink">
+        {data.map((course, i) => {
+          const empty = course.exercise_count === 0
           return (
             <Link
               key={course.slug}
               to={`/cursos/${course.slug}`}
-              className="group flex flex-col rounded-xl border border-slate-200 bg-white p-6 text-slate-900 no-underline shadow-sm transition hover:-translate-y-0.5 hover:border-teal-500 hover:no-underline hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-teal-500"
+              className="group grid grid-cols-[2.5rem_1fr] gap-x-4 gap-y-3 border-t border-ink py-7 no-underline transition-colors hover:bg-panel sm:grid-cols-[3.5rem_1fr_11rem] sm:px-3"
             >
-              <span className={`flex size-11 items-center justify-center rounded-lg ${tile}`}>
-                <Icon width={22} height={22} />
-              </span>
-              <h2 className="mt-4 text-lg font-bold">{course.title}</h2>
-              <p className="mt-1 flex-1 text-sm leading-6 text-slate-600 dark:text-slate-400">{course.description}</p>
-              <p className="mt-4 text-xs font-medium text-slate-500">
-                {course.lesson_count} {course.lesson_count === 1 ? 'lección' : 'lecciones'} · {course.exercise_count}{' '}
-                {course.exercise_count === 1 ? 'ejercicio' : 'ejercicios'}
-              </p>
-              <div className="mt-3">
-                <ProgressBar value={course.completed_count} max={course.exercise_count} />
+              <span className="pt-2 font-mono text-sm text-muted">{String(i + 1).padStart(2, '0')}</span>
+              <div>
+                <h2 className="font-display text-4xl leading-tight group-hover:text-accent">{course.title}</h2>
+                <p className="mt-1 max-w-xl text-sm leading-6 text-muted">{course.description}</p>
               </div>
-              <div className="mt-3 flex items-center justify-between text-sm">
-                <span className="text-slate-500">
-                  {course.exercise_count === 0
-                    ? 'Contenido en preparación'
-                    : `${course.completed_count} de ${course.exercise_count} completados`}
-                </span>
-                <span className="inline-flex items-center gap-1 font-semibold text-teal-700 dark:text-teal-400">
-                  {started ? 'Continuar' : 'Empezar'}
-                  <ArrowRightIcon width={16} height={16} className="transition group-hover:translate-x-0.5" />
-                </span>
+              <div className="col-start-2 sm:col-start-3 sm:pt-3">
+                <p className="font-mono text-xs tracking-wider text-muted uppercase">
+                  {course.lesson_count} {course.lesson_count === 1 ? 'lección' : 'lecciones'}
+                </p>
+                <p className="mt-1 font-mono text-sm">
+                  {empty ? 'En preparación' : `${course.completed_count}/${course.exercise_count} completados`}
+                </p>
+                <ProgressBar value={course.completed_count} max={course.exercise_count} className="mt-3" />
               </div>
             </Link>
           )

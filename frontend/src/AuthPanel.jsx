@@ -5,14 +5,14 @@ import Alert from './components/Alert'
 import Button from './components/Button'
 
 const inputClass =
-  'w-full rounded-md border border-slate-300 bg-white px-3 py-2.5 text-sm placeholder:text-slate-400 focus-visible:outline-2 focus-visible:outline-teal-600 dark:border-slate-700 dark:bg-slate-950'
+  'w-full border border-line bg-transparent px-3 py-2.5 font-mono text-sm placeholder:text-muted focus:border-ink focus:outline-none'
 
 export function UserMenu() {
   const { session } = useSession()
   if (!session) return null
   return (
-    <div className="flex items-center gap-3 text-sm">
-      <span className="hidden text-slate-600 sm:inline dark:text-slate-400">{session.user.email}</span>
+    <div className="flex items-center gap-3">
+      <span className="hidden font-mono text-xs text-muted sm:inline">{session.user.email}</span>
       <Button variant="ghost" onClick={() => supabase.auth.signOut()}>Salir</Button>
     </div>
   )
@@ -51,19 +51,19 @@ export function AuthForm() {
   }
 
   return (
-    <form
-      onSubmit={signIn}
-      className="w-full max-w-sm rounded-2xl border border-slate-200 bg-white p-6 shadow-lg shadow-slate-200/60 dark:border-slate-800 dark:bg-slate-900 dark:shadow-none"
-    >
-      <h2 className="text-lg font-bold">Empieza a practicar</h2>
-      <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">Crea tu cuenta o entra con tu correo.</p>
-      <div className="mt-5 space-y-3">
-        <input type="email" placeholder="Correo" autoComplete="email" className={inputClass} value={email} onChange={(e) => setEmail(e.target.value)} />
-        <input type="password" placeholder="Contraseña (mínimo 6)" autoComplete="current-password" className={inputClass} value={password} onChange={(e) => setPassword(e.target.value)} />
+    <form onSubmit={signIn} className="w-full max-w-sm border border-ink bg-paper">
+      <div className="border-b border-ink px-5 py-2.5 font-mono text-xs tracking-widest uppercase">Acceso</div>
+      <div className="p-5">
+        <h2 className="font-display text-3xl leading-none">Empieza a practicar</h2>
+        <p className="mt-2 text-sm text-muted">Crea tu cuenta o entra con tu correo.</p>
+        <div className="mt-5 space-y-3">
+          <input type="email" placeholder="correo@ejemplo.com" autoComplete="email" className={inputClass} value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input type="password" placeholder="contraseña (mínimo 6)" autoComplete="current-password" className={inputClass} value={password} onChange={(e) => setPassword(e.target.value)} />
+        </div>
+        <Button type="submit" variant="primary" disabled={busy} className="mt-5 w-full">Entrar</Button>
+        <Button onClick={signUp} disabled={busy} className="mt-2 w-full">Crear cuenta</Button>
+        {message && <Alert tone="info">{message}</Alert>}
       </div>
-      <Button type="submit" variant="primary" disabled={busy} className="mt-5 w-full">Entrar</Button>
-      <Button onClick={signUp} disabled={busy} className="mt-2 w-full">Crear cuenta</Button>
-      {message && <Alert tone="info">{message}</Alert>}
     </form>
   )
 }

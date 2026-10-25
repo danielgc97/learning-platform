@@ -75,7 +75,7 @@ export default function SqlExercise({ exercise, completed, onPassed }) {
                 submissionId={submissionId}
               />
             )}
-            {error && !verdict && <pre className="overflow-x-auto font-mono text-sm text-red-600 dark:text-red-400">{error}</pre>}
+            {error && !verdict && <pre className="overflow-x-auto font-mono text-sm text-bad">{error}</pre>}
             {result && <ResultTable columns={result.columns} rows={result.rows} />}
           </>
         )
