@@ -20,6 +20,7 @@
   --code: #111111;
   --code-ink: #f4f1e8;
   --shadow: #111111;
+  --ease-lab: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .dark {
@@ -75,13 +76,23 @@
 
   .lab-lift {
     transition:
-      transform 0.12s,
-      box-shadow 0.12s;
+      transform 160ms var(--ease-lab),
+      box-shadow 160ms var(--ease-lab);
   }
 
-  .lab-lift:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0 0 var(--shadow);
+  /* Solo con mouse: en pantallas táctiles el hover se queda "pegado" tras el toque. */
+  @media (hover: hover) and (pointer: fine) {
+    .lab-lift:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 0 var(--shadow);
+    }
+  }
+
+  /* Quien pide menos movimiento conserva la sombra, pero la tarjeta no se desplaza. */
+  @media (prefers-reduced-motion: reduce) {
+    .lab-lift:hover {
+      transform: none;
+    }
   }
 }
 

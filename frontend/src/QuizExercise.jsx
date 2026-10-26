@@ -25,7 +25,7 @@ export default function QuizExercise({ exercise, completed, onPassed }) {
       <header className="flex items-center justify-between gap-3 border-b-2 border-ink bg-c2 px-5 py-2.5 text-sm font-bold text-[#111]">
         <span>Comprueba lo aprendido</span>
         {completed && (
-          <span className="inline-flex items-center gap-1 rounded-full border-2 border-ink bg-c3 px-2.5 py-0.5 text-xs">
+          <span className="inline-flex items-center gap-1 rounded-full border-2 border-ink bg-c3 px-2.5 py-0.5 text-xs transition-[opacity,scale] duration-200 ease-(--ease-lab) starting:scale-95 starting:opacity-0 motion-reduce:starting:scale-100">
             <CheckIcon width={13} height={13} strokeWidth={3} /> Completado
           </span>
         )}

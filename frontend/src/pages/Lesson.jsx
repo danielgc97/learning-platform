@@ -74,7 +74,7 @@ export default function Lesson() {
       })}
 
       {lessonDone && (
-        <div className="lab-card mt-10 flex flex-col items-start gap-4 bg-c3 p-6 text-[#111] sm:flex-row sm:items-center sm:justify-between">
+        <div className="lab-card mt-10 flex flex-col items-start gap-4 bg-c3 p-6 text-[#111] transition-[opacity,translate,scale] duration-[280ms] ease-(--ease-lab) starting:translate-y-3 starting:scale-[.97] starting:opacity-0 motion-reduce:starting:translate-y-0 motion-reduce:starting:scale-100 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="flex items-center gap-2 font-display text-2xl leading-none">
               <CheckIcon width={24} height={24} strokeWidth={3} /> ¡Lección completada!
