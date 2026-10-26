@@ -1,29 +1,22 @@
 import { BRAND_PARTS } from '../brand'
 
-export function LogoMark({ size = 22 }) {
+// Una "C" abierta con un punto: el punto es un nodo de datos que sale de la letra.
+export function LogoMark({ size = 30 }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 32 32" aria-hidden="true">
-      <g fill="currentColor">
-        <rect x="5" y="21" width="6" height="6" />
-        <rect x="13" y="21" width="6" height="6" />
-        <rect x="21" y="21" width="6" height="6" />
-        <rect x="13" y="13" width="6" height="6" />
-        <rect x="21" y="13" width="6" height="6" />
-      </g>
-      <rect x="21" y="5" width="6" height="6" fill="#2f54eb" />
+    <svg width={size} height={size} viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <path d="M24.2 10.2A10 10 0 1 0 24.2 21.8" stroke="currentColor" strokeWidth="3.4" strokeLinecap="round" />
+      <circle cx="24.6" cy="16" r="2.7" className="fill-accent" />
     </svg>
   )
 }
 
 export default function Logo() {
   return (
-    <span className="inline-flex items-center gap-2.5 font-display text-xl font-bold tracking-tight text-ink">
-      <span className="flex size-9 items-center justify-center rounded-lg border-2 border-ink bg-c1 text-[#111] shadow-[2px_2px_0_0_var(--shadow)]">
-        <LogoMark size={24} />
-      </span>
+    <span className="inline-flex items-center gap-2 font-display text-xl tracking-tight text-ink">
+      <LogoMark />
       <span>
-        {BRAND_PARTS[0]}
-        <span className="ml-0.5 rounded-md bg-c1 px-1.5 text-[#111]">{BRAND_PARTS[1]}</span>
+        <span className="font-semibold">{BRAND_PARTS[0]}</span>
+        <span className="font-normal text-accent">{BRAND_PARTS[1]}</span>
       </span>
     </span>
   )
