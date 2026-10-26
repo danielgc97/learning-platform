@@ -48,7 +48,7 @@ export default function Catalog() {
             <section key={phase.key}>
               <header className="flex flex-wrap items-center gap-x-4 gap-y-2">
                 <span
-                  className={`flex size-10 shrink-0 items-center justify-center rounded-full border-2 border-ink font-display text-lg text-[#111] shadow-[2px_2px_0_0_var(--shadow)] ${phase.tile}`}
+                  className={`flex size-10 shrink-0 items-center justify-center rounded-full border border-ink font-display text-lg text-[#111] shadow-[2px_2px_0_0_var(--shadow)] ${phase.tile}`}
                 >
                   {index + 1}
                 </span>

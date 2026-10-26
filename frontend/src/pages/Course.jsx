@@ -25,7 +25,7 @@ export default function Course() {
         <p className="mt-3 max-w-2xl text-lg leading-7">{data.description}</p>
         <div className="mt-6 flex items-center gap-4">
           <ProgressBar value={data.completed_count} max={data.exercise_count} />
-          <span className="shrink-0 text-sm font-bold">
+          <span className="shrink-0 text-sm font-semibold">
             {data.completed_count}/{data.exercise_count}
           </span>
         </div>
@@ -33,7 +33,7 @@ export default function Course() {
 
       {data.modules.map((module, i) => (
         <section key={module.slug} className="mt-12">
-          <p className="text-sm font-bold tracking-wider text-accent uppercase">Módulo {i + 1}</p>
+          <p className="text-sm font-semibold tracking-wider text-accent uppercase">Módulo {i + 1}</p>
           <h2 className="mt-1 font-display text-3xl">{module.title}</h2>
           <ul className="lab-card mt-5 divide-y-2 divide-line overflow-hidden">
             {module.lessons.map((lesson) => {
@@ -46,7 +46,7 @@ export default function Course() {
                     className="flex items-center gap-4 px-5 py-4 text-ink no-underline transition-colors hover:bg-panel"
                   >
                     <span
-                      className={`flex size-9 shrink-0 items-center justify-center rounded-full border-2 border-ink font-display text-sm text-[#111] ${done ? 'bg-c3' : 'bg-surface text-ink'}`}
+                      className={`flex size-9 shrink-0 items-center justify-center rounded-full border border-ink font-display text-sm text-[#111] ${done ? 'bg-c3' : 'bg-surface text-ink'}`}
                     >
                       {done ? <CheckIcon width={16} height={16} strokeWidth={3} /> : lessonNumber}
                     </span>

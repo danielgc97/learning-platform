@@ -3,10 +3,10 @@ import { CheckIcon } from './Icons'
 export default function ExerciseShell({ label, completed, statement, editor, actions, result }) {
   return (
     <section className="lab-card my-12 overflow-hidden">
-      <header className="flex items-center justify-between gap-3 border-b-2 border-ink bg-c1 px-5 py-2.5 text-sm font-bold text-[#111]">
+      <header className="flex items-center justify-between gap-3 border-b border-ink bg-c1 px-5 py-2.5 text-sm font-semibold text-[#111]">
         <span>Ejercicio · {label}</span>
         {completed && (
-          <span className="inline-flex items-center gap-1 rounded-full border-2 border-ink bg-c3 px-2.5 py-0.5 text-xs transition-[opacity,scale] duration-200 ease-(--ease-lab) starting:scale-95 starting:opacity-0 motion-reduce:starting:scale-100">
+          <span className="inline-flex items-center gap-1 rounded-full border border-ink bg-c3 px-2.5 py-0.5 text-xs transition-[opacity,scale] duration-200 ease-(--ease-lab) starting:scale-95 starting:opacity-0 motion-reduce:starting:scale-100">
             <CheckIcon width={13} height={13} strokeWidth={3} /> Completado
           </span>
         )}
@@ -17,8 +17,8 @@ export default function ExerciseShell({ label, completed, statement, editor, act
           {editor}
           <div className="mt-3 flex flex-wrap items-center gap-3">{actions}</div>
         </div>
-        <div className="min-h-40 border-t-2 border-ink bg-panel p-5 lg:border-t-0 lg:border-l-2">
-          <p className="mb-3 text-xs font-bold tracking-wider text-muted uppercase">Resultado</p>
+        <div className="min-h-40 border-t border-ink bg-panel p-5 lg:border-t-0 lg:border-l">
+          <p className="mb-3 text-xs font-semibold tracking-wider text-muted uppercase">Resultado</p>
           {result ?? <p className="text-sm text-muted">Ejecuta tu código para ver el resultado aquí.</p>}
         </div>
       </div>

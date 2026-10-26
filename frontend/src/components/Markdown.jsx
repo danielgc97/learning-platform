@@ -13,25 +13,25 @@ const components = {
   h3: el('h3', 'mt-8 mb-2 font-display text-xl'),
   p: el('p', 'my-4 text-[1.05rem] leading-8'),
   ul: el('ul', 'my-4 list-disc space-y-2 pl-6 marker:text-accent'),
-  ol: el('ol', 'my-4 list-decimal space-y-2 pl-6 marker:font-bold marker:text-accent'),
+  ol: el('ol', 'my-4 list-decimal space-y-2 pl-6 marker:font-semibold marker:text-accent'),
   a: el('a', ''),
-  strong: el('strong', 'font-bold'),
-  blockquote: el('blockquote', 'my-6 rounded-r-lg border-l-4 border-ink bg-c1/40 px-5 py-3'),
+  strong: el('strong', 'font-semibold'),
+  blockquote: el('blockquote', 'my-6 rounded-lg border border-line bg-c1/40 px-5 py-3'),
   pre: el(
     'pre',
-    'my-6 overflow-x-auto rounded-xl border-2 border-ink bg-code p-4 font-mono text-sm leading-6 text-code-ink shadow-[4px_4px_0_0_var(--shadow)] [&>code]:border-0 [&>code]:bg-transparent [&>code]:p-0',
+    'my-6 overflow-x-auto rounded-xl border border-ink bg-code p-4 font-mono text-sm leading-6 text-code-ink shadow-[3px_3px_0_0_var(--shadow)] [&>code]:border-0 [&>code]:bg-transparent [&>code]:p-0',
   ),
   code: el('code', 'rounded-md border border-line bg-panel px-1.5 py-0.5 font-mono text-[0.88em]'),
   table: function Table({ node, ...props }) {
     void node
     return (
-      <div className="my-6 overflow-x-auto rounded-lg border-2 border-ink">
+      <div className="my-6 overflow-x-auto rounded-lg border border-ink">
         <table className="w-full text-sm" {...props} />
       </div>
     )
   },
   thead: el('thead', 'bg-panel'),
-  th: el('th', 'px-3 py-2 text-left font-bold whitespace-nowrap'),
+  th: el('th', 'px-3 py-2 text-left font-semibold whitespace-nowrap'),
   td: el('td', 'border-t border-line px-3 py-2 align-top'),
 }
 

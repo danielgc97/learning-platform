@@ -17,7 +17,7 @@ function NavCard({ lesson, direction }) {
       to={`/lecciones/${lesson.id}`}
       className={`lab-card lab-lift block p-5 text-ink no-underline ${isNext ? 'text-right sm:col-start-2' : ''}`}
     >
-      <span className="text-xs font-bold tracking-wider text-muted uppercase">
+      <span className="text-xs font-semibold tracking-wider text-muted uppercase">
         {isNext ? 'Siguiente →' : '← Anterior'}
       </span>
       <span className="mt-1 block font-display text-xl leading-tight">{lesson.title}</span>

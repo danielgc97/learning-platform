@@ -8,8 +8,8 @@ function defineThemes(monaco) {
     rules: [],
     colors: {
       'editor.background': '#ffffff',
-      'editorLineNumber.foreground': '#9a9484',
-      'editor.lineHighlightBackground': '#f7f3e6',
+      'editorLineNumber.foreground': '#9b9a93',
+      'editor.lineHighlightBackground': '#f6f4ee',
     },
   })
   monaco.editor.defineTheme('cvb-dark', {
@@ -27,7 +27,7 @@ function defineThemes(monaco) {
 export default function CodeEditor({ value, onChange, language, height = 180 }) {
   const dark = useDarkMode()
   return (
-    <div className="overflow-hidden rounded-lg border-2 border-ink">
+    <div className="overflow-hidden rounded-lg border border-ink">
       <Editor
         height={height}
         language={language}

@@ -16,7 +16,7 @@ export default function About() {
 
   return (
     <>
-      <span className="inline-flex rounded-full border-2 border-ink bg-c2 px-3.5 py-1 text-sm font-bold text-[#111]">Nosotros</span>
+      <span className="inline-flex rounded-full border border-ink bg-c2 px-3.5 py-1 text-sm font-semibold text-[#111]">Nosotros</span>
       <h1 className="mt-5 max-w-3xl font-display text-4xl leading-tight sm:text-5xl">
         Que cualquiera pueda construir{' '}
         <span className="box-decoration-clone rounded-md bg-c1 px-2 text-[#111]">su propio SaaS</span>.
@@ -40,11 +40,11 @@ export default function About() {
           <ul className="mt-4 space-y-4">
             {PRINCIPLES.map((p, i) => (
               <li key={p.title} className="flex gap-4">
-                <span className="flex size-9 shrink-0 items-center justify-center rounded-full border-2 border-ink bg-c1 font-display text-[#111]">
+                <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-ink bg-c1 font-display text-[#111]">
                   {i + 1}
                 </span>
                 <div>
-                  <p className="font-bold">{p.title}</p>
+                  <p className="font-semibold">{p.title}</p>
                   <p className="leading-6 text-muted">{p.text}</p>
                 </div>
               </li>
@@ -55,7 +55,7 @@ export default function About() {
         <aside className="lg:col-span-5">
           <div className="lab-card p-6">
             <div className="flex items-center gap-4">
-              <span className="flex size-16 shrink-0 items-center justify-center rounded-full border-2 border-ink bg-c3 font-display text-2xl text-[#111]">
+              <span className="flex size-16 shrink-0 items-center justify-center rounded-full border border-ink bg-c3 font-display text-2xl text-[#111]">
                 {initials}
               </span>
               <div>
@@ -64,10 +64,10 @@ export default function About() {
               </div>
             </div>
             <p className="mt-5 leading-7">{AUTHOR.bio}</p>
-            <ul className="mt-5 space-y-2 border-t-2 border-line pt-5 text-sm">
+            <ul className="mt-5 space-y-2 border-t border-line pt-5 text-sm">
               {AUTHOR.highlights.map((h) => (
                 <li key={h} className="flex gap-2">
-                  <span aria-hidden="true" className="font-bold text-accent">→</span>
+                  <span aria-hidden="true" className="font-semibold text-accent">→</span>
                   {h}
                 </li>
               ))}

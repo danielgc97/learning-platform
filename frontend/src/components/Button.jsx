@@ -1,5 +1,5 @@
 const press =
-  'shadow-[3px_3px_0_0_var(--shadow)] hover:-translate-x-px hover:-translate-y-px hover:shadow-[4px_4px_0_0_var(--shadow)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none active:duration-100 motion-reduce:hover:translate-none motion-reduce:active:translate-none'
+  'shadow-[2px_2px_0_0_var(--shadow)] hover:-translate-x-px hover:-translate-y-px hover:shadow-[3px_3px_0_0_var(--shadow)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none active:duration-100 motion-reduce:hover:translate-none motion-reduce:active:translate-none'
 
 const variants = {
   primary: `border-2 border-ink bg-accent text-accent-ink ${press}`,

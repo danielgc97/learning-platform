@@ -40,7 +40,7 @@ export default function Landing() {
                 className={`lab-card flex flex-col p-5 ${upcoming ? 'border-dashed bg-transparent shadow-none' : ''}`}
               >
                 <span
-                  className={`flex size-9 items-center justify-center rounded-full border-2 font-display text-lg ${
+                  className={`flex size-9 items-center justify-center rounded-full border font-display text-lg ${
                     upcoming ? 'border-dashed border-muted text-muted' : `border-ink ${step.tile} text-[#111]`
                   }`}
                 >
@@ -49,7 +49,7 @@ export default function Landing() {
                 <h3 className="mt-4 font-display text-lg leading-tight">{step.title}</h3>
                 <p className="mt-2 flex-1 text-sm leading-6 text-muted">{step.text}</p>
                 {upcoming && (
-                  <span className="mt-3 inline-flex self-start rounded-full border-2 border-dashed border-muted px-2.5 py-0.5 text-xs font-bold text-muted">
+                  <span className="mt-3 inline-flex self-start rounded-full border border-dashed border-muted px-2.5 py-0.5 text-xs font-semibold text-muted">
                     Próximamente
                   </span>
                 )}

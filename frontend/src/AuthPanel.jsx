@@ -5,7 +5,7 @@ import Alert from './components/Alert'
 import Button from './components/Button'
 
 const inputClass =
-  'w-full rounded-lg border-2 border-ink bg-surface px-3 py-2.5 text-base placeholder:text-muted focus:outline-2 focus:outline-offset-2 focus:outline-accent'
+  'w-full rounded-lg border border-ink bg-surface px-3 py-2.5 text-base placeholder:text-muted focus:outline-2 focus:outline-offset-2 focus:outline-accent'
 
 export function UserMenu() {
   const { session } = useSession()

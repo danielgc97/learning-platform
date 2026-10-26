@@ -3,20 +3,20 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --paper: #fbf7ec;
+  --paper: #f6f4ee;
   --surface: #ffffff;
-  --panel: #f3eedd;
+  --panel: #ece9e1;
   --ink: #111111;
-  --muted: #5b5b52;
-  --line: #ddd6c3;
+  --muted: #5e5d58;
+  --line: #dcd9d0;
   --accent: #2f54eb;
   --accent-ink: #ffffff;
   --ok: #1f7a45;
   --bad: #c62828;
-  --c1: #ffd93d;
-  --c2: #b9c7ff;
-  --c3: #b8f0cf;
-  --c4: #ffc4b0;
+  --c1: #d5e0fb;
+  --c2: #efd6e2;
+  --c3: #c6e5d3;
+  --c4: #f0cdbd;
   --code: #111111;
   --code-ink: #f4f1e8;
   --shadow: #111111;
@@ -63,7 +63,7 @@
 
 @layer components {
   .font-display {
-    font-weight: 700;
+    font-weight: 520;
     letter-spacing: -0.02em;
   }
 
@@ -71,7 +71,7 @@
     background: var(--surface);
     border: 2px solid var(--ink);
     border-radius: 14px;
-    box-shadow: 4px 4px 0 0 var(--shadow);
+    box-shadow: 3px 3px 0 0 var(--shadow);
   }
 
   .lab-lift {
@@ -84,7 +84,7 @@
   @media (hover: hover) and (pointer: fine) {
     .lab-lift:hover {
       transform: translate(-2px, -2px);
-      box-shadow: 6px 6px 0 0 var(--shadow);
+      box-shadow: 5px 5px 0 0 var(--shadow);
     }
   }
 

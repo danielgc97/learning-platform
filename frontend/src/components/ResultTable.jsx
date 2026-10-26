@@ -1,6 +1,6 @@
 export default function ResultTable({ columns, rows }) {
   return (
-    <div className="mt-3 overflow-x-auto rounded-lg border-2 border-ink">
+    <div className="mt-3 overflow-x-auto rounded-lg border border-ink">
       <table className="w-full font-mono text-sm">
         <thead className="bg-panel text-left">
           <tr>
