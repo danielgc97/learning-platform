@@ -20,7 +20,9 @@ pip freeze > requirements.txt
 3.12
 ```
 
-Sin él, el servicio puede usar una versión distinta a la que probaste. <!-- REVISAR: Render cambia la versión de Python por defecto con el tiempo; confirmar en su documentación -->
+Sin él, Render elige una versión por su cuenta (hoy, la 3.14 en los servicios nuevos), que puede no ser la
+que probaste. También puedes fijarla con una variable de entorno `PYTHON_VERSION`, pero necesita la versión
+completa, como `3.12.10`.
 
 3. Crea `.env.example` con los nombres de las variables y valores falsos:
 

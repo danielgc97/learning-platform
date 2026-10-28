@@ -48,7 +48,11 @@ def listar_tareas(usuario=Depends(usuario_actual)):
 ```
 
 `Depends(usuario_actual)` hace que FastAPI ejecute esa función **antes** y rechace con `401` si falla. Sin
-token válido, el endpoint ni se ejecuta. <!-- REVISAR: probar con un token real; la forma de la respuesta de get_user puede variar según la versión de supabase-py -->
+token válido, el endpoint ni se ejecuta.
+
+`get_user(token)` devuelve una respuesta de la que sacas el usuario con `.user`, y su identificador con
+`.id`. Si el token es falso o venció, puede lanzar un error o devolver una respuesta sin usuario: por eso se
+comprueban las dos cosas.
 
 Fíjate en `.eq("user_id", usuario.id)`: filtra por el usuario **que sale del token**, nunca por un dato que
 mande el frontend. Haz lo mismo en crear (guarda `user_id`), actualizar y borrar. Para la columna `user_id`,

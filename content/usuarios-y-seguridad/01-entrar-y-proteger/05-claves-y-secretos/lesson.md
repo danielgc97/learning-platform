@@ -12,7 +12,7 @@ Supabase te da dos tipos de clave. Confundirlas es uno de los errores más pelig
 | **Secreta** (*secret*) | `sb_secret_...` | **Solo** en tu backend |
 
 La clave pública tiene pocos poderes y queda limitada por las reglas de RLS. La **secreta** se salta esas
-reglas: quien la tenga puede leer y borrar toda tu base. <!-- REVISAR: Supabase está reemplazando los nombres antiguos anon y service_role; confirmar los nombres vigentes -->
+reglas: quien la tenga puede leer y borrar toda tu base.
 
 (Los proyectos más antiguos usan los nombres `anon` y `service_role`, que equivalen a la pública y a la secreta.)
 

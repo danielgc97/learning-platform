@@ -8,7 +8,7 @@ Con **Supabase Auth** no programas el manejo de contraseñas: llamas a funciones
 
 ## Práctica
 
-1. En el panel de Supabase copia la **URL** del proyecto y la **clave pública** (*publishable key*). Esta sí puede ir en el navegador. <!-- REVISAR: ubicación exacta en el panel -->
+1. En Supabase abre **Project Settings → API Keys** y copia la **Publishable key**: esta sí puede ir en el navegador. La URL del proyecto está en **Project Settings → Data API**, en **API URL**, sin el `/rest/v1/` del final.
 2. En `tareas-web`, agrégalas a `.env.local`:
 
 ```

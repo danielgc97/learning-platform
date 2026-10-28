@@ -37,7 +37,13 @@ pip freeze > requirements.txt
 todo con `pip install -r requirements.txt`.
 
 Si PowerShell bloquea la activación con un mensaje sobre "ejecución de scripts", es una protección de Windows.
-Una solución habitual es ejecutar una vez `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`. <!-- REVISAR: confirmar el comando contra la documentación actual de Microsoft -->
+Ejecuta una vez esto, que solo afecta a tu usuario y no pide permisos de administrador:
+
+```
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+`RemoteSigned` permite los scripts que creas tú y exige firma a los descargados de internet.
 
 ## En el frontend
 

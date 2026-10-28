@@ -10,15 +10,16 @@ creaste en Supabase en el curso de SQL.
 ## Práctica
 
 1. Instala los paquetes: `pip install supabase python-dotenv` y vuelve a ejecutar `pip freeze > requirements.txt`.
-2. En el panel de Supabase, ve a la configuración del proyecto y copia la **URL** del proyecto y la **clave secreta** (*secret key*) de tu backend. <!-- REVISAR: ubicación exacta en el panel actual (Project Settings → API / API Keys) -->
-3. Crea un archivo `.env` (ya está en `.gitignore`):
+2. En Supabase abre **Project Settings → API Keys** y copia tu **Secret key** (empieza con `sb_secret_`).
+3. Abre **Project Settings → Data API** y copia la **API URL**, pero **quítale el `/rest/v1/` del final**: debe quedar como `https://tu-proyecto.supabase.co`.
+4. Crea un archivo `.env` (ya está en `.gitignore`):
 
 ```
 SUPABASE_URL=https://tu-proyecto.supabase.co
 SUPABASE_KEY=tu-clave-secreta
 ```
 
-4. En `main.py`, crea el cliente y reescribe el listado:
+5. En `main.py`, crea el cliente y reescribe el listado:
 
 ```python
 import os

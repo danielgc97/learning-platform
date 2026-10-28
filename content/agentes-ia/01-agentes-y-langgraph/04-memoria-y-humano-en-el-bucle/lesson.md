@@ -44,6 +44,4 @@ La primera llamada se detiene en `interrupt` y devuelve la pregunta. Al reanudar
 valor se convierte en la respuesta de `interrupt`. Es imprescindible tener un checkpointer y usar **el mismo
 `thread_id`**.
 
-<!-- REVISAR: ejemplos verificados con LangGraph 1.2 -->
-
 Comprueba lo que entendiste con las preguntas de abajo.

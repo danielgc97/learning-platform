@@ -41,6 +41,7 @@ Pasos: se crea el constructor con la forma del estado, se registran los nodos, s
 Un detalle clave: el nodo `responder` devuelve únicamente `{"respuesta": ...}`. LangGraph **combina** esa
 actualización con el resto del estado, que conserva `pregunta`.
 
-<!-- REVISAR: ejemplos verificados con LangGraph 1.2; la API puede cambiar en versiones futuras -->
+> Los ejemplos de este curso se probaron con LangGraph 1.2. Si usas una versión distinta y algo no encaja,
+> revisa su documentación oficial: es una librería que cambia rápido.
 
 Comprueba lo que entendiste con las preguntas de abajo.

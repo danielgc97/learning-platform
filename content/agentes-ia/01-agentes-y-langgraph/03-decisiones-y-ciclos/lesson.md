@@ -45,8 +45,16 @@ pedir más.
 
 ## Frena los ciclos
 
-Un ciclo sin salida gasta dinero sin parar. Por eso siempre: (1) pon una condición de término clara,
-(2) lleva un **contador** en el estado, como `intentos`, y (3) revisa el límite de pasos que LangGraph
-permite configurar. <!-- REVISAR: confirmar el nombre y valor por defecto de recursion_limit en la documentación actual -->
+Un ciclo sin salida gasta dinero sin parar. Por eso siempre: (1) pon una condición de término clara y
+(2) lleva un **contador** en el estado, como `intentos`.
+
+LangGraph trae además una red de seguridad propia, `recursion_limit`, que corta la ejecución tras un número
+máximo de pasos (por defecto 1000) y lanza un error llamado `GraphRecursionError`. Se baja así:
+
+```python
+grafo.invoke(entrada, config={"recursion_limit": 25})
+```
+
+Es un tope de emergencia, no un sustituto de tu condición de término.
 
 Comprueba lo que entendiste con las preguntas de abajo.

@@ -25,7 +25,9 @@ Copia siempre los valores que muestra tu panel de Vercel, no los de otro tutoria
 ## HTTPS
 
 El candado del navegador (**HTTPS**) significa que la conexión va cifrada. Vercel emite y renueva el
-certificado por ti cuando conectas el dominio. <!-- REVISAR: confirmar que la emisión del certificado es automática en el plan gratuito -->
+certificado por ti: lo pide a Let's Encrypt en cuanto agregas el dominio al proyecto y lo renueva solo
+antes de que venza. No tienes que hacer nada, pero el dominio debe seguir bien configurado para que la
+renovación funcione.
 
 ## No olvides actualizar
 

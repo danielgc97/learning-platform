@@ -21,7 +21,9 @@ npm install
 npm run dev
 ```
 
-Si el asistente te hace preguntas, elige las opciones por defecto. <!-- REVISAR: el asistente de create-vite cambia seguido (preguntas sobre variantes experimentales) -->
+El `--template react` ya elige todo por ti. Si aun así el asistente te pregunta algo, elige **React** y
+luego la variante **JavaScript** (no TypeScript ni las que mencionen *compiler*, que son para casos
+avanzados).
 
 2. Abre `http://localhost:5173`: verás la página de ejemplo de Vite.
 3. Abre la carpeta en VS Code (`code .`) y mira lo importante:

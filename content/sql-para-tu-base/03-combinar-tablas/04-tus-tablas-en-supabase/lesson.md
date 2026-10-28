@@ -36,6 +36,4 @@ Una tabla nueva puede quedar accesible desde internet con la clave pública del 
 **RLS** (seguridad por filas). Lo harás en el curso de Usuarios y seguridad. Hasta entonces, usa solo datos
 de prueba.
 
-<!-- REVISAR: nombres de menús de Supabase pueden cambiar; confirmar contra el panel actual -->
-
 Comprueba lo que entendiste con la pregunta de abajo.

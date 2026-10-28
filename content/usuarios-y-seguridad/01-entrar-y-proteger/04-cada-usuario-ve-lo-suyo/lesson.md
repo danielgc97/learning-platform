@@ -40,7 +40,8 @@ create policy "borrar mis tareas" on public.tareas
 
 `auth.uid()` es el id de quien hace la consulta; cada política dice: "solo filas cuyo `user_id` sea yo".
 
-3. Supabase recomienda además quitar permisos al rol anónimo: <!-- REVISAR: confirmar contra la guía actual de RLS de Supabase -->
+3. Supabase recomienda además quitar permisos al rol anónimo, porque activar RLS no elimina los permisos que
+la tabla ya tenía concedidos:
 
 ```sql
 revoke all on table public.tareas from anon;
