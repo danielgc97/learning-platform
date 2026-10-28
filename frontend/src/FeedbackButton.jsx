@@ -39,7 +39,7 @@ export default function FeedbackButton({ exerciseType, statement, studentCode, t
       </Button>
       {error && <Alert tone="error">{error}</Alert>}
       {feedback && (
-        <div className="mt-3 rounded-lg border border-ink bg-c2 px-4 py-3 text-sm text-[#111]">
+        <div className="mt-3 rounded-lg border border-ink bg-c2 px-4 py-3 text-sm text-[#111] transition-[opacity,translate] duration-200 ease-(--ease-lab) starting:translate-y-1.5 starting:opacity-0 motion-reduce:starting:translate-y-0">
           <Markdown compact>{feedback}</Markdown>
         </div>
       )}

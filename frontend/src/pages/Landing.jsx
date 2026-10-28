@@ -61,7 +61,7 @@ export default function Landing() {
         <p className="mt-2 text-muted">Así se construyó esta misma plataforma.</p>
         <ol className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {JOURNEY.map((step, i) => (
-            <li key={step.title} className="lab-card flex flex-col p-5">
+            <li key={step.title} className="lab-card lab-reveal flex flex-col p-5">
               <span
                 className={`flex size-9 items-center justify-center rounded-full border border-ink font-display text-lg text-[#111] ${step.tile}`}
               >

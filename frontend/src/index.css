@@ -94,6 +94,25 @@
       transform: none;
     }
   }
+
+  /* Las tarjetas aparecen al entrar en pantalla. El navegador que no lo soporte
+     las muestra quietas, sin ningún efecto raro. */
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .lab-reveal {
+        animation: lab-reveal both var(--ease-lab);
+        animation-timeline: view();
+        animation-range: entry 10% entry 55%;
+      }
+    }
+  }
+
+  @keyframes lab-reveal {
+    from {
+      opacity: 0;
+      translate: 0 14px;
+    }
+  }
 }
 
 @layer base {
