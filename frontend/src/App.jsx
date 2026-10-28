@@ -1,4 +1,4 @@
-import { Link, Route, Routes } from 'react-router-dom'
+import { Link, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { UserMenu } from './AuthPanel'
 import { useSession } from './useSession'
 import Footer from './components/Footer'
@@ -11,12 +11,19 @@ import Support from './pages/Support'
 import Course from './pages/Course'
 import Landing from './pages/Landing'
 import Lesson from './pages/Lesson'
+import NewPassword from './pages/NewPassword'
+
+const RECOVERY_PATH = '/nueva-contrasena'
 
 export default function App() {
-  const { session, loading } = useSession()
+  const { session, loading, recovering } = useSession()
+  const { pathname } = useLocation()
 
   // Las páginas de contenido exigen sesión; sin ella se muestra la portada.
   const gated = (page) => (loading ? <p className="text-muted">Cargando...</p> : session ? page : <Landing />)
+
+  // Red de seguridad: si el enlace del correo deja al usuario en otra página, lo traemos aquí.
+  const redirectToRecovery = recovering && pathname !== RECOVERY_PATH
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -39,14 +46,19 @@ export default function App() {
         </div>
       </header>
       <main className="mx-auto w-full max-w-6xl flex-1 px-5 py-10">
-        <Routes>
-          <Route path="/nosotros" element={<About />} />
-          <Route path="/soporte" element={<Support />} />
-          <Route path="/" element={gated(<Catalog />)} />
-          <Route path="/cursos/:slug" element={gated(<Course />)} />
-          <Route path="/lecciones/:id" element={gated(<Lesson />)} />
-          <Route path="*" element={<p>Página no encontrada.</p>} />
-        </Routes>
+        {redirectToRecovery ? (
+          <Navigate to={RECOVERY_PATH} replace />
+        ) : (
+          <Routes>
+            <Route path="/nosotros" element={<About />} />
+            <Route path="/soporte" element={<Support />} />
+            <Route path={RECOVERY_PATH} element={<NewPassword />} />
+            <Route path="/" element={gated(<Catalog />)} />
+            <Route path="/cursos/:slug" element={gated(<Course />)} />
+            <Route path="/lecciones/:id" element={gated(<Lesson />)} />
+            <Route path="*" element={<p>Página no encontrada.</p>} />
+          </Routes>
+        )}
       </main>
       <Footer />
     </div>

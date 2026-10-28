@@ -178,12 +178,11 @@ explanation: "..."     # se muestra al acertar
 
 ## 12. Pendientes antes de abrir la plataforma
 
-- Pantalla de recuperación de contraseña (Supabase Auth ya la soporta).
 - Panel mínimo de administración (§2.7).
 - Pistas graduales en la interfaz (§5).
 - Límite de gasto mensual en la consola de Anthropic y verificación de los precios de Haiku.
-- Supabase: *Site URL* real y correo propio (SMTP); el envío gratuito tiene un límite bajo.
-- Desplegar en Vercel y Railway con variables de entorno (CORS y URL de la API hoy apuntan a localhost).
+- Supabase: correo propio (SMTP); el envío gratuito tiene un límite bajo. *Site URL* y *Redirect URLs* ya configuradas (28-oct-2026).
+- Separar los proyectos de Supabase de desarrollo y producción antes de abrir a usuarios reales (hoy comparten uno).
 - Límite de peticiones por segundo contra ráfagas.
 - Aviso de seguridad en `npm audit` por una dependencia interna de Monaco; no llega al build de producción (el editor se carga desde una CDN), pero revisar antes del lanzamiento.
 - Aspectos legales (§8).

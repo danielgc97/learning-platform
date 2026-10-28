@@ -1,11 +1,9 @@
 import { useState } from 'react'
 import { supabase } from './supabase'
 import { useSession } from './useSession'
+import { authMessage, fieldErrorClass, inputClass, labelClass, linkButtonClass, MIN_PASSWORD } from './auth'
 import Alert from './components/Alert'
 import Button from './components/Button'
-
-const inputClass =
-  'w-full rounded-lg border border-ink bg-surface px-3 py-2.5 text-base placeholder:text-muted focus:outline-2 focus:outline-offset-2 focus:outline-accent'
 
 export function UserMenu() {
   const { session } = useSession()
@@ -18,28 +16,6 @@ export function UserMenu() {
   )
 }
 
-const MIN_PASSWORD = 6
-
-// Supabase devuelve los errores en inglés; los traducimos por su código.
-const AUTH_ERRORS = {
-  invalid_credentials: 'El correo o la contraseña no son correctos.',
-  email_not_confirmed: 'Tu correo aún no está confirmado. Revisa tu bandeja de entrada.',
-  user_already_exists: 'Ya existe una cuenta con ese correo. Prueba entrando.',
-  email_exists: 'Ya existe una cuenta con ese correo. Prueba entrando.',
-  weak_password: `La contraseña es muy débil. Usa al menos ${MIN_PASSWORD} caracteres.`,
-  email_address_invalid: 'Ese correo no parece válido. Revísalo.',
-  over_email_send_rate_limit: 'Enviamos demasiados correos en poco tiempo. Espera unos minutos e inténtalo de nuevo.',
-  over_request_rate_limit: 'Demasiados intentos seguidos. Espera un momento e inténtalo de nuevo.',
-  signup_disabled: 'El registro está desactivado por ahora.',
-}
-
-function authMessage(error) {
-  return AUTH_ERRORS[error.code] ?? 'No pudimos completar la acción. Inténtalo de nuevo en unos minutos.'
-}
-
-const labelClass = 'block text-sm font-semibold'
-const fieldErrorClass = 'mt-1 text-sm font-semibold text-bad'
-
 export function AuthForm() {
   const [mode, setMode] = useState('signup')
   const [email, setEmail] = useState('')
@@ -51,6 +27,7 @@ export function AuthForm() {
   const [busy, setBusy] = useState(false)
 
   const isSignup = mode === 'signup'
+  const isReset = mode === 'reset'
 
   function changeMode(next) {
     if (busy) return
@@ -65,7 +42,9 @@ export function AuthForm() {
     const next = {}
     if (!email.trim()) next.email = 'Escribe tu correo.'
     else if (!/^\S+@\S+\.\S+$/.test(email.trim())) next.email = 'Revisa tu correo: parece incompleto.'
-    if (!password) next.password = 'Escribe tu contraseña.'
+    if (isReset) {
+      // En este modo solo pedimos el correo.
+    } else if (!password) next.password = 'Escribe tu contraseña.'
     else if (isSignup && password.length < MIN_PASSWORD) next.password = `Usa al menos ${MIN_PASSWORD} caracteres.`
     setErrors(next)
     return Object.keys(next).length === 0
@@ -79,7 +58,20 @@ export function AuthForm() {
     setMessage(null)
     setPendingEmail(null)
 
-    if (isSignup) {
+    if (isReset) {
+      const { error } = await supabase.auth.resetPasswordForEmail(address, {
+        redirectTo: `${window.location.origin}/nueva-contrasena`,
+      })
+      // No revelamos si la cuenta existe: el mensaje es el mismo en los dos casos.
+      setMessage(
+        error && error.code === 'over_email_send_rate_limit'
+          ? { tone: 'error', text: authMessage(error) }
+          : {
+              tone: 'success',
+              text: `Si existe una cuenta con ${address}, te enviamos un enlace para crear una contraseña nueva. Revisa también la carpeta de spam.`,
+            },
+      )
+    } else if (isSignup) {
       const { data, error } = await supabase.auth.signUp({ email: address, password })
       if (error) setMessage({ tone: 'error', text: authMessage(error) })
       else if (!data.session) {
@@ -119,7 +111,12 @@ export function AuthForm() {
         </Button>
       </div>
 
-      <h2 className="mt-4 font-display text-lg">{isSignup ? 'Crea tu cuenta' : 'Entra a tu cuenta'}</h2>
+      <h2 className="mt-4 font-display text-lg">
+        {isReset ? 'Recupera tu acceso' : isSignup ? 'Crea tu cuenta' : 'Entra a tu cuenta'}
+      </h2>
+      {isReset && (
+        <p className="mt-1 text-sm text-muted">Te enviaremos un enlace para crear una contraseña nueva.</p>
+      )}
 
       <div className="mt-3 space-y-3">
         <div>
@@ -140,6 +137,7 @@ export function AuthForm() {
           {errors.email && <p id="auth-email-error" className={fieldErrorClass}>{errors.email}</p>}
         </div>
 
+        {!isReset && (
         <div>
           <label htmlFor="auth-password" className={labelClass}>Contraseña</label>
           <div className="relative mt-1">
@@ -170,21 +168,37 @@ export function AuthForm() {
             isSignup && <p id="auth-password-hint" className="mt-1 text-sm text-muted">Mínimo {MIN_PASSWORD} caracteres.</p>
           )}
         </div>
+        )}
       </div>
 
       <Button type="submit" variant="primary" disabled={busy} className="mt-4 min-h-11 w-full">
-        {busy ? (isSignup ? 'Creando tu cuenta…' : 'Entrando…') : isSignup ? 'Crear mi cuenta' : 'Entrar'}
+        {busy
+          ? isReset
+            ? 'Enviando…'
+            : isSignup
+              ? 'Creando tu cuenta…'
+              : 'Entrando…'
+          : isReset
+            ? 'Enviar enlace'
+            : isSignup
+              ? 'Crear mi cuenta'
+              : 'Entrar'}
       </Button>
 
       {message && <Alert tone={message.tone}>{message.text}</Alert>}
       {pendingEmail && (
-        <button
-          type="button"
-          onClick={resend}
-          disabled={busy}
-          className="mt-2 cursor-pointer text-sm font-semibold underline underline-offset-2 hover:text-accent disabled:cursor-not-allowed disabled:opacity-50"
-        >
+        <button type="button" onClick={resend} disabled={busy} className={linkButtonClass}>
           ¿No te llegó el correo? Reenviar
+        </button>
+      )}
+      {mode === 'signin' && (
+        <button type="button" onClick={() => changeMode('reset')} className={linkButtonClass}>
+          ¿Olvidaste tu contraseña?
+        </button>
+      )}
+      {isReset && (
+        <button type="button" onClick={() => changeMode('signin')} className={linkButtonClass}>
+          Volver a iniciar sesión
         </button>
       )}
     </form>
