@@ -10,6 +10,7 @@ const BUNDLES = {
 }
 
 let dbPromise
+let schemaCount = 0
 const connections = new Map()
 
 async function getDb() {
@@ -26,15 +27,12 @@ async function getDb() {
 // Cada ejercicio (según su setup_sql) tiene su propio esquema, así sus tablas no se mezclan.
 async function getConnection(setupSql) {
   if (!connections.has(setupSql)) {
+    const schema = `ejercicio_${schemaCount++}`
     connections.set(
       setupSql,
       (async () => {
         const db = await getDb()
-        const conn = await db.connect()
-        const schema = `ejercicio_${connections.size}`
-        await conn.query(`CREATE SCHEMA ${schema}; USE ${schema};`)
-        if (setupSql) await conn.query(setupSql)
-        return conn
+        return { conn: await db.connect(), schema }
       })(),
     )
   }
@@ -43,7 +41,11 @@ async function getConnection(setupSql) {
 
 // Único punto de ejecución de SQL: si luego se migra al servidor, solo cambia esta función.
 export async function runSql(query, setupSql = '') {
-  const conn = await getConnection(setupSql)
+  const { conn, schema } = await getConnection(setupSql)
+  // Cada ejecución parte de los datos originales del ejercicio: así el alumno puede
+  // repetir un INSERT, un UPDATE o un DELETE sin que los cambios se acumulen.
+  await conn.query(`USE main; DROP SCHEMA IF EXISTS ${schema} CASCADE; CREATE SCHEMA ${schema}; USE ${schema};`)
+  if (setupSql) await conn.query(setupSql)
   const result = await conn.query(query)
   return {
     columns: result.schema.fields.map((f) => f.name),

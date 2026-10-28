@@ -1,0 +1,27 @@
+id: sql-insert-001
+type: sql
+statement: "La tabla inventario tiene las columnas producto y stock. Agrega dos filas nuevas: 'Mochila' con 12 unidades y 'Audífonos' con 7. Deja al final el SELECT que muestra el resultado."
+starter_code: |
+  -- Agrega aquí las dos filas nuevas
+  SELECT producto, stock FROM inventario ORDER BY producto;
+setup_sql: |
+  CREATE TABLE inventario (producto VARCHAR, stock INTEGER);
+  INSERT INTO inventario VALUES
+    ('Mouse', 8),
+    ('Teclado', 15);
+expected:
+  columns: [producto, stock]
+  rows:
+    - [Audífonos, 7]
+    - [Mochila, 12]
+    - [Mouse, 8]
+    - [Teclado, 15]
+solution: |
+  INSERT INTO inventario (producto, stock)
+  VALUES ('Mochila', 12), ('Audífonos', 7);
+  SELECT producto, stock FROM inventario ORDER BY producto;
+rubric: "El alumno debe usar INSERT INTO inventario con las dos filas nuevas (los textos entre comillas simples) antes del SELECT final, sin modificar las filas que ya existían."
+hints:
+  - "Las dos filas se pueden agregar con un solo INSERT, separando los paréntesis con una coma."
+  - "La forma es: INSERT INTO inventario (producto, stock) VALUES ('Nombre', numero);"
+  - "Los textos van entre comillas simples y los números sin comillas. No borres el SELECT del final."

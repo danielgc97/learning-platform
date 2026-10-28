@@ -36,8 +36,8 @@ ejecutar, sobre todo en código que te escribió la IA.
 
 ## Una nota sobre los ejercicios
 
-Los cambios se quedan guardados mientras la página esté abierta. Si ejecutas un `INSERT` dos veces, la fila
-queda duplicada. Por eso el ejercicio de esta lección usa `UPDATE` y `DELETE` con valores fijos, que dan
-el mismo resultado aunque los ejecutes varias veces. Si algo se descuadra, recarga la página.
+Cada vez que pulsas **Ejecutar**, la tabla vuelve a su estado inicial. Así puedes repetir un `INSERT` o
+probar cosas por curiosidad sin que los cambios se acumulen. En una base de datos real no es así: ahí cada
+cambio queda, y por eso el `WHERE` importa tanto.
 
-Ahora te toca a ti: resuelve el ejercicio de abajo.
+Ahora te toca a ti: resuelve los dos ejercicios de abajo.
