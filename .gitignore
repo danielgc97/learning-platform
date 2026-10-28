@@ -4,3 +4,11 @@ __pycache__/
 node_modules/
 dist/
 .DS_Store
+
+# Skills de diseño instalados en local; no son parte del producto.
+# Se reinstalan con "npx impeccable install" y "npx skills@latest add emilkowalski/skills".
+.claude/skills/
+.claude/agents/
+.agents/
+.impeccable/
+skills-lock.json
