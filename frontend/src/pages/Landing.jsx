@@ -1,17 +1,35 @@
 import { AuthForm } from '../AuthPanel'
+import { buttonClass } from '../components/Button'
+import SqlDemo from '../components/SqlDemo'
 
+// Los cuatro pasos son las cuatro fases del catálogo, en el mismo orden.
 const JOURNEY = [
-  { tile: 'bg-c1', title: 'Entiende cómo funciona una app', text: 'Frontend, backend, API y bases de datos, sin jerga.' },
-  { tile: 'bg-c2', title: 'Domina tus datos', text: 'SQL para consultar y organizar la información.' },
-  { tile: 'bg-c3', title: 'Programa la lógica', text: 'Python para darle vida a tu idea.' },
-  { tile: 'bg-c4', title: 'Suma agentes de IA', text: 'Los conceptos para automatizar con IA.' },
-  { tile: null, title: 'Publícalo', text: 'Llévalo a internet para que otros lo usen.' },
+  {
+    tile: 'bg-c1',
+    title: 'Entender',
+    text: 'Cómo funciona una app por dentro y cómo dirigir a la IA sin perder el control.',
+  },
+  {
+    tile: 'bg-c2',
+    title: 'Construir',
+    text: 'Tus datos con SQL, la lógica con Python, tu servidor y tus pantallas.',
+  },
+  {
+    tile: 'bg-c3',
+    title: 'Publicar',
+    text: 'Llévalo a internet, con tu propio dominio, para que cualquiera lo use.',
+  },
+  {
+    tile: 'bg-c4',
+    title: 'Tu proyecto',
+    text: 'Termina con una tienda con inventario o una agenda de citas, de punta a punta.',
+  },
 ]
 
 export default function Landing() {
   return (
     <>
-      <section className="grid gap-12 pb-20 lg:grid-cols-12 lg:items-center">
+      <section className="grid gap-12 pb-16 lg:grid-cols-12 lg:items-center">
         <div className="lg:col-span-7">
           <h1 className="font-display text-5xl leading-[1.05] sm:text-6xl">
             Construye{' '}
@@ -19,44 +37,53 @@ export default function Landing() {
             entendiendo solo lo indispensable.
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-8 text-muted">
-            Frontend, backend, base de datos y despliegue, explicados para quien construye con IA. Practica sin instalar
-            nada y recibe pistas cuando te atasques.
+            Una aplicación web que otros usan y pagan, hecha por ti con la IA como copiloto. Aprendes lo
+            mínimo de cada pieza, practicas aquí mismo sin instalar nada y recibes pistas cuando te atasques.
           </p>
         </div>
-        <div className="flex lg:col-span-5 lg:justify-end">
+        <div id="crear-cuenta" className="flex scroll-mt-24 lg:col-span-5 lg:justify-end">
           <AuthForm />
         </div>
       </section>
 
-      <section className="pb-12">
+      <section className="pb-16">
+        <h2 className="font-display text-3xl">Así se practica aquí</h2>
+        <p className="mt-2 max-w-xl text-muted">
+          Escribes código de verdad y ves el resultado al instante. Pruébalo sin crear cuenta.
+        </p>
+        <div className="mt-6">
+          <SqlDemo />
+        </div>
+      </section>
+
+      <section className="pb-16">
         <h2 className="font-display text-3xl">De la idea al producto publicado</h2>
         <p className="mt-2 text-muted">Así se construyó esta misma plataforma.</p>
-        <ol className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
-          {JOURNEY.map((step, i) => {
-            const upcoming = step.tile === null
-            return (
-              <li
-                key={step.title}
-                className={`lab-card flex flex-col p-5 ${upcoming ? 'border-dashed bg-transparent shadow-none' : ''}`}
+        <ol className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {JOURNEY.map((step, i) => (
+            <li key={step.title} className="lab-card flex flex-col p-5">
+              <span
+                className={`flex size-9 items-center justify-center rounded-full border border-ink font-display text-lg text-[#111] ${step.tile}`}
               >
-                <span
-                  className={`flex size-9 items-center justify-center rounded-full border font-display text-lg ${
-                    upcoming ? 'border-dashed border-muted text-muted' : `border-ink ${step.tile} text-[#111]`
-                  }`}
-                >
-                  {i + 1}
-                </span>
-                <h3 className="mt-4 font-display text-lg leading-tight">{step.title}</h3>
-                <p className="mt-2 flex-1 text-sm leading-6 text-muted">{step.text}</p>
-                {upcoming && (
-                  <span className="mt-3 inline-flex self-start rounded-full border border-dashed border-muted px-2.5 py-0.5 text-xs font-semibold text-muted">
-                    Próximamente
-                  </span>
-                )}
-              </li>
-            )
-          })}
+                {i + 1}
+              </span>
+              <h3 className="mt-4 font-display text-lg leading-tight">{step.title}</h3>
+              <p className="mt-2 flex-1 text-sm leading-6 text-muted">{step.text}</p>
+            </li>
+          ))}
         </ol>
+      </section>
+
+      <section className="pb-4">
+        <div className="lab-card flex flex-col items-start gap-5 bg-c2 p-6 text-[#111] sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="font-display text-2xl leading-tight">Empieza por la primera lección</p>
+            <p className="mt-2 leading-7">
+              Crea tu cuenta y haz tu primer ejercicio hoy. No necesitas instalar nada.
+            </p>
+          </div>
+          <a href="#crear-cuenta" className={buttonClass('primary', 'shrink-0')}>Crear mi cuenta</a>
+        </div>
       </section>
     </>
   )

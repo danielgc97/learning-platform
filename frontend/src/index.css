@@ -97,6 +97,13 @@
 }
 
 @layer base {
+  /* El enlace del cierre salta al formulario; con desplazamiento suave se entiende mejor. */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
   body {
     @apply bg-paper font-sans text-ink antialiased;
   }
