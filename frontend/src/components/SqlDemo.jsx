@@ -40,7 +40,7 @@ export default function SqlDemo() {
 
   return (
     <div className="lab-card overflow-hidden">
-      <header className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 border-b border-ink bg-c1 px-5 py-2.5 text-sm font-semibold text-[#111]">
+      <header className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 border-b border-line bg-panel px-5 py-2.5 text-sm font-semibold">
         <span>Pruébalo aquí · SQL</span>
         <span className="text-xs font-normal">Sin cuenta y sin instalar nada</span>
       </header>
@@ -57,7 +57,7 @@ export default function SqlDemo() {
             spellCheck={false}
             rows={4}
             aria-label="Consulta SQL de prueba"
-            className="mt-3 w-full resize-y rounded-lg border border-ink bg-code p-3 font-mono text-sm leading-6 text-code-ink focus:outline-2 focus:outline-offset-2 focus:outline-accent"
+            className="mt-3 w-full resize-y rounded-lg border border-line bg-code p-3 font-mono text-sm leading-6 text-code-ink focus:outline-2 focus:outline-offset-2 focus:outline-accent"
           />
           <Button variant="primary" onClick={run} disabled={running} className="mt-3 min-h-11">
             <PlayIcon width={14} height={14} className="mr-1.5" />
@@ -70,7 +70,7 @@ export default function SqlDemo() {
           )}
         </div>
 
-        <div className="min-h-40 border-t border-ink bg-panel p-5 lg:border-t-0 lg:border-l">
+        <div className="min-h-40 border-t border-line bg-panel p-5 lg:border-t-0 lg:border-l">
           <p className="mb-3 text-xs font-semibold text-muted">Resultado</p>
           {error && (
             <>

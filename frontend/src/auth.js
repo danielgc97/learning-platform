@@ -21,7 +21,7 @@ export function authMessage(error) {
 }
 
 export const inputClass =
-  'w-full rounded-lg border border-ink bg-surface px-3 py-2.5 text-base placeholder:text-muted focus:outline-2 focus:outline-offset-2 focus:outline-accent'
+  'w-full rounded-lg border border-line bg-surface px-3 py-2.5 text-base placeholder:text-muted focus:outline-2 focus:outline-offset-2 focus:outline-accent'
 export const labelClass = 'block text-sm font-semibold'
 export const fieldErrorClass = 'mt-1 text-sm font-semibold text-bad'
 export const linkButtonClass =

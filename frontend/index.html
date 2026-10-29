@@ -14,7 +14,8 @@
       // Aplica el tema antes de dibujar la página para evitar un parpadeo de color.
       try {
         const saved = localStorage.getItem('theme')
-        const dark = saved ? saved === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches
+        // El tema oscuro es la identidad del producto; el claro queda a un clic en la cabecera.
+        const dark = saved ? saved === 'dark' : true
         document.documentElement.classList.toggle('dark', dark)
         document.documentElement.style.colorScheme = dark ? 'dark' : 'light'
       } catch {}

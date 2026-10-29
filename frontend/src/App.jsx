@@ -28,7 +28,7 @@ export default function App() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="sticky top-0 z-10 border-b border-ink bg-surface/95 backdrop-blur">
+      <header className="sticky top-0 z-10 bg-surface/95 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
           <Link to="/" className="no-underline" aria-label="Inicio">
             <Logo />

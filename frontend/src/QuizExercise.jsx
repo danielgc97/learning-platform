@@ -22,10 +22,10 @@ export default function QuizExercise({ exercise, completed, onPassed }) {
 
   return (
     <section className="lab-card my-12 overflow-hidden">
-      <header className="flex items-center justify-between gap-3 border-b border-ink bg-c2 px-5 py-2.5 text-sm font-semibold text-[#111]">
+      <header className="flex items-center justify-between gap-3 border-b border-line bg-panel px-5 py-2.5 text-sm font-semibold">
         <span>Comprueba lo aprendido</span>
         {completed && !(verdict && !verdict.ok) && (
-          <span className="inline-flex items-center gap-1 rounded-full border border-ink bg-c3 px-2.5 py-0.5 text-xs transition-[opacity,scale] duration-200 ease-(--ease-lab) starting:scale-95 starting:opacity-0 motion-reduce:starting:scale-100">
+          <span className="inline-flex items-center gap-1 tint-3 rounded-full px-2.5 py-0.5 text-xs transition-[opacity,scale] duration-200 ease-(--ease-lab) starting:scale-95 starting:opacity-0 motion-reduce:starting:scale-100">
             <CheckIcon width={13} height={13} strokeWidth={3} /> Completado
           </span>
         )}
@@ -37,7 +37,7 @@ export default function QuizExercise({ exercise, completed, onPassed }) {
             <label
               key={option}
               className={`flex cursor-pointer items-start gap-3 rounded-lg border-2 px-4 py-3 transition-colors ${
-                selected === i ? 'border-ink bg-c1 text-[#111]' : 'border-line hover:border-ink'
+                selected === i ? 'lab-mark-left border-line bg-panel' : 'border-line hover:bg-panel/60'
               }`}
             >
               <input

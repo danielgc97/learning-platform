@@ -26,7 +26,7 @@ export default function Support() {
 
   return (
     <>
-      <span className="inline-flex rounded-full border border-ink bg-c3 px-3.5 py-1 text-sm font-semibold text-[#111]">Soporte</span>
+      <span className="inline-flex tint-3 rounded-full px-3.5 py-1 text-sm font-semibold">Soporte</span>
       <h1 className="mt-5 font-display text-4xl leading-tight sm:text-5xl">¿En qué te ayudamos?</h1>
       <p className="mt-3 max-w-xl text-lg leading-8 text-muted">
         Escríbenos y respondemos en {RESPONSE_TIME}.

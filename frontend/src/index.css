@@ -2,44 +2,63 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Dirección "terminal de datos", adaptada a una plataforma donde se lee y se practica.
+   El movimiento: toda selección se marca con una línea de acento de 1px del ancho de
+   su etiqueta. El color casi no rellena áreas; trabaja en marcas pequeñas.
+   En oscuro las tarjetas son MÁS OSCURAS que el fondo: esa inversión es parte del estilo. */
+
 :root {
-  --paper: #f6f4ee;
+  --paper: #f1f2f5;
   --surface: #ffffff;
-  --panel: #ece9e1;
-  --ink: #111111;
-  --muted: #5e5d58;
-  --line: #dcd9d0;
-  --accent: #2f54eb;
+  --panel: #e7e9ee;
+  --ink: #15161a;
+  --muted: #5f626b;
+  --line: #dcdee4;
+  --accent: #1f5fb8;
   --accent-ink: #ffffff;
-  --ok: #1f7a45;
-  --bad: #c62828;
-  --c1: #d5e0fb;
-  --c2: #efd6e2;
-  --c3: #c6e5d3;
-  --c4: #f0cdbd;
-  --code: #111111;
-  --code-ink: #f4f1e8;
-  --shadow: #111111;
+  --ok: #1d7355;
+  --bad: #c0304a;
+
+  /* Marcas pequeñas: el número de cada fase, las insignias de estado y poco más. */
+  --c1: #d6e3f6;
+  --c1-ink: #17407e;
+  --c2: #e9dcf2;
+  --c2-ink: #4a2a6b;
+  --c3: #d4ebdf;
+  --c3-ink: #11513a;
+  --c4: #f6dfd4;
+  --c4-ink: #6b3119;
+
+  --code: #15161a;
+  --code-ink: #f1f2f5;
   --ease-lab: cubic-bezier(0.23, 1, 0.32, 1);
-  /* Relleno de las barras del panel: un solo tono, validado contra cada fondo. */
-  --chart-fill: #2f54eb;
+  --chart-fill: #1f5fb8;
 }
 
 .dark {
-  --paper: #121211;
-  --surface: #1c1c1a;
-  --panel: #262623;
-  --ink: #f4f1e8;
-  --muted: #a8a397;
-  --line: #3a3933;
-  --accent: #7d97ff;
-  --accent-ink: #0b0b0b;
-  --ok: #4cd08a;
-  --bad: #ff7b7b;
-  --code: #0b0b0b;
-  --code-ink: #f4f1e8;
-  --shadow: #3a3933;
-  --chart-fill: #6a86f0;
+  --paper: #171719;
+  --surface: #131217;
+  --panel: #212023;
+  --ink: #ffffff;
+  --muted: #8a8c92;
+  --line: #262629;
+  --accent: #7fa6e8;
+  --accent-ink: #0b0d12;
+  --ok: #5fc39c;
+  --bad: #e5566f;
+
+  --c1: #1a2740;
+  --c1-ink: #9fc0f0;
+  --c2: #272039;
+  --c2-ink: #c7b0e2;
+  --c3: #1b2828;
+  --c3-ink: #5fc39c;
+  --c4: #2c1a20;
+  --c4-ink: #e5566f;
+
+  --code: #0e0d12;
+  --code-ink: #f1f2f5;
+  --chart-fill: #7fa6e8;
 }
 
 @theme inline {
@@ -53,10 +72,6 @@
   --color-accent-ink: var(--accent-ink);
   --color-ok: var(--ok);
   --color-bad: var(--bad);
-  --color-c1: var(--c1);
-  --color-c2: var(--c2);
-  --color-c3: var(--c3);
-  --color-c4: var(--c4);
   --color-code: var(--code);
   --color-code-ink: var(--code-ink);
   --color-chart-fill: var(--chart-fill);
@@ -71,31 +86,70 @@
     letter-spacing: -0.02em;
   }
 
+  .tint-1 {
+    background-color: var(--c1);
+    color: var(--c1-ink);
+  }
+  .tint-2 {
+    background-color: var(--c2);
+    color: var(--c2-ink);
+  }
+  .tint-3 {
+    background-color: var(--c3);
+    color: var(--c3-ink);
+  }
+  .tint-4 {
+    background-color: var(--c4);
+    color: var(--c4-ink);
+  }
+
+  /* EL MOVIMIENTO. Una línea de acento de 1px, del ancho exacto de lo que marca.
+     Es la única señal de "esto está activo o elegido" en toda la plataforma. */
+  .lab-mark {
+    box-shadow: inset 0 -1px 0 0 var(--accent);
+  }
+
+  .lab-mark-left {
+    box-shadow: inset 1px 0 0 0 var(--accent);
+  }
+
+  /* LA HOJA. El primer golpe de vista es un objeto del mundo del alumno: una hoja de
+     cuaderno apoyada sobre el fondo del producto. Al redefinir aquí las variables,
+     todo lo que viva dentro (incluido el formulario) se dibuja en modo papel solo.
+     El gris rosado es deliberado: un crema amarillento es hoy la marca de las IA. */
+  .lab-sheet {
+    --surface: #ffffff;
+    --panel: #e4ded9;
+    --ink: #24201e;
+    --muted: #6a615d;
+    --line: #d4cbc5;
+    --accent: #1a5ab2;
+    --accent-ink: #ffffff;
+    --bad: #b32b3f;
+
+    background: #e9e5e6;
+    color: var(--ink);
+    /* El borde la despega también del tema claro, donde el tono casi coincide. */
+    border: 1px solid #dad4d6;
+    border-radius: 14px;
+  }
+
+  /* La tarjeta se separa por tono y un borde de un pelo, nunca por sombra. */
   .lab-card {
     background: var(--surface);
-    border: 2px solid var(--ink);
-    border-radius: 14px;
-    box-shadow: 3px 3px 0 0 var(--shadow);
+    border: 1px solid var(--line);
+    border-radius: 6px;
   }
 
   .lab-lift {
     transition:
-      transform 160ms var(--ease-lab),
-      box-shadow 160ms var(--ease-lab);
+      border-color 160ms var(--ease-lab),
+      background-color 160ms var(--ease-lab);
   }
 
-  /* Solo con mouse: en pantallas táctiles el hover se queda "pegado" tras el toque. */
   @media (hover: hover) and (pointer: fine) {
     .lab-lift:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 5px 5px 0 0 var(--shadow);
-    }
-  }
-
-  /* Quien pide menos movimiento conserva la sombra, pero la tarjeta no se desplaza. */
-  @media (prefers-reduced-motion: reduce) {
-    .lab-lift:hover {
-      transform: none;
+      border-color: color-mix(in oklab, var(--accent) 55%, var(--line));
     }
   }
 
@@ -132,11 +186,16 @@
   }
 
   a {
-    @apply font-medium text-accent underline decoration-2 underline-offset-4;
+    @apply font-medium text-accent underline decoration-1 underline-offset-4;
+  }
+
+  /* Las cifras que se comparan o se actualizan se alinean siempre. */
+  table {
+    font-variant-numeric: tabular-nums;
   }
 
   ::selection {
     background: var(--c1);
-    color: #111;
+    color: var(--c1-ink);
   }
 }

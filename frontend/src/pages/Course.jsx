@@ -20,7 +20,7 @@ export default function Course() {
         <Link to="/">Cursos</Link> <span className="mx-1">/</span> {data.title}
       </nav>
 
-      <header className={`lab-card mt-4 ${tileFor(data.slug)} p-8 text-[#111]`}>
+      <header className={`lab-card mt-4 bg-panel p-8`}>
         <h1 className="font-display text-4xl leading-tight sm:text-5xl">{data.title}</h1>
         <p className="mt-3 max-w-2xl text-lg leading-7">{data.description}</p>
         <div className="mt-6 flex items-center gap-4">
@@ -46,7 +46,7 @@ export default function Course() {
                     className="flex items-center gap-4 px-5 py-4 text-ink no-underline transition-colors hover:bg-panel"
                   >
                     <span
-                      className={`flex size-9 shrink-0 items-center justify-center rounded-full border border-ink font-display text-sm text-[#111] ${done ? 'bg-c3' : 'bg-surface text-ink'}`}
+                      className={`flex size-9 shrink-0 items-center justify-center rounded-full font-display text-sm ${done ? 'tint-3' : 'border border-line bg-surface text-muted'}`}
                     >
                       {done ? <CheckIcon width={16} height={16} strokeWidth={3} /> : lessonNumber}
                     </span>

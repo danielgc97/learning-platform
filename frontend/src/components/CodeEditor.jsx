@@ -31,7 +31,7 @@ export default function CodeEditor({ value, onChange, language, minHeight = 120,
   const dark = useDarkMode()
   const height = Math.min(maxHeight, Math.max(minHeight, value.split('\n').length * LINE + 28))
   return (
-    <div className="overflow-hidden rounded-lg border border-ink">
+    <div className="overflow-hidden rounded-lg border border-line">
       <Editor
         height={height}
         language={language}
