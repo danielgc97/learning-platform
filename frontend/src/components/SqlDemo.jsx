@@ -71,7 +71,7 @@ export default function SqlDemo() {
         </div>
 
         <div className="min-h-40 border-t border-ink bg-panel p-5 lg:border-t-0 lg:border-l">
-          <p className="mb-3 text-xs font-semibold tracking-wider text-muted uppercase">Resultado</p>
+          <p className="mb-3 text-xs font-semibold text-muted">Resultado</p>
           {error && (
             <>
               <p className="text-sm leading-6">

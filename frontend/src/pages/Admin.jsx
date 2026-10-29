@@ -8,7 +8,7 @@ const money = (n) => `$${n.toFixed(4)}`
 function Stat({ label, value, hint }) {
   return (
     <div className="lab-card p-4">
-      <p className="text-xs font-semibold tracking-wider text-muted uppercase">{label}</p>
+      <p className="text-xs font-semibold text-muted">{label}</p>
       <p className="mt-2 text-3xl leading-none font-semibold">{value}</p>
       {hint && <p className="mt-1.5 text-xs text-muted">{hint}</p>}
     </div>
@@ -39,7 +39,7 @@ function CostByDay({ days }) {
   )
 }
 
-const th = 'px-3 py-2 text-left text-xs font-semibold tracking-wider text-muted uppercase'
+const th = 'px-3 py-2 text-left text-xs font-semibold text-muted'
 const td = 'border-t border-line px-3 py-2'
 
 export default function Admin() {

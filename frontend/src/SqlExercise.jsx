@@ -50,9 +50,10 @@ export default function SqlExercise({ exercise, completed, onPassed }) {
   return (
     <ExerciseShell
       label="SQL"
-      completed={completed}
+      // Mientras el intento actual falla, la insignia de completado contradiría el error.
+      completed={completed && !(verdict && !verdict.ok)}
       statement={exercise.statement}
-      editor={<CodeEditor value={query} onChange={setQuery} language="sql" height={190} />}
+      editor={<CodeEditor value={query} onChange={setQuery} language="sql" />}
       actions={
         <>
           <Button onClick={() => run(false)} disabled={running}>
@@ -62,19 +63,21 @@ export default function SqlExercise({ exercise, completed, onPassed }) {
           <Button variant="primary" onClick={() => run(true)} disabled={running}>Verificar</Button>
         </>
       }
+      help={
+        verdict && !verdict.ok && (
+          <FeedbackButton
+            exerciseType="sql"
+            statement={exercise.statement}
+            studentCode={query}
+            testResult={verdict.message}
+            submissionId={submissionId}
+          />
+        )
+      }
       result={
         hasResult && (
           <>
             {verdict && <Alert tone={verdict.ok ? 'success' : 'error'} className="mt-0">{verdict.ok ? '✓ ' : '✗ '}{verdict.message}</Alert>}
-            {verdict && !verdict.ok && (
-              <FeedbackButton
-                exerciseType="sql"
-                statement={exercise.statement}
-                studentCode={query}
-                testResult={verdict.message}
-                submissionId={submissionId}
-              />
-            )}
             {error && !verdict && <pre className="overflow-x-auto font-mono text-sm text-bad">{error}</pre>}
             {result && <ResultTable columns={result.columns} rows={result.rows} />}
           </>

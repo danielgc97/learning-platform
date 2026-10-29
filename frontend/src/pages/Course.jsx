@@ -33,7 +33,7 @@ export default function Course() {
 
       {data.modules.map((module, i) => (
         <section key={module.slug} className="mt-12">
-          <p className="text-sm font-semibold tracking-wider text-accent uppercase">Módulo {i + 1}</p>
+          <p className="text-sm font-semibold text-accent">Módulo {i + 1}</p>
           <h2 className="mt-1 font-display text-3xl">{module.title}</h2>
           <ul className="lab-card mt-5 divide-y-2 divide-line overflow-hidden">
             {module.lessons.map((lesson) => {

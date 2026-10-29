@@ -53,15 +53,6 @@ export default function PythonExercise({ exercise, completed, onPassed }) {
     result = (
       <>
         {verdict && <Alert tone={verdict.ok ? 'success' : 'error'} className="mt-0">{verdict.ok ? '✓ ' : '✗ '}{verdict.message}</Alert>}
-        {verdict && !verdict.ok && (
-          <FeedbackButton
-            exerciseType="python"
-            statement={exercise.statement}
-            studentCode={code}
-            testResult={verdict.message}
-            submissionId={submissionId}
-          />
-        )}
         {error && !verdict && <pre className="overflow-x-auto font-mono text-sm text-bad">{error}</pre>}
         {output && !hasOutput && !verdict && (
           <p className="text-sm text-muted">El código se ejecutó sin errores y no produjo salida.</p>
@@ -79,9 +70,21 @@ export default function PythonExercise({ exercise, completed, onPassed }) {
   return (
     <ExerciseShell
       label="Python"
-      completed={completed}
+      // Mientras el intento actual falla, la insignia de completado contradiría el error.
+      completed={completed && !(verdict && !verdict.ok)}
       statement={exercise.statement}
-      editor={<CodeEditor value={code} onChange={setCode} language="python" height={220} />}
+      editor={<CodeEditor value={code} onChange={setCode} language="python" minHeight={160} />}
+      help={
+        verdict && !verdict.ok && (
+          <FeedbackButton
+            exerciseType="python"
+            statement={exercise.statement}
+            studentCode={code}
+            testResult={verdict.message}
+            submissionId={submissionId}
+          />
+        )
+      }
       actions={
         <>
           <Button onClick={() => run(false)} disabled={running}>

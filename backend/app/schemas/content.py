@@ -50,6 +50,8 @@ class LessonDetail(BaseModel):
     course_slug: str
     course_title: str
     module_title: str
+    position: int
+    lesson_count: int
     prev: LessonNav | None = None
     next: LessonNav | None = None
     exercises: list[ExerciseOut]

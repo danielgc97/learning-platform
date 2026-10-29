@@ -24,8 +24,12 @@ function defineThemes(monaco) {
   })
 }
 
-export default function CodeEditor({ value, onChange, language, height = 180 }) {
+const LINE = 21
+
+// El editor crece con el código en vez de dejar un bloque vacío debajo de una línea.
+export default function CodeEditor({ value, onChange, language, minHeight = 120, maxHeight = 420 }) {
   const dark = useDarkMode()
+  const height = Math.min(maxHeight, Math.max(minHeight, value.split('\n').length * LINE + 28))
   return (
     <div className="overflow-hidden rounded-lg border border-ink">
       <Editor

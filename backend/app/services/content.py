@@ -83,6 +83,9 @@ def get_lesson(lesson_id: str) -> dict | None:
         "course_slug": course["slug"],
         "course_title": course["title"],
         "module_title": row["modules"]["title"],
+        # Posición dentro del curso, para que el alumno sepa cuánto le falta.
+        "position": index + 1,
+        "lesson_count": len(ordered),
         "prev": nav(ordered[index - 1]) if index > 0 else None,
         "next": nav(ordered[index + 1]) if index < len(ordered) - 1 else None,
         "exercises": exercises,

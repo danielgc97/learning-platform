@@ -17,7 +17,7 @@ function NavCard({ lesson, direction }) {
       to={`/lecciones/${lesson.id}`}
       className={`lab-card lab-lift block p-5 text-ink no-underline ${isNext ? 'text-right sm:col-start-2' : ''}`}
     >
-      <span className="text-xs font-semibold tracking-wider text-muted uppercase">
+      <span className="text-xs font-semibold text-muted">
         {isNext ? 'Siguiente →' : '← Anterior'}
       </span>
       <span className="mt-1 block font-display text-xl leading-tight">{lesson.title}</span>
@@ -49,13 +49,32 @@ export default function Lesson() {
 
   return (
     <>
-      <nav className="text-sm font-medium text-muted">
-        <Link to="/">Cursos</Link>
-        <span className="mx-1">/</span>
-        <Link to={`/cursos/${data.course_slug}`}>{data.course_title}</Link>
-        <span className="mx-1">/</span>
-        {data.module_title}
+      <nav className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 text-sm font-medium text-muted">
+        <span>
+          <Link to="/">Cursos</Link>
+          <span className="mx-1">/</span>
+          <Link to={`/cursos/${data.course_slug}`}>{data.course_title}</Link>
+          <span className="mx-1">/</span>
+          {data.module_title}
+        </span>
+        <span className="shrink-0 tabular-nums">
+          Lección {data.position} de {data.lesson_count}
+        </span>
       </nav>
+      {/* Saber cuánto falta es lo que sostiene a alguien hasta el final del curso. */}
+      <div
+        className="mt-3 h-1 w-full overflow-hidden rounded-full bg-panel"
+        role="progressbar"
+        aria-label={`Lección ${data.position} de ${data.lesson_count}`}
+        aria-valuenow={data.position}
+        aria-valuemin={1}
+        aria-valuemax={data.lesson_count}
+      >
+        <div
+          className="h-full rounded-r-full bg-chart-fill transition-[width] duration-300 ease-(--ease-lab)"
+          style={{ width: `${(data.position / data.lesson_count) * 100}%` }}
+        />
+      </div>
 
       <article className="mt-6 max-w-2xl">
         <Markdown>{data.content_md}</Markdown>

@@ -1,6 +1,8 @@
 import { CheckIcon } from './Icons'
 
-export default function ExerciseShell({ label, completed, statement, editor, actions, result }) {
+// `help` va bajo el editor, no en la columna del resultado: la pista se lee para
+// aplicarla, así que vive donde el alumno escribe.
+export default function ExerciseShell({ label, completed, statement, editor, actions, help, result }) {
   return (
     <section className="lab-card my-12 overflow-hidden">
       <header className="flex items-center justify-between gap-3 border-b border-ink bg-c1 px-5 py-2.5 text-sm font-semibold text-[#111]">
@@ -16,9 +18,10 @@ export default function ExerciseShell({ label, completed, statement, editor, act
         <div className="p-5">
           {editor}
           <div className="mt-3 flex flex-wrap items-center gap-3">{actions}</div>
+          {help}
         </div>
         <div className="min-h-40 border-t border-ink bg-panel p-5 lg:border-t-0 lg:border-l">
-          <p className="mb-3 text-xs font-semibold tracking-wider text-muted uppercase">Resultado</p>
+          <p className="mb-3 text-xs font-semibold text-muted">Resultado</p>
           {result ?? <p className="text-sm text-muted">Ejecuta tu código para ver el resultado aquí.</p>}
         </div>
       </div>
