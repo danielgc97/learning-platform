@@ -21,6 +21,8 @@
   --code-ink: #f4f1e8;
   --shadow: #111111;
   --ease-lab: cubic-bezier(0.23, 1, 0.32, 1);
+  /* Relleno de las barras del panel: un solo tono, validado contra cada fondo. */
+  --chart-fill: #2f54eb;
 }
 
 .dark {
@@ -37,6 +39,7 @@
   --code: #0b0b0b;
   --code-ink: #f4f1e8;
   --shadow: #3a3933;
+  --chart-fill: #6a86f0;
 }
 
 @theme inline {
@@ -56,6 +59,7 @@
   --color-c4: var(--c4);
   --color-code: var(--code);
   --color-code-ink: var(--code-ink);
+  --color-chart-fill: var(--chart-fill);
   --font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
   --font-sans: 'Figtree', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, Consolas, monospace;

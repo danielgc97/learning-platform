@@ -6,6 +6,7 @@ import Logo from './components/Logo'
 import NavItem from './components/NavItem'
 import ThemeToggle from './components/ThemeToggle'
 import About from './pages/About'
+import Admin from './pages/Admin'
 import Catalog from './pages/Catalog'
 import Support from './pages/Support'
 import Course from './pages/Course'
@@ -56,6 +57,8 @@ export default function App() {
             <Route path="/" element={gated(<Catalog />)} />
             <Route path="/cursos/:slug" element={gated(<Course />)} />
             <Route path="/lecciones/:id" element={gated(<Lesson />)} />
+            {/* Sin enlace en el menú: quien no sea admin recibe 403 desde la API. */}
+            <Route path="/admin" element={gated(<Admin />)} />
             <Route path="*" element={<p>Página no encontrada.</p>} />
           </Routes>
         )}
