@@ -25,6 +25,10 @@ app.add_middleware(
 Haz `git push`. Luego, en Render, cambia `CORS_ORIGINS` a la dirección de Vercel (sin `/` al final), por ejemplo
 `https://tareas-web.vercel.app`. Puedes separar varias con comas.
 
+**Importante:** tu backend lee las variables de entorno **al arrancar**. Si cambias una y el servicio no se
+reinicia, seguirá usando el valor viejo y creerás que tu cambio no funcionó. Si eso pasa, fuerza el reinicio
+desde **Manual Deploy → Deploy latest commit**.
+
 ## 2. Direcciones de inicio de sesión en Supabase
 
 En el panel de Supabase, en la configuración de autenticación (**URL Configuration**), cambia la **Site URL** de
