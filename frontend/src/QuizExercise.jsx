@@ -31,12 +31,16 @@ export default function QuizExercise({ exercise, completed, onPassed }) {
         )}
       </header>
       <fieldset className="p-5">
-        <legend className="mb-5 font-display text-xl leading-snug">{exercise.statement}</legend>
-        <div className="space-y-3">
+        {/* El navegador monta el legend sobre el borde del fieldset y se sale del
+            relleno; al flotarlo a ancho completo vuelve al flujo normal. */}
+        <legend className="float-left mb-5 w-full font-display text-xl leading-snug">
+          {exercise.statement}
+        </legend>
+        <div className="clear-both space-y-3">
           {options.map((option, i) => (
             <label
               key={option}
-              className={`flex cursor-pointer items-start gap-3 rounded-lg border-2 px-4 py-3 transition-colors ${
+              className={`flex cursor-pointer items-start gap-3 rounded-lg border px-4 py-3 transition-colors ${
                 selected === i ? 'lab-mark-left border-line bg-panel' : 'border-line hover:bg-panel/60'
               }`}
             >
