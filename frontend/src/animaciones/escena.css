@@ -255,24 +255,46 @@
 
 /* ---------- controles ---------- */
 
-.esc-tiempo { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--panel); }
-.esc-tiempo i {
-  display: block;
-  height: 100%;
-  width: 0;
-  background: var(--accent);
-  animation: esc-avanza var(--total) linear calc(0s - var(--seek)) both;
+.esc-figura:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+/* A pantalla completa el lienzo se centra y manda el alto de la ventana. */
+.esc-figura.completa {
+  max-width: none;
+  margin: 0;
+  padding: 18px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
 }
-@keyframes esc-avanza { from { width: 0 } to { width: 100% } }
+.esc-figura.completa .esc-marco { height: auto !important; flex: 1; }
+.esc-figura.completa .esc-lienzo { inset: 0; margin: auto; transform-origin: center center; }
 
 .esc-mandos {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 10px;
   margin-top: 10px;
   font-size: .8125rem;
   color: var(--muted);
 }
+
+/* La aguja: mover, adelantar y retroceder por donde se quiera. */
+.esc-aguja {
+  flex: 1 1 120px;
+  min-width: 100px;
+  height: 20px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+.esc-marcador {
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.esc-etiqueta { flex-basis: 100%; }
 .esc-mandos button {
   font: inherit;
   font-weight: 600;

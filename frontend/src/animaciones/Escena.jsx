@@ -6,31 +6,54 @@ import { sonar } from './sonido'
 // a la vez, sin tocar los segundos de cada escena. Más alto, más despacio.
 const RITMO = 1.35
 
-// Hasta cuánto puede crecer el lienzo sobre su tamaño de diseño.
-const MAX_ESCALA = 1.35
+// Hasta cuánto puede crecer el lienzo sobre su tamaño de diseño. Como es vectorial,
+// al crecer se redibuja: no se pixela como le pasaría a un vídeo.
+const MAX_ESCALA = 1.55
+
+const reloj = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`
 
 const Reloj = createContext(null)
 
 // El lienzo se dibuja siempre en las mismas unidades (520×330, el ancho de la columna
 // que ocupa al lado del texto) y se escala si el hueco es menor.
 export default function Escena({ duracion, ancho = 520, alto = 330, etiqueta, children }) {
+  const figura = useRef(null)
   const marco = useRef(null)
-  const inicio = useRef(0) // cuándo empezó el ciclo actual
+  const aguja = useRef(null)
+  const marcador = useRef(null)
+  const inicio = useRef(0) // cuándo empezó el tramo actual
   const llevado = useRef(0) // segundos ya corridos, para poder reanudar
   const [escala, setEscala] = useState(1)
   const [ciclo, setCiclo] = useState(0)
+  const [salto, setSalto] = useState(0) // desde qué segundo arranca el ciclo actual
+  const [completa, setCompleta] = useState(false)
   const [estado, setEstado] = useState('espera')
   const [sonando, setSonando] = useState(() => {
     try { return localStorage.getItem('cortexlab-sonido') === '1' } catch { return false }
   })
 
   const total = duracion * RITMO
+  const corriendo = estado === 'corre'
+
+  // A pantalla completa manda el alto de la ventana; si no, el ancho del hueco.
+  useEffect(() => {
+    const mide = () => {
+      const libre = marco.current.clientWidth
+      setEscala(completa
+        ? Math.min(libre / ancho, (window.innerHeight - 120) / alto)
+        : Math.min(MAX_ESCALA, libre / ancho))
+    }
+    const ro = new ResizeObserver(mide)
+    ro.observe(marco.current)
+    mide()
+    return () => ro.disconnect()
+  }, [ancho, alto, completa])
 
   useEffect(() => {
-    const ro = new ResizeObserver(([e]) => setEscala(Math.min(MAX_ESCALA, e.contentRect.width / ancho)))
-    ro.observe(marco.current)
-    return () => ro.disconnect()
-  }, [ancho])
+    const cambio = () => setCompleta(document.fullscreenElement === figura.current)
+    document.addEventListener('fullscreenchange', cambio)
+    return () => document.removeEventListener('fullscreenchange', cambio)
+  }, [])
 
   // Arranca cuando entra en pantalla: si empezara al cargar la página, el alumno
   // llegaría cuando ya ha terminado. En una copia oculta no se dispara nunca.
@@ -50,21 +73,54 @@ export default function Escena({ duracion, ancho = 520, alto = 330, etiqueta, ch
   }, [estado])
 
   useEffect(() => {
-    if (estado !== 'corre') return
+    if (!corriendo) return
     const id = setTimeout(() => setEstado('fin'), Math.max(0, (total - llevado.current) * 1000))
     return () => clearTimeout(id)
-  }, [estado, ciclo, total])
+  }, [corriendo, ciclo, total])
 
-  function repite() {
-    llevado.current = 0
-    inicio.current = performance.now()
+  // La aguja y el marcador se mueven sin repintar React: escriben en el DOM directamente.
+  useEffect(() => {
+    if (!corriendo) return
+    let id
+    const pinta = () => {
+      const seg = Math.min(total, (performance.now() - inicio.current) / 1000)
+      if (aguja.current) aguja.current.value = String(seg)
+      if (marcador.current) marcador.current.textContent = `${reloj(seg)} / ${reloj(total)}`
+      id = requestAnimationFrame(pinta)
+    }
+    id = requestAnimationFrame(pinta)
+    return () => cancelAnimationFrame(id)
+  }, [corriendo, total])
+
+  // Saltar a un segundo concreto: se reinician las animaciones con el nuevo desfase,
+  // que es lo que hace un reproductor al mover la aguja. Todo depende de --seek.
+  function vaA(segundo, sigue = corriendo) {
+    const n = Math.max(0, Math.min(total, segundo))
+    llevado.current = n
+    inicio.current = performance.now() - n * 1000
+    setSalto(n)
     setCiclo((c) => c + 1)
-    setEstado('corre')
+    setEstado(n >= total ? 'fin' : sigue ? 'corre' : 'pausa')
+    if (aguja.current) aguja.current.value = String(n)
+    if (marcador.current) marcador.current.textContent = `${reloj(n)} / ${reloj(total)}`
+  }
+
+  function pantallaCompleta() {
+    if (document.fullscreenElement) document.exitFullscreen()
+    else figura.current.requestFullscreen?.().catch(() => {})
+  }
+
+  function tecla(e) {
+    const ahora = corriendo ? (performance.now() - inicio.current) / 1000 : llevado.current
+    if (e.key === ' ') { e.preventDefault(); alterna() }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); vaA(ahora - 1) }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); vaA(ahora + 1) }
+    else if (e.key === 'f') pantallaCompleta()
   }
 
   function alterna() {
-    if (estado === 'fin') return repite()
-    if (estado === 'corre') {
+    if (estado === 'fin') return vaA(0, true)
+    if (corriendo) {
       llevado.current = (performance.now() - inicio.current) / 1000
       return setEstado('pausa')
     }
@@ -79,27 +135,44 @@ export default function Escena({ duracion, ancho = 520, alto = 330, etiqueta, ch
     if (nuevo) sonar('toque')
   }
 
-  const corriendo = estado === 'corre'
   const texto = corriendo ? 'Pausar' : estado === 'fin' ? 'Repetir' : 'Reproducir'
 
   return (
-    <figure className="my-8" style={{ maxWidth: ancho * MAX_ESCALA }}>
+    <figure
+      ref={figura}
+      className={`esc-figura my-8${completa ? ' completa' : ''}`}
+      style={completa ? undefined : { maxWidth: ancho * MAX_ESCALA }}
+      tabIndex={0}
+      onKeyDown={tecla}
+    >
       <div ref={marco} className="esc-marco" style={{ height: alto * escala }}>
         <div
           key={ciclo}
           className={`esc-lienzo ${corriendo ? '' : 'quieta'}`}
-          style={{ width: ancho, height: alto, transform: `scale(${escala})`, '--seek': '0s', '--total': `${total}s` }}
+          style={{ width: ancho, height: alto, transform: `scale(${escala})`, '--seek': `${salto}s`, '--total': `${total}s` }}
         >
           <Reloj.Provider value={{ ciclo, corriendo, inicio, sonando }}>{children}</Reloj.Provider>
-          <div className="esc-tiempo"><i /></div>
         </div>
       </div>
       <figcaption className="esc-mandos">
         <button type="button" onClick={alterna}>{texto}</button>
+        <input
+          ref={aguja}
+          className="esc-aguja"
+          type="range"
+          min="0"
+          max={total}
+          step="0.1"
+          defaultValue="0"
+          aria-label="Ir a un momento de la animación"
+          onChange={(e) => vaA(Number(e.target.value))}
+        />
+        <span ref={marcador} className="esc-marcador">0:00 / {reloj(total)}</span>
         <button type="button" onClick={alternaSonido} aria-pressed={sonando}>
           {sonando ? 'Sonido: sí' : 'Sonido: no'}
         </button>
-        <span>{etiqueta}</span>
+        <button type="button" onClick={pantallaCompleta}>{completa ? 'Salir' : 'Pantalla completa'}</button>
+        {!completa && <span className="esc-etiqueta">{etiqueta}</span>}
       </figcaption>
     </figure>
   )

@@ -102,11 +102,7 @@ export default function Lesson() {
       <article className="lab-prose mt-6 max-w-2xl">
         <Markdown>{antes}</Markdown>
       </article>
-      {Animacion && (
-        <div className="max-w-2xl">
-          <Suspense fallback={null}><Animacion /></Suspense>
-        </div>
-      )}
+      {Animacion && <Suspense fallback={null}><Animacion /></Suspense>}
       {despues && (
         <article className="lab-prose max-w-2xl">
           <Markdown>{despues}</Markdown>
