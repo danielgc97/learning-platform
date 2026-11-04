@@ -7,6 +7,8 @@ title: "Tablas: cómo se guardan los datos"
 La base de datos de la mayoría de los productos organiza la información en **tablas**, parecidas a una
 hoja de cálculo. Cada tabla guarda un solo tipo de cosa.
 
+<!-- animacion -->
+
 Esta es la tabla `tareas`:
 
 | id | titulo | hecha |

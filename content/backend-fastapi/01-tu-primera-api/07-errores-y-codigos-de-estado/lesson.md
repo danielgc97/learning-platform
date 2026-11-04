@@ -7,6 +7,8 @@ title: "Errores y códigos de estado"
 Cada respuesta de tu API lleva un **código de estado**: un número que le cuenta al frontend cómo salió todo.
 Los que más usarás:
 
+<!-- animacion -->
+
 | Código | Significa | Cuándo |
 |--------|-----------|--------|
 | `200` | Todo bien | Respuesta normal |

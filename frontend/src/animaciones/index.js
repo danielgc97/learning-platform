@@ -8,6 +8,7 @@ export const ANIMACIONES = {
   'como-funciona-una-app/las-tres-capas': lazy(() => import('./TresCapas')),
   'como-funciona-una-app/el-viaje-de-un-clic': lazy(() => import('./ViajeDeUnClic')),
   'como-funciona-una-app/api-y-endpoints': lazy(() => import('./ApiEndpoints')),
+  'como-funciona-una-app/tablas': lazy(() => import('./Tablas')),
   'herramientas-del-dia-a-dia/git-guarda-versiones': lazy(() => import('./Git')),
   'herramientas-del-dia-a-dia/entornos-y-dependencias': lazy(() => import('./Entornos')),
   'herramientas-del-dia-a-dia/variables-de-entorno': lazy(() => import('./Secretos')),
@@ -16,6 +17,7 @@ export const ANIMACIONES = {
   'sql-para-tu-base/join': lazy(() => import('./Join')),
   'sql-para-tu-base/left-join': lazy(() => import('./LeftJoin')),
   'backend-fastapi/recibir-y-validar-datos': lazy(() => import('./Validar')),
+  'backend-fastapi/errores-y-codigos-de-estado': lazy(() => import('./Codigos')),
   'backend-fastapi/cors': lazy(() => import('./Cors')),
   'frontend-react/props': lazy(() => import('./Props')),
   'frontend-react/estado': lazy(() => import('./Estado')),
@@ -23,6 +25,7 @@ export const ANIMACIONES = {
   'usuarios-y-seguridad/cada-usuario-ve-lo-suyo': lazy(() => import('./Rls')),
   'cobrar-a-tus-usuarios/como-funciona-un-pago-online': lazy(() => import('./Pago')),
   'cobrar-a-tus-usuarios/webhooks': lazy(() => import('./Webhook')),
+  'publica-tu-saas/que-cambia-al-publicar': lazy(() => import('./Publicar')),
 }
 
 export const CLAVES = Object.keys(ANIMACIONES)

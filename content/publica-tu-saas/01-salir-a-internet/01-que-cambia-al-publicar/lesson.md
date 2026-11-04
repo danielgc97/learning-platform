@@ -8,6 +8,8 @@ Hasta ahora todo vivía en tu computadora (*local*). **Publicar** es poner cada 
 encendido siempre y es accesible para cualquiera. Al lugar donde corre la versión real se le llama
 **producción**.
 
+<!-- animacion -->
+
 Tu producto tiene tres piezas y cada una vive en un sitio:
 
 | Pieza | Dónde queda | Estado |
