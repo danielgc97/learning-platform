@@ -96,36 +96,22 @@ export default function Lesson() {
         />
       </div>
 
-      {/* Con animación, el texto y la animación comparten fila: el texto a la izquierda,
-          la animación fija a la derecha. La columna de la animación mide 520 cuando cabe
-          y se encoge hasta 440 en pantallas justas. Por debajo de 1024px no hay sitio para
-          dos columnas, así que la animación va dentro del texto, donde la marca la lección. */}
-      <div className={`mt-6 ${Animacion ? 'lg:grid lg:grid-cols-[minmax(500px,1fr)_minmax(0,520px)] lg:gap-x-10' : ''}`}>
-        <div className="min-w-0">
-          <article className="lab-prose max-w-2xl lg:max-w-none">
-            <Markdown>{antes}</Markdown>
-          </article>
-          {Animacion && (
-            <div className="lg:hidden">
-              <Suspense fallback={null}><Animacion /></Suspense>
-            </div>
-          )}
-          {despues && (
-            <article className="lab-prose max-w-2xl lg:max-w-none">
-              <Markdown>{despues}</Markdown>
-            </article>
-          )}
+      {/* La animación va dentro del texto, en el punto que marca la lección y con el ancho
+          de la columna de lectura: una figura en su sitio, no algo moviéndose a un lado
+          mientras se intenta leer. */}
+      <article className="lab-prose mt-6 max-w-2xl">
+        <Markdown>{antes}</Markdown>
+      </article>
+      {Animacion && (
+        <div className="max-w-2xl">
+          <Suspense fallback={null}><Animacion /></Suspense>
         </div>
-        {Animacion && (
-          <aside className="hidden lg:block">
-            <div className="sticky top-20">
-              <Suspense fallback={null}><Animacion /></Suspense>
-            </div>
-          </aside>
-        )}
-      </div>
-
-      <CourseDrawer {...indexProps} />
+      )}
+      {despues && (
+        <article className="lab-prose max-w-2xl">
+          <Markdown>{despues}</Markdown>
+        </article>
+      )}
 
       {data.exercises.map((exercise) => {
         const props = {

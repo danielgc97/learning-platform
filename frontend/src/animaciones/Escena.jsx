@@ -6,6 +6,9 @@ import { sonar } from './sonido'
 // a la vez, sin tocar los segundos de cada escena. Más alto, más despacio.
 const RITMO = 1.35
 
+// Hasta cuánto puede crecer el lienzo sobre su tamaño de diseño.
+const MAX_ESCALA = 1.35
+
 const Reloj = createContext(null)
 
 // El lienzo se dibuja siempre en las mismas unidades (520×330, el ancho de la columna
@@ -24,7 +27,7 @@ export default function Escena({ duracion, ancho = 520, alto = 330, etiqueta, ch
   const total = duracion * RITMO
 
   useEffect(() => {
-    const ro = new ResizeObserver(([e]) => setEscala(Math.min(1, e.contentRect.width / ancho)))
+    const ro = new ResizeObserver(([e]) => setEscala(Math.min(MAX_ESCALA, e.contentRect.width / ancho)))
     ro.observe(marco.current)
     return () => ro.disconnect()
   }, [ancho])
@@ -80,7 +83,7 @@ export default function Escena({ duracion, ancho = 520, alto = 330, etiqueta, ch
   const texto = corriendo ? 'Pausar' : estado === 'fin' ? 'Repetir' : 'Reproducir'
 
   return (
-    <figure className="my-8" style={{ maxWidth: ancho }}>
+    <figure className="my-8" style={{ maxWidth: ancho * MAX_ESCALA }}>
       <div ref={marco} className="esc-marco" style={{ height: alto * escala }}>
         <div
           key={ciclo}
