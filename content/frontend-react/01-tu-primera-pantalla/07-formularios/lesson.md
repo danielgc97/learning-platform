@@ -7,6 +7,8 @@ title: "Formularios: enviar datos a tu API"
 Para crear una tarea, el usuario escribe en un formulario y tu pantalla envía los datos con un `POST`, igual
 que lo probaste en `/docs`.
 
+<!-- animacion -->
+
 ## Práctica
 
 Dentro de `App`, agrega un estado para el campo y la función que envía:

@@ -7,6 +7,8 @@ title: "Dar contexto: el prompt que sí funciona"
 Un **prompt** es la instrucción que le escribes a la IA. La calidad de lo que recibes depende casi por
 completo de lo que le cuentas. Un buen prompt tiene cuatro partes:
 
+<!-- animacion -->
+
 1. **Objetivo**: qué quieres lograr, en una frase.
 2. **Contexto**: tu stack, tus archivos y lo que ya existe.
 3. **Restricciones**: lo que no debe hacer o tocar.

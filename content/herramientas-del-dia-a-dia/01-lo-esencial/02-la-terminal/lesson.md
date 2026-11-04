@@ -7,6 +7,8 @@ title: "La terminal en 6 comandos"
 La terminal es una ventana donde das órdenes escribiendo, en lugar de hacer clic. Parece intimidante, pero
 para tu proyecto usarás pocos comandos. Siempre estás "dentro" de una carpeta, y los comandos actúan sobre ella.
 
+<!-- animacion -->
+
 | Comando | Qué hace |
 |---------|----------|
 | `pwd` | Muestra en qué carpeta estás |

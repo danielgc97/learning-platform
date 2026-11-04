@@ -7,6 +7,8 @@ title: "ORDER BY y LIMIT: ordenar y recortar"
 Una base de datos no garantiza ningún orden si no se lo pides. Con `ORDER BY` decides cómo se ordenan las
 filas, y con `LIMIT` cuántas quieres ver.
 
+<!-- animacion -->
+
 ```sql
 SELECT producto, precio
 FROM ventas

@@ -7,6 +7,8 @@ title: "Listas: mostrar varios elementos"
 Tu app casi siempre mostrará listas: tareas, productos, citas. En React se transforma un arreglo de datos en
 un arreglo de componentes con `map`.
 
+<!-- animacion -->
+
 ## Práctica
 
 En `App`, define una lista y dibújala:

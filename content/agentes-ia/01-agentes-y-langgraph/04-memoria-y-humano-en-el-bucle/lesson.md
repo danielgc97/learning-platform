@@ -7,6 +7,8 @@ title: "Memoria y humano en el bucle"
 Un grafo normal "olvida" todo al terminar. Para recordar una conversación, o para **pausar y esperar a una
 persona**, LangGraph usa un **checkpointer**: guarda una foto del estado después de cada paso.
 
+<!-- animacion -->
+
 Las fotos se organizan en **hilos** (*threads*). Cada conversación o caso tiene su propio `thread_id`:
 
 ```python
