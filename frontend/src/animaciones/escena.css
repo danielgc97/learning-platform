@@ -257,17 +257,25 @@
 
 .esc-figura:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 
-/* A pantalla completa el lienzo se centra y manda el alto de la ventana. */
+/* Ampliada: ocupa la ventana por su cuenta, sin depender de que el navegador tenga
+   pantalla completa (el iPhone no la da a nada que no sea un vídeo). */
 .esc-figura.completa {
-  max-width: none;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  max-width: none !important;
   margin: 0;
-  padding: 18px;
+  padding: 8px;
+  padding-bottom: max(8px, env(safe-area-inset-bottom, 0px));
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   background: var(--paper);
 }
 .esc-figura.completa .esc-marco { height: auto !important; flex: 1; }
+.esc-figura.completa .esc-mandos { margin-top: 8px; gap: 8px; font-size: .75rem; }
+.esc-figura.completa .esc-mandos button { padding: 4px 10px; }
+.esc-figura.completa .esc-etiqueta { display: none; }
 .esc-figura.completa .esc-lienzo { inset: 0; margin: auto; transform-origin: center center; }
 
 .esc-mandos {

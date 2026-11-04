@@ -27,6 +27,7 @@ export default function Escena({ duracion, ancho = 520, alto = 330, etiqueta, ch
   const [ciclo, setCiclo] = useState(0)
   const [salto, setSalto] = useState(0) // desde qué segundo arranca el ciclo actual
   const [completa, setCompleta] = useState(false)
+  const [girado, setGirado] = useState(false)
   const [estado, setEstado] = useState('espera')
   const [sonando, setSonando] = useState(() => {
     try { return localStorage.getItem('cortexlab-sonido') === '1' } catch { return false }
@@ -35,25 +36,52 @@ export default function Escena({ duracion, ancho = 520, alto = 330, etiqueta, ch
   const total = duracion * RITMO
   const corriendo = estado === 'corre'
 
-  // A pantalla completa manda el alto de la ventana; si no, el ancho del hueco.
+  // Ampliada manda el alto de la ventana; si no, el ancho del hueco. El resize hace
+  // falta aparte del observador para que al girar el móvil se recalcule.
+  // Y si la pantalla es alta y el dibujo apaisado, se gira: es lo que hace cualquier
+  // reproductor de vídeo en un móvil vertical, y multiplica el tamaño por 1,4.
   useEffect(() => {
     const mide = () => {
       const libre = marco.current.clientWidth
-      setEscala(completa
-        ? Math.min(libre / ancho, (window.innerHeight - 120) / alto)
-        : Math.min(MAX_ESCALA, libre / ancho))
+      if (!completa) {
+        setGirado(false)
+        setEscala(Math.min(MAX_ESCALA, libre / ancho))
+        return
+      }
+      const altoLibre = window.innerHeight - 100
+      const gira = window.innerHeight > window.innerWidth && ancho > alto
+      setGirado(gira)
+      setEscala(gira
+        ? Math.min(libre / alto, altoLibre / ancho)
+        : Math.min(libre / ancho, altoLibre / alto))
     }
     const ro = new ResizeObserver(mide)
     ro.observe(marco.current)
+    window.addEventListener('resize', mide)
     mide()
-    return () => ro.disconnect()
+    return () => { ro.disconnect(); window.removeEventListener('resize', mide) }
   }, [ancho, alto, completa])
 
+  // Si se sale de la pantalla completa del navegador (Escape, botón atrás), se cierra
+  // también la vista ampliada.
   useEffect(() => {
-    const cambio = () => setCompleta(document.fullscreenElement === figura.current)
+    const cambio = () => { if (!document.fullscreenElement && completa) setCompleta(false) }
     document.addEventListener('fullscreenchange', cambio)
     return () => document.removeEventListener('fullscreenchange', cambio)
-  }, [])
+  }, [completa])
+
+  // Mientras está ampliada, la página de debajo no se mueve y Escape la cierra.
+  useEffect(() => {
+    if (!completa) return
+    const tapa = (e) => { if (e.key === 'Escape') cierra() }
+    const antes = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    document.addEventListener('keydown', tapa)
+    return () => {
+      document.body.style.overflow = antes
+      document.removeEventListener('keydown', tapa)
+    }
+  })
 
   // Arranca cuando entra en pantalla: si empezara al cargar la página, el alumno
   // llegaría cuando ya ha terminado. En una copia oculta no se dispara nunca.
@@ -105,9 +133,18 @@ export default function Escena({ duracion, ancho = 520, alto = 330, etiqueta, ch
     if (marcador.current) marcador.current.textContent = `${reloj(n)} / ${reloj(total)}`
   }
 
-  function pantallaCompleta() {
-    if (document.fullscreenElement) document.exitFullscreen()
-    else figura.current.requestFullscreen?.().catch(() => {})
+  // La animación se amplía ocupando la ventana entera por su cuenta, y además pide la
+  // pantalla completa del navegador donde exista: en el iPhone no existe, porque Safari
+  // solo se la da a los vídeos de verdad.
+  function cierra() {
+    setCompleta(false)
+    if (document.fullscreenElement) document.exitFullscreen().catch(() => {})
+  }
+
+  function amplia() {
+    if (completa) return cierra()
+    setCompleta(true)
+    figura.current.requestFullscreen?.().catch(() => {})
   }
 
   function tecla(e) {
@@ -115,7 +152,7 @@ export default function Escena({ duracion, ancho = 520, alto = 330, etiqueta, ch
     if (e.key === ' ') { e.preventDefault(); alterna() }
     else if (e.key === 'ArrowLeft') { e.preventDefault(); vaA(ahora - 1) }
     else if (e.key === 'ArrowRight') { e.preventDefault(); vaA(ahora + 1) }
-    else if (e.key === 'f') pantallaCompleta()
+    else if (e.key === 'f') amplia()
   }
 
   function alterna() {
@@ -149,7 +186,7 @@ export default function Escena({ duracion, ancho = 520, alto = 330, etiqueta, ch
         <div
           key={ciclo}
           className={`esc-lienzo ${corriendo ? '' : 'quieta'}`}
-          style={{ width: ancho, height: alto, transform: `scale(${escala})`, '--seek': `${salto}s`, '--total': `${total}s` }}
+          style={{ width: ancho, height: alto, transform: `${girado ? 'rotate(90deg) ' : ''}scale(${escala})`, '--seek': `${salto}s`, '--total': `${total}s` }}
         >
           <Reloj.Provider value={{ ciclo, corriendo, inicio, sonando }}>{children}</Reloj.Provider>
         </div>
@@ -171,7 +208,7 @@ export default function Escena({ duracion, ancho = 520, alto = 330, etiqueta, ch
         <button type="button" onClick={alternaSonido} aria-pressed={sonando}>
           {sonando ? 'Sonido: sí' : 'Sonido: no'}
         </button>
-        <button type="button" onClick={pantallaCompleta}>{completa ? 'Salir' : 'Pantalla completa'}</button>
+        <button type="button" onClick={amplia}>{completa ? 'Salir' : 'Ampliar'}</button>
         {!completa && <span className="esc-etiqueta">{etiqueta}</span>}
       </figcaption>
     </figure>
