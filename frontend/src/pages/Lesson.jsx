@@ -99,9 +99,9 @@ export default function Lesson() {
       {/* Con animación, el texto y la animación comparten fila: el texto a la izquierda,
           la animación fija a la derecha, que es donde sobra sitio. Por debajo de 1280px
           no hay franja, así que la animación va dentro del texto, donde la marca la lección. */}
-      <div className={`mt-6 ${Animacion ? 'xl:grid xl:grid-cols-[minmax(0,1fr)_400px] xl:gap-x-10' : ''}`}>
+      <div className={`mt-6 ${Animacion ? 'xl:grid xl:grid-cols-[minmax(0,1fr)_520px] xl:gap-x-10' : ''}`}>
         <div className="min-w-0">
-          <article className="lab-prose max-w-2xl">
+          <article className="lab-prose max-w-2xl xl:max-w-none">
             <Markdown>{antes}</Markdown>
           </article>
           {Animacion && (
@@ -110,7 +110,7 @@ export default function Lesson() {
             </div>
           )}
           {despues && (
-            <article className="lab-prose max-w-2xl">
+            <article className="lab-prose max-w-2xl xl:max-w-none">
               <Markdown>{despues}</Markdown>
             </article>
           )}

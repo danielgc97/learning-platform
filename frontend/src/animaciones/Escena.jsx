@@ -8,9 +8,9 @@ const RITMO = 1.35
 
 const Reloj = createContext(null)
 
-// El lienzo se dibuja siempre en las mismas unidades (400×600, vertical, el ancho de la
-// franja que queda al lado del texto) y se escala si el hueco es menor.
-export default function Escena({ duracion, ancho = 400, alto = 600, etiqueta, children }) {
+// El lienzo se dibuja siempre en las mismas unidades (520×330, el ancho de la columna
+// que ocupa al lado del texto) y se escala si el hueco es menor.
+export default function Escena({ duracion, ancho = 520, alto = 330, etiqueta, children }) {
   const marco = useRef(null)
   const inicio = useRef(0) // cuándo empezó el ciclo actual
   const llevado = useRef(0) // segundos ya corridos, para poder reanudar
@@ -138,7 +138,7 @@ export function Capa({ desde, fin, x = 0, y = 0, ancho, centrado, children }) {
   )
 }
 
-export function Nodo({ desde, fin, x = 125, y, rotulo, sub, tono: color, late, children }) {
+export function Nodo({ desde, fin, x, y, rotulo, sub, tono: color, late, children }) {
   return (
     <Capa desde={desde} fin={fin} x={x} y={y} ancho={150}>
       <div className="esc-nodo">
@@ -219,7 +219,7 @@ export function Metrica({ desde, fin, y, cuenta, unidad, pie }) {
   )
 }
 
-export function Rotulo({ desde, fin, x = 28, y, ancho = 344, ojo, titulo, bajada }) {
+export function Rotulo({ desde, fin, x = 28, y, ancho = 460, ojo, titulo, bajada }) {
   return (
     <Capa desde={desde} fin={fin} x={x} y={y} ancho={ancho}>
       {ojo && <p className="esc-ojo">{ojo}</p>}
@@ -230,7 +230,7 @@ export function Rotulo({ desde, fin, x = 28, y, ancho = 344, ojo, titulo, bajada
 }
 
 // Una tabla cuyas filas pueden aparecer cada una a su hora: así se ve formarse.
-export function Tabla({ desde, fin, x = 28, y, ancho = 344, nombre, columnas, filas, plantilla }) {
+export function Tabla({ desde, fin, x = 28, y, ancho = 230, nombre, columnas, filas, plantilla }) {
   return (
     <Capa desde={desde} fin={fin} x={x} y={y} ancho={ancho}>
       {nombre && <p className="esc-titulo-tabla">{nombre}</p>}
@@ -257,7 +257,7 @@ export function Tabla({ desde, fin, x = 28, y, ancho = 344, nombre, columnas, fi
 }
 
 // Un recuadro que se posa sobre una fila concreta para señalar de quién se habla.
-export function Marca({ desde, fin, x = 28, y, ancho = 344, alto = 26 }) {
+export function Marca({ desde, fin, x = 28, y, ancho = 230, alto = 25 }) {
   return (
     <div className="esc-capa esc-marca-fila" style={{ ...tiempos(desde, fin), left: x, top: y, width: ancho, height: alto }} />
   )
