@@ -1,101 +1,99 @@
-import Escena, { Capa, Chip, Metrica, Nota, Rotulo, Tabla } from './Escena'
+import Escena, { Capa, Chip, Marca, Nota, Rotulo, Son, Tabla } from './Escena'
 
-// Dos tablas separadas y una pregunta que necesita las dos a la vez.
-// Lección: SQL para tu base · JOIN.
+// Lección: SQL para tu base · JOIN: unir tablas.
+// Los datos son los mismos que el ejemplo de la lección (Ana 120, Luis 200): si la
+// animación enseñara otros, el alumno tendría que traducir mentalmente entre las dos.
+//
+// Las tres tablas están en pantalla a la vez y el resultado se forma fila a fila, cada
+// una saliendo del par que la origina. Nada se va para que aparezca otra cosa en su sitio.
 
-// Las filas de pedidos 1 y 3 son de la misma clienta: por eso Ana sale dos veces
-// en el resultado, que es justo lo que cuesta entender de un JOIN.
-const CLIENTES = [['1', 'Ana'], ['2', 'Luis'], ['3', 'Sara']]
-const PEDIDOS = [['10', '1', '58.00'], ['11', '3', '12.50'], ['12', '1', '7.00']]
-const RESULTADO = [['Ana', '58.00'], ['Sara', '12.50'], ['Ana', '7.00']]
+// Medido en el navegador: el título y la cabecera ocupan 46px, y cada fila 25.
+const FILA = 25
+const fila = (tablaY, i) => tablaY + 46 + i * FILA
 
-// Cada fila mide 26px y la cabecera 23: con eso se sabe dónde cae cada una.
-const filaY = (i) => 130 + 23 + i * 26 + 13
-
-function Enlaces() {
-  // De qué fila de clientes viene cada fila de pedidos: 1 → Ana, 3 → Sara, 1 → Ana.
-  const pares = [[0, 0], [2, 1], [0, 2]]
-  return (
-    <svg width="120" height="200" viewBox="0 0 120 200" style={{ position: 'absolute', left: 300, top: 110 }} fill="none">
-      {pares.map(([c, p], i) => (
-        <path
-          key={i}
-          d={`M0 ${filaY(c) - 110} C 45 ${filaY(c) - 110}, 75 ${filaY(p) - 110}, 120 ${filaY(p) - 110}`}
-          stroke="var(--accent)"
-          strokeWidth="1"
-          strokeDasharray="3 3"
-          opacity=".85"
-        />
-      ))}
-    </svg>
-  )
-}
+const CLIENTES_Y = 64
+const PEDIDOS_Y = 178
+const RESULTADO_Y = 316
 
 export default function Join() {
   return (
-    <Escena duracion={16} etiqueta="Unir dos tablas (JOIN)">
+    <Escena duracion={15} etiqueta="JOIN: unir tablas">
+      <Son en={0.3} tipo="toque" />
       <Rotulo
         desde={0.2}
-        fin={2.4}
-        y={130}
+        fin={2.3}
+        y={200}
         ojo="SQL para tu base"
         titulo={<>Unir <span className="verde">dos tablas</span></>}
-        bajada={<>Una guarda los clientes. Otra, los pedidos.<br />¿Cómo sabes <b>quién pidió qué</b>?</>}
+        bajada={<>El nombre del cliente al lado de<br />cada pedido. Eso hace <b>JOIN</b>.</>}
       />
 
+      {/* Las dos tablas de partida se quedan en pantalla hasta el final. */}
       <Tabla
-        desde={2.6}
-        fin={9.4}
-        x={60}
-        y={110}
-        ancho={240}
+        desde={2.5}
+        y={CLIENTES_Y}
         nombre="clientes"
         columnas={['id', 'nombre']}
-        filas={CLIENTES}
-        plantilla="60px 1fr"
+        filas={[['1', 'Ana'], ['2', 'Luis']]}
+        plantilla="70px 1fr"
       />
       <Tabla
-        desde={2.9}
-        fin={9.4}
-        x={420}
-        y={110}
-        ancho={240}
+        desde={2.8}
+        y={PEDIDOS_Y}
         nombre="pedidos"
         columnas={['id', 'cliente_id', 'total']}
-        filas={PEDIDOS}
-        plantilla="46px 86px 1fr"
+        filas={[['1', '1', '120'], ['2', '2', '200']]}
+        plantilla="50px 110px 1fr"
       />
+      <Son en={2.6} tipo="toque" />
 
-      <Nota desde={4.4} fin={9.4} x={60} y={240}>id · identifica a cada cliente</Nota>
-      <Nota desde={4.8} fin={9.4} x={420} y={240}>cliente_id · apunta a la otra tabla</Nota>
-
-      {/* La unión: una línea por cada pedido hasta el cliente al que pertenece. */}
-      <Capa desde={5.8} fin={9.4}><Enlaces /></Capa>
-
-      <Chip desde={7.2} fin={9.4} y={300} centrado>
-        <span className="verbo">SELECT</span>
-        <span className="dato">c.nombre, p.total</span>
-        <span className="verbo">FROM</span>pedidos p
-        <span className="verbo">JOIN</span>clientes c
-        <span className="dato">ON p.cliente_id = c.id</span>
-      </Chip>
-
-      {/* El resultado: una sola tabla, con el nombre ya dentro de cada pedido. */}
+      {/* Y debajo nace la tercera, vacía: solo la cabecera. */}
       <Tabla
-        desde={9.8}
-        x={225}
-        y={100}
-        ancho={270}
+        desde={3.6}
+        y={RESULTADO_Y}
         nombre="el resultado"
-        columnas={['nombre', 'total']}
-        filas={RESULTADO}
+        columnas={['c.nombre', 'p.total']}
+        filas={[
+          { celdas: ['Ana', '120'], desde: 6.6 },
+          { celdas: ['Luis', '200'], desde: 9.4 },
+        ]}
         plantilla="1fr 90px"
       />
-      <Nota desde={11.2} y={230} centrado>
-        Ana aparece <b>dos veces</b> porque hizo dos pedidos
-      </Nota>
 
-      <Metrica desde={12.6} y={275} cuenta={3} unidad="filas" pie="una por pedido" />
+      {/* Primer par: el pedido 1 es de Ana, porque su cliente_id vale 1. */}
+      <Marca desde={4.4} fin={7.0} y={fila(PEDIDOS_Y, 0)} />
+      <Marca desde={4.7} fin={7.0} y={fila(CLIENTES_Y, 0)} />
+      <Son en={4.4} tipo="toque" />
+      <Nota desde={4.9} fin={6.4} y={286}>cliente_id <b>1</b> → el cliente <b>1</b></Nota>
+      <Chip desde={5.4} y={fila(PEDIDOS_Y, 0) - 1} dy={fila(RESULTADO_Y, 0) - fila(PEDIDOS_Y, 0)} dur={1.3}>
+        Ana<span className="dato">120</span>
+      </Chip>
+      <Son en={5.5} tipo="viaje" />
+      <Son en={6.7} tipo="fila" />
+
+      {/* Segundo par: el pedido 2 es de Luis. */}
+      <Marca desde={7.4} fin={10.0} y={fila(PEDIDOS_Y, 1)} />
+      <Marca desde={7.7} fin={10.0} y={fila(CLIENTES_Y, 1)} />
+      <Son en={7.4} tipo="toque" />
+      <Nota desde={7.9} fin={9.2} y={286}>cliente_id <b>2</b> → el cliente <b>2</b></Nota>
+      <Chip desde={8.2} y={fila(PEDIDOS_Y, 1) - 1} dy={fila(RESULTADO_Y, 1) - fila(PEDIDOS_Y, 1)} dur={1.3}>
+        Luis<span className="dato">200</span>
+      </Chip>
+      <Son en={8.3} tipo="viaje" />
+      <Son en={9.5} tipo="fila" />
+
+      {/* La consulta que acaba de ocurrir, tal cual está escrita en la lección. */}
+      <Capa desde={10.4} y={424} ancho={344} x={28}>
+        <pre className="esc-chip" style={{ display: 'block', whiteSpace: 'pre', textAlign: 'left', lineHeight: 1.75 }}>
+          <span className="verbo">SELECT</span> c.nombre, p.total{'\n'}
+          <span className="verbo">FROM</span> pedidos p{'\n'}
+          <span className="verbo">JOIN</span> clientes c <span className="verbo">ON</span> c.id = p.cliente_id;
+        </pre>
+      </Capa>
+      <Son en={10.5} tipo="toque" />
+
+      <Nota desde={12.2} y={536}>un cliente sin pedidos <b>no aparecería</b></Nota>
+      <Son en={12.3} tipo="bien" />
     </Escena>
   )
 }

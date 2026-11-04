@@ -54,8 +54,8 @@
 .esc-titular {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 40px;
-  line-height: 1.04;
+  font-size: 32px;
+  line-height: 1.06;
   letter-spacing: -.03em;
   margin: 0;
 }
@@ -93,8 +93,8 @@
 
 .esc-nodo { text-align: center; width: 150px; }
 .esc-caja {
-  width: 68px;
-  height: 68px;
+  width: 62px;
+  height: 62px;
   margin: 0 auto;
   border: 1px solid var(--line);
   border-radius: 10px;
@@ -200,6 +200,21 @@
 .esc-tabla .fila span { padding: 7px 9px; }
 .esc-tabla .fila + .fila { border-top: 1px solid var(--line); }
 .esc-tabla .fila.marcada { background: color-mix(in srgb, var(--accent) 12%, transparent); }
+
+/* Una fila que se coloca a su hora: así la tabla del resultado se ve formarse fila a
+   fila, en lugar de aparecer entera de golpe. */
+.esc-tabla .fila.aparece {
+  opacity: 0;
+  animation: esc-entra .45s var(--ease-lab) calc(var(--in) - var(--seek)) both;
+}
+
+/* El recuadro que señala de qué fila se está hablando. */
+.esc-marca-fila {
+  border: 1px solid var(--accent);
+  border-radius: 5px;
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  pointer-events: none;
+}
 .esc-titulo-tabla {
   font-family: var(--font-mono, monospace);
   font-size: 10px;
@@ -217,7 +232,7 @@
 .esc-cifra {
   font-family: var(--font-mono, monospace);
   font-weight: 500;
-  font-size: 46px;
+  font-size: 40px;
   letter-spacing: -.02em;
   color: var(--ok);
   font-variant-numeric: tabular-nums;

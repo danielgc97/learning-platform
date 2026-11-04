@@ -96,19 +96,33 @@ export default function Lesson() {
         />
       </div>
 
-      <article className="lab-prose mt-6 max-w-2xl">
-        <Markdown>{antes}</Markdown>
-      </article>
-      {Animacion && (
-        <div className="max-w-2xl">
-          <Suspense fallback={null}><Animacion /></Suspense>
+      {/* Con animación, el texto y la animación comparten fila: el texto a la izquierda,
+          la animación fija a la derecha, que es donde sobra sitio. Por debajo de 1280px
+          no hay franja, así que la animación va dentro del texto, donde la marca la lección. */}
+      <div className={`mt-6 ${Animacion ? 'xl:grid xl:grid-cols-[minmax(0,1fr)_400px] xl:gap-x-10' : ''}`}>
+        <div className="min-w-0">
+          <article className="lab-prose max-w-2xl">
+            <Markdown>{antes}</Markdown>
+          </article>
+          {Animacion && (
+            <div className="xl:hidden">
+              <Suspense fallback={null}><Animacion /></Suspense>
+            </div>
+          )}
+          {despues && (
+            <article className="lab-prose max-w-2xl">
+              <Markdown>{despues}</Markdown>
+            </article>
+          )}
         </div>
-      )}
-      {despues && (
-        <article className="lab-prose max-w-2xl">
-          <Markdown>{despues}</Markdown>
-        </article>
-      )}
+        {Animacion && (
+          <aside className="hidden xl:block">
+            <div className="sticky top-20">
+              <Suspense fallback={null}><Animacion /></Suspense>
+            </div>
+          </aside>
+        )}
+      </div>
 
       <CourseDrawer {...indexProps} />
 
