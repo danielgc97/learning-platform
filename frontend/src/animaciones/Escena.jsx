@@ -7,8 +7,9 @@ import { sonar } from './sonido'
 const RITMO = 1.35
 
 // Hasta cuánto puede crecer el lienzo sobre su tamaño de diseño. Como es vectorial,
-// al crecer se redibuja: no se pixela como le pasaría a un vídeo.
-const MAX_ESCALA = 2
+// al crecer se redibuja: no se pixela como le pasaría a un vídeo. El tope deja que
+// llegue al ancho completo de la lección (1112px), igual que los ejercicios.
+const MAX_ESCALA = 2.2
 
 const reloj = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`
 

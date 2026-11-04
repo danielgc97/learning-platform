@@ -33,7 +33,7 @@ export default function QuizExercise({ exercise, completed, onPassed }) {
       <fieldset className="p-5">
         {/* El navegador monta el legend sobre el borde del fieldset y se sale del
             relleno; al flotarlo a ancho completo vuelve al flujo normal. */}
-        <legend className="float-left mb-5 w-full font-display text-xl leading-snug">
+        <legend className="float-left mb-5 w-full max-w-2xl font-display text-xl leading-snug">
           {exercise.statement}
         </legend>
         <div className="clear-both space-y-3">

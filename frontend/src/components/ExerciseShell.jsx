@@ -13,7 +13,7 @@ export default function ExerciseShell({ label, completed, statement, editor, act
           </span>
         )}
       </header>
-      <p className="px-5 pt-5 text-[1.05rem] leading-8">{statement}</p>
+      <p className="max-w-2xl px-5 pt-5 text-[1.05rem] leading-8">{statement}</p>
       <div className="grid lg:grid-cols-2">
         <div className="p-5">
           {editor}
