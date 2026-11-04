@@ -215,6 +215,11 @@
   background: color-mix(in srgb, var(--accent) 10%, transparent);
   pointer-events: none;
 }
+/* Y el mismo recuadro para señalar lo contrario: la fila que queda fuera. */
+.esc-marca-fila.mal {
+  border-color: var(--bad);
+  background: color-mix(in srgb, var(--bad) 10%, transparent);
+}
 .esc-titulo-tabla {
   font-family: var(--font-mono, monospace);
   font-size: 10px;

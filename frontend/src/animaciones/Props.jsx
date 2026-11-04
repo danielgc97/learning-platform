@@ -16,7 +16,7 @@ function Item({ hecha, titulo }) {
 export default function Props() {
   return (
     <Escena duracion={16} alto={340} etiqueta="Props: pasar datos a un componente">
-      <Son en={0.3} tipo="toque" />
+      <Son en={0.3} tipo="aparece" />
       <Rotulo
         desde={0.2}
         fin={2.4}
@@ -61,7 +61,7 @@ export default function Props() {
         titulo={<>Props son los <span className="verde">parámetros</span>.</>}
         bajada={<>Lo mismo que le pasas a una función de Python al llamarla.</>}
       />
-      <Son en={14.9} tipo="toque" />
+      <Son en={14.9} tipo="cierra" />
     </Escena>
   )
 }

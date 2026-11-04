@@ -7,7 +7,7 @@ import Escena, { Chip, Nodo, Nota, Riel, Rotulo, Son } from './Escena'
 export default function TresCapas() {
   return (
     <Escena duracion={15} etiqueta="Las tres capas de una app">
-      <Son en={0.3} tipo="toque" />
+      <Son en={0.3} tipo="aparece" />
       <Rotulo
         desde={0.2}
         fin={2.4}
@@ -65,7 +65,7 @@ export default function TresCapas() {
         titulo={<>Cada zona, <span className="verde">un trabajo</span>.</>}
         bajada={<>Las reglas importantes viven donde nadie las ve.</>}
       />
-      <Son en={13.9} tipo="bien" />
+      <Son en={13.9} tipo="cierra" />
     </Escena>
   )
 }

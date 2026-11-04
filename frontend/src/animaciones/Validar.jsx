@@ -10,7 +10,7 @@ const MODELO_Y = 150
 export default function Validar() {
   return (
     <Escena duracion={17} alto={360} etiqueta="Recibir datos y validarlos">
-      <Son en={0.3} tipo="toque" />
+      <Son en={0.3} tipo="aparece" />
       <Rotulo
         desde={0.2}
         fin={2.4}
@@ -60,7 +60,7 @@ export default function Validar() {
       </Chip>
 
       <Nota desde={16.0} y={268}>tu código solo recibe datos que ya cuadran</Nota>
-      <Son en={16.1} tipo="bien" />
+      <Son en={16.1} tipo="cierra" />
     </Escena>
   )
 }

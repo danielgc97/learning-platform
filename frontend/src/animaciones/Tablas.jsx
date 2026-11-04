@@ -10,7 +10,7 @@ const TAREAS_Y = 60
 export default function Tablas() {
   return (
     <Escena duracion={15} alto={340} etiqueta="Tablas: cómo se guardan los datos">
-      <Son en={0.3} tipo="toque" />
+      <Son en={0.3} tipo="aparece" />
       <Rotulo
         desde={0.2}
         fin={2.4}
@@ -51,7 +51,7 @@ export default function Tablas() {
       <Son en={10.3} tipo="bien" />
       <Nota desde={10.6} y={196}>el <b>id</b> es único: por eso puedes pedir «la tarea 2» sin dudas</Nota>
       <Nota desde={12.4} y={240}>dos tareas pueden llamarse igual; sus id, nunca</Nota>
-      <Son en={12.5} tipo="toque" />
+      <Son en={12.5} tipo="cierra" />
     </Escena>
   )
 }

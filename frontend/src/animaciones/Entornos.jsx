@@ -7,7 +7,7 @@ import Escena, { Capa, Chip, Nota, Rotulo, Son, Tabla } from './Escena'
 export default function Entornos() {
   return (
     <Escena duracion={15} alto={360} etiqueta="Entornos y dependencias">
-      <Son en={0.3} tipo="toque" />
+      <Son en={0.3} tipo="aparece" />
       <Rotulo
         desde={0.2}
         fin={2.4}
@@ -64,7 +64,7 @@ export default function Entornos() {
       />
       <Son en={9.7} tipo="fila" />
       <Nota desde={11.6} y={330}>quien reciba tu proyecto lo instala todo con esa lista</Nota>
-      <Son en={11.7} tipo="bien" />
+      <Son en={11.7} tipo="cierra" />
     </Escena>
   )
 }

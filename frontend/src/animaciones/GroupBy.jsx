@@ -13,7 +13,7 @@ const RESULTADO_Y = 246
 export default function GroupBy() {
   return (
     <Escena duracion={14} alto={360} etiqueta="GROUP BY: totales por categoría">
-      <Son en={0.3} tipo="toque" />
+      <Son en={0.3} tipo="aparece" />
       <Rotulo
         desde={0.2}
         fin={2.4}
@@ -71,7 +71,7 @@ export default function GroupBy() {
       <Son en={10.3} tipo="fila" />
 
       <Nota desde={12.0} y={218}>cada fila del resultado es <b>un grupo</b>, no un producto</Nota>
-      <Son en={12.1} tipo="bien" />
+      <Son en={12.1} tipo="cierra" />
     </Escena>
   )
 }

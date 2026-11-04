@@ -7,7 +7,7 @@ import Escena, { Chip, Flujo, Nodo, Nota, Riel, Rotulo, Son } from './Escena'
 export default function Cors() {
   return (
     <Escena duracion={17} etiqueta="CORS: permitir que tu frontend te hable">
-      <Son en={0.3} tipo="toque" />
+      <Son en={0.3} tipo="aparece" />
       <Rotulo
         desde={0.2}
         fin={2.4}
@@ -34,7 +34,7 @@ export default function Cors() {
       <Nota desde={5.4} fin={9.0} y={178}>
         <span className="mal">puerto distinto = origen distinto</span>
       </Nota>
-      <Son en={5.5} tipo="mal" />
+      <Son en={5.5} tipo="corta" />
       <Nota desde={6.4} fin={9.0} y={212}>el navegador corta la llamada antes de que salga</Nota>
 
       {/* El permiso lo da el backend, no el navegador. */}
@@ -57,7 +57,7 @@ export default function Cors() {
       <Son en={13.7} tipo="bien" />
 
       <Nota desde={15.4} y={212}>quien autoriza es <b>el backend</b>, nunca el navegador</Nota>
-      <Son en={15.5} tipo="toque" />
+      <Son en={15.5} tipo="cierra" />
     </Escena>
   )
 }

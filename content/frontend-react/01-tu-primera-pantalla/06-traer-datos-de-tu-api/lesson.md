@@ -7,6 +7,8 @@ title: "Traer datos de tu API"
 Ahora conectas lo que construiste en el backend. Para pedir datos usas `fetch`, y para hacerlo **al abrir la
 pantalla** usas `useEffect`, que ejecuta código después de que el componente se dibuja.
 
+<!-- animacion -->
+
 ## Práctica
 
 1. Arranca tu API en otra terminal (`fastapi dev`, en la carpeta `tareas-api`).

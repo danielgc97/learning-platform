@@ -7,7 +7,7 @@ import Escena, { Capa, Chip, Flujo, Nodo, Nota, Riel, Rotulo, Son } from './Esce
 export default function Sesion() {
   return (
     <Escena duracion={18} etiqueta="Autenticación y autorización">
-      <Son en={0.3} tipo="toque" />
+      <Son en={0.3} tipo="aparece" />
       <Rotulo
         desde={0.2}
         fin={2.4}
@@ -67,7 +67,7 @@ export default function Sesion() {
       <Nota desde={15.6} fin={16.0} centrado={false} x={280} y={240}>
         <span className="mal">401</span> · no sé quién eres
       </Nota>
-      <Son en={15.7} tipo="mal" />
+      <Son en={15.7} tipo="corta" />
 
       <Rotulo
         desde={16.4}
@@ -75,7 +75,7 @@ export default function Sesion() {
         titulo={<>Dos preguntas <span className="verde">distintas</span>.</>}
         bajada={<>Autenticación: <b>quién eres</b>. Autorización: <b>qué puedes hacer</b>.</>}
       />
-      <Son en={16.5} tipo="toque" />
+      <Son en={16.5} tipo="cierra" />
     </Escena>
   )
 }

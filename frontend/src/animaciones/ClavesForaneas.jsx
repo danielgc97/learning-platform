@@ -14,7 +14,7 @@ const PEDIDOS_Y = 258
 export default function ClavesForaneas() {
   return (
     <Escena duracion={17} alto={400} etiqueta="Claves foráneas">
-      <Son en={0.3} tipo="toque" />
+      <Son en={0.3} tipo="aparece" />
       <Rotulo
         desde={0.2}
         fin={2.4}
@@ -83,7 +83,7 @@ export default function ClavesForaneas() {
           cliente_id INTEGER <span className="verbo">REFERENCES</span> clientes(id)
         </pre>
       </Capa>
-      <Son en={15.9} tipo="toque" />
+      <Son en={15.9} tipo="cierra" />
     </Escena>
   )
 }

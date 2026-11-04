@@ -14,7 +14,7 @@ const VERBOS = [
 export default function ApiEndpoints() {
   return (
     <Escena duracion={16} etiqueta="API y endpoints">
-      <Son en={0.3} tipo="toque" />
+      <Son en={0.3} tipo="aparece" />
       <Rotulo
         desde={0.2}
         fin={2.6}
@@ -43,7 +43,7 @@ export default function ApiEndpoints() {
       <Nota desde={3.6} fin={13.6} y={128}>una dirección y un verbo: eso es un <b>endpoint</b></Nota>
 
       <Metrica desde={13.9} y={120} cuenta={4} unidad="verbos" pie="leer · crear · modificar · borrar" />
-      <Son en={14.0} tipo="bien" />
+      <Son en={14.0} tipo="cierra" />
       <Nota desde={14.6} y={250}>los programadores lo llaman <b>CRUD</b></Nota>
     </Escena>
   )

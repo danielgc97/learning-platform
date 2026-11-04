@@ -7,7 +7,7 @@ import Escena, { Capa, Chip, Nodo, Nota, Rotulo, Son } from './Escena'
 export default function Publicar() {
   return (
     <Escena duracion={17} alto={360} etiqueta="De tu computadora a internet">
-      <Son en={0.3} tipo="toque" />
+      <Son en={0.3} tipo="aparece" />
       <Rotulo
         desde={0.2}
         fin={2.4}
@@ -60,7 +60,7 @@ export default function Publicar() {
         titulo={<>El orden <span className="verde">importa</span>.</>}
         bajada={<>Primero el backend, que ya existe, y después el frontend que lo llama.</>}
       />
-      <Son en={14.5} tipo="bien" />
+      <Son en={14.5} tipo="cierra" />
     </Escena>
   )
 }

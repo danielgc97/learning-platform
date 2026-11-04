@@ -6,6 +6,8 @@ title: "INSERT, UPDATE y DELETE: cambiar datos"
 
 Tu producto no solo lee datos: también los crea, los corrige y los borra. Son tres instrucciones.
 
+<!-- animacion -->
+
 **Agregar una fila** con `INSERT`:
 
 ```sql

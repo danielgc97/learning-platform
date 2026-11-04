@@ -15,7 +15,7 @@ const CASOS = [
 export default function Codigos() {
   return (
     <Escena duracion={16} alto={360} etiqueta="Errores y códigos de estado">
-      <Son en={0.3} tipo="toque" />
+      <Son en={0.3} tipo="aparece" />
       <Rotulo
         desde={0.2}
         fin={2.4}
@@ -47,7 +47,7 @@ export default function Codigos() {
       <Nota desde={12.8} y={250}>el <b>4</b> del principio dice que el fallo viene de la petición</Nota>
       <Son en={12.9} tipo="toque" />
       <Nota desde={14.0} y={292}>el <b>5</b>, que el fallo es tuyo y hay que mirar los registros</Nota>
-      <Son en={14.1} tipo="bien" />
+      <Son en={14.1} tipo="cierra" />
     </Escena>
   )
 }

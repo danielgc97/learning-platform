@@ -18,7 +18,7 @@ const DER = 270
 export default function Join() {
   return (
     <Escena duracion={15} alto={380} etiqueta="JOIN: unir tablas">
-      <Son en={0.3} tipo="toque" />
+      <Son en={0.3} tipo="aparece" />
       <Rotulo
         desde={0.2}
         fin={2.3}
@@ -113,7 +113,7 @@ export default function Join() {
       <Son en={10.5} tipo="toque" />
 
       <Nota desde={13.2} y={300}>un cliente sin pedidos <b>no aparecería</b></Nota>
-      <Son en={13.3} tipo="bien" />
+      <Son en={13.3} tipo="cierra" />
     </Escena>
   )
 }

@@ -13,7 +13,7 @@ const RESULTADO_Y = 196
 export default function LeftJoin() {
   return (
     <Escena duracion={17} alto={380} etiqueta="LEFT JOIN: incluir lo que no tiene pareja">
-      <Son en={0.3} tipo="toque" />
+      <Son en={0.3} tipo="aparece" />
       <Rotulo
         desde={0.2}
         fin={2.4}
@@ -77,7 +77,7 @@ export default function LeftJoin() {
       </Capa>
       <Son en={13.7} tipo="toque" />
       <Nota desde={15.0} y={170}>filtrando por ese vacío te quedan <b>solo los que nunca compraron</b></Nota>
-      <Son en={15.1} tipo="bien" />
+      <Son en={15.1} tipo="cierra" />
     </Escena>
   )
 }

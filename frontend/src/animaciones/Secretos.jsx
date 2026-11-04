@@ -7,7 +7,7 @@ import Escena, { Capa, Chip, Nodo, Nota, Rotulo, Son, Tabla } from './Escena'
 export default function Secretos() {
   return (
     <Escena duracion={17} alto={370} etiqueta="Variables de entorno y secretos">
-      <Son en={0.3} tipo="toque" />
+      <Son en={0.3} tipo="aparece" />
       <Rotulo
         desde={0.2}
         fin={2.4}
@@ -53,7 +53,7 @@ export default function Secretos() {
       <Nota desde={10.6} fin={13.4} y={338}>
         <span className="mal">lo para el .gitignore</span> · por eso está ahí desde el primer día
       </Nota>
-      <Son en={10.7} tipo="mal" />
+      <Son en={10.7} tipo="corta" />
       <Chip desde={11.8} fin={13.4} centrado={false} x={290} y={300}>
         <span className="verbo">.env.example</span>sube sin problema
       </Chip>

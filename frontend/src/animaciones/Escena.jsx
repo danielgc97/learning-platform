@@ -371,8 +371,11 @@ export function Tabla({ desde, fin, x = 28, y, ancho = 230, nombre, columnas, fi
 }
 
 // Un recuadro que se posa sobre una fila concreta para señalar de quién se habla.
-export function Marca({ desde, fin, x = 28, y, ancho = 230, alto = 25 }) {
+export function Marca({ desde, fin, x = 28, y, ancho = 230, alto = 25, mal }) {
   return (
-    <div className="esc-capa esc-marca-fila" style={{ ...tiempos(desde, fin), left: x, top: y, width: ancho, height: alto }} />
+    <div
+      className={`esc-capa esc-marca-fila${mal ? ' mal' : ''}`}
+      style={{ ...tiempos(desde, fin), left: x, top: y, width: ancho, height: alto }}
+    />
   )
 }

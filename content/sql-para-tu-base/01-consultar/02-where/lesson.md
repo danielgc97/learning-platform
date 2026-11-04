@@ -7,6 +7,8 @@ title: "WHERE: filtrar filas"
 Casi nunca quieres **todas** las filas de una tabla. Con `WHERE` te quedas solo con las que cumplen una
 condición.
 
+<!-- animacion -->
+
 ```sql
 SELECT producto, precio
 FROM ventas

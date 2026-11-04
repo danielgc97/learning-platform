@@ -26,7 +26,7 @@ function Punto({ desde, fin, x, texto, mal }) {
 export default function Git() {
   return (
     <Escena duracion={16} etiqueta="Git: guardar versiones">
-      <Son en={0.3} tipo="toque" />
+      <Son en={0.3} tipo="aparece" />
       <Rotulo
         desde={0.2}
         fin={2.4}
@@ -67,7 +67,7 @@ export default function Git() {
         titulo={<>Guarda <span className="verde">a menudo</span>.</>}
         bajada={<>Con la IA tocando veinte archivos a la vez, es tu red de seguridad.</>}
       />
-      <Son en={14.0} tipo="toque" />
+      <Son en={14.0} tipo="cierra" />
     </Escena>
   )
 }

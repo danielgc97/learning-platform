@@ -44,7 +44,7 @@ function Pantalla({ despues }) {
 export default function ViajeDeUnClic() {
   return (
     <Escena duracion={20} etiqueta="El viaje de un clic">
-      <Son en={0.3} tipo="toque" />
+      <Son en={0.3} tipo="aparece" />
       <Rotulo
         desde={0.2}
         fin={2.6}
@@ -106,7 +106,7 @@ export default function ViajeDeUnClic() {
       <Son en={15.8} tipo="toque" />
 
       <Capa desde={17.6} y={70} centrado><Pantalla despues /></Capa>
-      <Son en={17.7} tipo="bien" />
+      <Son en={17.7} tipo="cierra" />
       <Nota desde={18.1} y={240}>y por eso aparece en la lista</Nota>
     </Escena>
   )

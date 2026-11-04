@@ -11,7 +11,7 @@ const RESULTADO_Y = 210
 export default function Rls() {
   return (
     <Escena duracion={17} alto={400} etiqueta="Cada usuario ve solo lo suyo">
-      <Son en={0.3} tipo="toque" />
+      <Son en={0.3} tipo="aparece" />
       <Rotulo
         desde={0.2}
         fin={2.4}
@@ -79,7 +79,7 @@ export default function Rls() {
         titulo={<>Una <span className="verde">segunda cerradura</span>.</>}
         bajada={<>Aunque tu código pida de más, la base no se lo da.</>}
       />
-      <Son en={15.1} tipo="toque" />
+      <Son en={15.1} tipo="cierra" />
     </Escena>
   )
 }

@@ -7,7 +7,7 @@ import Escena, { Chip, Flujo, Nodo, Nota, Riel, Rotulo, Son } from './Escena'
 export default function Webhook() {
   return (
     <Escena duracion={18} alto={350} etiqueta="Webhooks: confirmar que te pagaron">
-      <Son en={0.3} tipo="toque" />
+      <Son en={0.3} tipo="aparece" />
       <Rotulo
         desde={0.2}
         fin={2.4}
@@ -50,7 +50,7 @@ export default function Webhook() {
       <Nota desde={12.0} fin={14.2} y={200}>
         <span className="mal">la firma no cuadra</span> · se rechaza sin mirar nada más
       </Nota>
-      <Son en={12.1} tipo="mal" />
+      <Son en={12.1} tipo="corta" />
 
       {/* Y el mismo aviso dos veces. */}
       <Chip desde={14.6} fin={16.8} y={240}>
@@ -60,7 +60,7 @@ export default function Webhook() {
       <Nota desde={15.4} fin={16.8} y={200}>guardas el identificador del evento: si ya lo hiciste, lo ignoras</Nota>
 
       <Nota desde={17.0} y={200}>el navegador nunca decide si te pagaron</Nota>
-      <Son en={17.1} tipo="bien" />
+      <Son en={17.1} tipo="cierra" />
     </Escena>
   )
 }

@@ -7,7 +7,7 @@ import Escena, { Chip, Nodo, Nota, Riel, Rotulo, Son } from './Escena'
 export default function Pago() {
   return (
     <Escena duracion={18} alto={360} etiqueta="Cómo funciona un pago online">
-      <Son en={0.3} tipo="toque" />
+      <Son en={0.3} tipo="aparece" />
       <Rotulo
         desde={0.2}
         fin={2.4}
@@ -76,7 +76,7 @@ export default function Pago() {
         titulo={<>¿Y cómo lo <span className="verde">sabes</span>?</>}
         bajada={<>Te lo cuenta la pasarela, no el navegador. Eso es la siguiente lección.</>}
       />
-      <Son en={15.9} tipo="toque" />
+      <Son en={15.9} tipo="cierra" />
     </Escena>
   )
 }

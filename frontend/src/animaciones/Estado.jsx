@@ -15,7 +15,7 @@ function Boton({ veces }) {
 export default function Estado() {
   return (
     <Escena duracion={17} etiqueta="Estado con useState">
-      <Son en={0.3} tipo="toque" />
+      <Son en={0.3} tipo="aparece" />
       <Rotulo
         desde={0.2}
         fin={2.4}
@@ -47,11 +47,11 @@ export default function Estado() {
       <Son en={7.9} tipo="viaje" />
       <Son en={9.4} tipo="llega" />
       <Capa desde={9.6} y={70} centrado><Boton veces={1} /></Capa>
-      <Son en={9.7} tipo="bien" />
+      <Son en={9.7} tipo="cuenta" />
       <Nota desde={10.4} fin={13.6} y={258}>React vuelve a dibujar el componente con el valor nuevo</Nota>
 
       <Nota desde={14.0} y={258}>sin estado, la pantalla se quedaría en <b>Clics: 0</b> para siempre</Nota>
-      <Son en={14.1} tipo="toque" />
+      <Son en={14.1} tipo="cierra" />
     </Escena>
   )
 }

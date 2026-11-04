@@ -11,12 +11,16 @@
 //   npm run revisa:animaciones            las tres, en oscuro
 //   npm run revisa:animaciones -- --tema claro
 //   npm run revisa:animaciones -- --n 1   solo la segunda
+//   npm run revisa:animaciones -- --n 1 --fotos 6
+//       guarda tambien 6 fotogramas repartidos en .fotos/, para mirarlos con los ojos:
+//       hay fallos (una frase que no se entiende, un dato que no cuadra con la leccion)
+//       que ninguna medicion ve.
 //
 // No necesita instalar nada: usa el Chrome o el Edge que ya tengas y el WebSocket que
 // trae Node. Sale con código 1 si encuentra algo, para poder usarlo en CI.
 
 import { spawn } from 'node:child_process'
-import { existsSync, mkdtempSync, rmSync } from 'node:fs'
+import { existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -191,6 +195,40 @@ function MIDE() {
 
 /* ---------- recorrido ---------- */
 
+// Mover la aguja desde fuera: hay que usar el setter nativo para que React se entere.
+function vaA(ev, t) {
+  return ev(`(() => {
+    const a = document.querySelector('.esc-aguja')
+    const set = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set
+    set.call(a, '${t}')
+    a.dispatchEvent(new Event('input', { bubbles: true }))
+  })()`)
+}
+
+// Fotogramas repartidos a lo largo de la escena, recortados al lienzo y al doble de
+// resolucion. Para lo que una medicion no puede juzgar: si se entiende.
+async function retrata(envia, sessionId, ev, nombre, cuantas) {
+  const carpeta = join(RAIZ, '.fotos', nombre.replace(/\//g, '__'))
+  mkdirSync(carpeta, { recursive: true })
+  const total = await ev("Number(document.querySelector('.esc-aguja').max)")
+  const caja = await ev(`(() => {
+    const m = document.querySelector('.esc-marco').getBoundingClientRect()
+    return { x: Math.round(m.x), y: Math.round(m.y), width: Math.round(m.width), height: Math.round(m.height) }
+  })()`)
+  const rutas = []
+  for (let i = 0; i < cuantas; i += 1) {
+    const t = +((total * (i + 0.5)) / cuantas).toFixed(2)
+    await vaA(ev, t)
+    await espera(160)
+    const { data } = await envia('Page.captureScreenshot', { format: 'png', clip: { ...caja, scale: 2 } }, sessionId)
+    const ruta = join(carpeta, `${String(t).padStart(5, '0')}s.png`)
+    writeFileSync(ruta, Buffer.from(data, 'base64'))
+    rutas.push(ruta)
+  }
+  return rutas
+}
+
+
 async function revisa(ev, nombre, tema, indice) {
   await ev(`location.href = ${JSON.stringify(pagina(indice, tema))}`)
   for (let i = 0; i < 60; i++) {
@@ -206,12 +244,7 @@ async function revisa(ev, nombre, tema, indice) {
 
   const encontrados = []
   for (let t = 0; t <= total; t = +(t + PASO).toFixed(2)) {
-    await ev(`(() => {
-      const a = document.querySelector('.esc-aguja')
-      const set = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set
-      set.call(a, '${t}')
-      a.dispatchEvent(new Event('input', { bubbles: true }))
-    })()`)
+    await vaA(ev, t)
     await espera(90)
     const { hallazgos, error } = await ev(`(${MIDE.toString()})()`)
     if (error) throw new Error(`${nombre}: ${error}`)
@@ -275,10 +308,15 @@ try {
   const cuales = soloUna === null ? nombres.map((_, i) => i) : [Number(soloUna)]
 
   console.log(`\nREVISOR DE ANIMACIONES · tema ${tema} · una medición cada ${PASO}s\n`)
+  const fotos = Number(opcion('fotos', 0))
   let total = 0
   for (const i of cuales) {
     const hallazgos = await revisa(ev, nombres[i], tema, i)
     total += hallazgos.length
+    if (fotos > 0) {
+      const rutas = await retrata(envia, sessionId, ev, nombres[i], fotos)
+      console.log(`  . ${rutas.length} fotogramas en ${dirname(rutas[0])}`)
+    }
     if (!hallazgos.length) {
       console.log(`  ✓ ${nombres[i]}`)
       continue
