@@ -3,7 +3,8 @@
 // Abre cada animación en un navegador de verdad, la recorre segundo a segundo con su
 // propia aguja y mide dónde cae cada texto. Avisa de dos cosas:
 //   · textos que se pisan entre sí
-//   · textos que se salen del lienzo
+//   · paneles con fondo (tablas, chips, cajas) que se solapan o que quedan pegados
+//   · lo que se sale del lienzo
 // Las dos son fallos que no se ven leyendo el código, porque las posiciones se calculan
 // a mano y basta con que una cuenta se desvíe nueve píxeles.
 //
@@ -125,22 +126,63 @@ function MIDE() {
     textos.push({ texto: texto.slice(0, 32), caja, padre })
   }
 
+  // Los paneles con fondo: una tabla o un recuadro de código tapan lo que tengan debajo
+  // aunque sus letras no lleguen a tocarse. El recuadro que señala una fila va encima a
+  // propósito, así que no cuenta.
+  const paneles = []
+  for (const el of lienzo.querySelectorAll('.esc-tabla, .esc-chip, .esc-caja')) {
+    if (viajando(el) || opacidad(el) < 0.9) continue
+    const caja = el.getBoundingClientRect()
+    if (caja.width < 1) continue
+    paneles.push({ texto: (el.textContent || '').trim().slice(0, 32) || '(sin texto)', caja, el })
+  }
+
   const hallazgos = []
   const margen = 1.5 * escala
-  for (const t of textos) {
-    const { caja } = t
-    if (caja.left < marco.left - margen || caja.right > marco.right + margen ||
-        caja.top < marco.top - margen || caja.bottom > marco.bottom + margen) {
-      hallazgos.push({ tipo: 'fuera', a: t.texto })
-    }
+  const dentro = (caja) => !(caja.left < marco.left - margen || caja.right > marco.right + margen ||
+    caja.top < marco.top - margen || caja.bottom > marco.bottom + margen)
+
+  for (const t of textos) if (!dentro(t.caja)) hallazgos.push({ tipo: 'fuera', a: t.texto })
+  for (const p of paneles) if (!dentro(p.caja)) hallazgos.push({ tipo: 'fuera', a: p.texto })
+
+  const seCruzan = (a, b) => {
+    const ancho = Math.min(a.right, b.right) - Math.max(a.left, b.left)
+    const alto = Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top)
+    return ancho > 2 * escala && alto > 2 * escala
   }
+  const emparentados = (a, b) => a === b || a.contains(b) || b.contains(a)
+
   for (let i = 0; i < textos.length; i++) {
     for (let j = i + 1; j < textos.length; j++) {
       const a = textos[i], b = textos[j]
-      if (a.padre === b.padre || a.padre.contains(b.padre) || b.padre.contains(a.padre)) continue
-      const ancho = Math.min(a.caja.right, b.caja.right) - Math.max(a.caja.left, b.caja.left)
-      const alto = Math.min(a.caja.bottom, b.caja.bottom) - Math.max(a.caja.top, b.caja.top)
-      if (ancho > 2 * escala && alto > 2 * escala) hallazgos.push({ tipo: 'pisa', a: a.texto, b: b.texto })
+      if (emparentados(a.padre, b.padre)) continue
+      if (seCruzan(a.caja, b.caja)) hallazgos.push({ tipo: 'pisa', a: a.texto, b: b.texto })
+    }
+  }
+  for (let i = 0; i < paneles.length; i++) {
+    for (let j = i + 1; j < paneles.length; j++) {
+      const a = paneles[i], b = paneles[j]
+      if (emparentados(a.el, b.el)) continue
+      if (seCruzan(a.caja, b.caja)) { hallazgos.push({ tipo: 'cajas', a: a.texto, b: b.texto }); continue }
+      // Sin llegar a solaparse, dos paneles pegados se leen como un error. Se mide la
+      // separación en el eje en el que están enfrentados.
+      const compartenX = Math.min(a.caja.right, b.caja.right) - Math.max(a.caja.left, b.caja.left) > 4 * escala
+      const compartenY = Math.min(a.caja.bottom, b.caja.bottom) - Math.max(a.caja.top, b.caja.top) > 4 * escala
+      const hueco = compartenX
+        ? Math.max(a.caja.top, b.caja.top) - Math.min(a.caja.bottom, b.caja.bottom)
+        : compartenY
+          ? Math.max(a.caja.left, b.caja.left) - Math.min(a.caja.right, b.caja.right)
+          : Infinity
+      if (hueco >= 0 && hueco < 6 * escala) {
+        hallazgos.push({ tipo: 'pegados', a: a.texto, b: b.texto, px: Math.round(hueco / escala) })
+      }
+    }
+  }
+  // Un texto suelto encima del panel de otra cosa.
+  for (const x of textos) {
+    for (const p of paneles) {
+      if (p.el.contains(x.padre) || x.padre.contains(p.el)) continue
+      if (seCruzan(x.caja, p.caja)) hallazgos.push({ tipo: 'pisa', a: x.texto, b: p.texto })
     }
   }
   return { hallazgos }
@@ -242,7 +284,9 @@ try {
     for (const h of hallazgos) {
       const cuando = h.desde === h.hasta ? `${h.desde}s` : `${h.desde}–${h.hasta}s`
       if (h.tipo === 'fuera') console.log(`      [${cuando}] se sale del lienzo: "${h.a}"`)
-      else console.log(`      [${cuando}] se pisan: "${h.a}" y "${h.b}"`)
+      else if (h.tipo === 'cajas') console.log(`      [${cuando}] se solapan las cajas de "${h.a}" y "${h.b}"`)
+      else if (h.tipo === 'pegados') console.log(`      [${cuando}] a ${h.px}px, casi pegados: "${h.a}" y "${h.b}"`)
+      else console.log(`      [${cuando}] se pisan los textos "${h.a}" y "${h.b}"`)
     }
   }
 

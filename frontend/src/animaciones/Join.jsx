@@ -11,13 +11,13 @@ import Escena, { Capa, Chip, Marca, Nota, Rotulo, Son, Tabla } from './Escena'
 const fila = (tablaY, i) => tablaY + 46 + i * 25
 
 const TABLAS_Y = 40
-const RESULTADO_Y = 162
+const RESULTADO_Y = 178
 const IZQ = 20
 const DER = 270
 
 export default function Join() {
   return (
-    <Escena duracion={15} etiqueta="JOIN: unir tablas">
+    <Escena duracion={15} alto={380} etiqueta="JOIN: unir tablas">
       <Son en={0.3} tipo="toque" />
       <Rotulo
         desde={0.2}
@@ -68,13 +68,13 @@ export default function Join() {
       <Marca desde={4.4} fin={7.0} x={DER} y={fila(TABLAS_Y, 0)} />
       <Marca desde={4.7} fin={7.0} x={IZQ} y={fila(TABLAS_Y, 0)} />
       <Son en={4.4} tipo="toque" />
-      <Nota desde={4.9} fin={6.4} y={137}>cliente_id <b>1</b> → el cliente <b>1</b></Nota>
+      <Nota desde={4.9} fin={6.4} y={150}>cliente_id <b>1</b> → el cliente <b>1</b></Nota>
       <Chip
         desde={5.4}
         centrado={false}
         x={DER + 10}
         y={fila(TABLAS_Y, 0) - 1}
-        dx={-130}
+        dx={-146}
         dy={fila(RESULTADO_Y, 0) - fila(TABLAS_Y, 0)}
         dur={1.3}
       >
@@ -87,13 +87,13 @@ export default function Join() {
       <Marca desde={7.4} fin={10.0} x={DER} y={fila(TABLAS_Y, 1)} />
       <Marca desde={7.7} fin={10.0} x={IZQ} y={fila(TABLAS_Y, 1)} />
       <Son en={7.4} tipo="toque" />
-      <Nota desde={7.9} fin={9.2} y={137}>cliente_id <b>2</b> → el cliente <b>2</b></Nota>
+      <Nota desde={7.9} fin={9.2} y={150}>cliente_id <b>2</b> → el cliente <b>2</b></Nota>
       <Chip
         desde={8.2}
         centrado={false}
         x={DER + 10}
         y={fila(TABLAS_Y, 1) - 1}
-        dx={-130}
+        dx={-146}
         dy={fila(RESULTADO_Y, 1) - fila(TABLAS_Y, 1)}
         dur={1.3}
       >
@@ -103,7 +103,7 @@ export default function Join() {
       <Son en={9.5} tipo="fila" />
 
       {/* La consulta que acaba de ocurrir, tal cual está escrita en la lección. */}
-      <Capa desde={10.4} fin={12.8} x={95} y={262} ancho={330}>
+      <Capa desde={10.4} fin={12.8} x={95} y={292} ancho={330}>
         <pre className="esc-chip" style={{ display: 'block', whiteSpace: 'pre', textAlign: 'left', fontSize: 10, lineHeight: 1.7, margin: 0 }}>
           <span className="verbo">SELECT</span> c.nombre, p.total{'\n'}
           <span className="verbo">FROM</span> pedidos p{'\n'}
@@ -112,7 +112,7 @@ export default function Join() {
       </Capa>
       <Son en={10.5} tipo="toque" />
 
-      <Nota desde={13.2} y={284}>un cliente sin pedidos <b>no aparecería</b></Nota>
+      <Nota desde={13.2} y={300}>un cliente sin pedidos <b>no aparecería</b></Nota>
       <Son en={13.3} tipo="bien" />
     </Escena>
   )
