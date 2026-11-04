@@ -51,7 +51,7 @@ def get_course(slug: str, user_id: str) -> dict | None:
     return _shape_course(result.data[0], completed_slugs(user_id))
 
 
-def get_lesson(lesson_id: str) -> dict | None:
+def get_lesson(lesson_id: str, user_id: str) -> dict | None:
     result = (
         get_supabase()
         .table("lessons")
@@ -68,7 +68,8 @@ def get_lesson(lesson_id: str) -> dict | None:
     course = row["modules"]["courses"]
 
     tree = get_supabase().table("courses").select(COURSE_TREE).eq("slug", course["slug"]).execute().data[0]
-    ordered = [les for m in _shape_course(tree, set())["modules"] for les in m["lessons"]]
+    modules = _shape_course(tree, completed_slugs(user_id))["modules"]
+    ordered = [les for m in modules for les in m["lessons"]]
     index = next(i for i, les in enumerate(ordered) if les["id"] == row["id"])
     nav = lambda les: {"id": les["id"], "title": les["title"]}  # noqa: E731
 
@@ -86,6 +87,18 @@ def get_lesson(lesson_id: str) -> dict | None:
         # Posición dentro del curso, para que el alumno sepa cuánto le falta.
         "position": index + 1,
         "lesson_count": len(ordered),
+        # El índice del curso: cada lección con su módulo y cuánto lleva hecho.
+        "index": [
+            {
+                "id": les["id"],
+                "title": les["title"],
+                "module_title": m["title"],
+                "exercise_count": les["exercise_count"],
+                "completed_count": les["completed_count"],
+            }
+            for m in modules
+            for les in m["lessons"]
+        ],
         "prev": nav(ordered[index - 1]) if index > 0 else None,
         "next": nav(ordered[index + 1]) if index < len(ordered) - 1 else None,
         "exercises": exercises,

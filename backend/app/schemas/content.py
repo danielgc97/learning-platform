@@ -38,6 +38,14 @@ class ExerciseOut(BaseModel):
     spec: dict[str, Any]
 
 
+class LessonIndexItem(BaseModel):
+    id: str
+    title: str
+    module_title: str
+    exercise_count: int
+    completed_count: int
+
+
 class LessonNav(BaseModel):
     id: str
     title: str
@@ -52,6 +60,7 @@ class LessonDetail(BaseModel):
     module_title: str
     position: int
     lesson_count: int
+    index: list[LessonIndexItem]
     prev: LessonNav | None = None
     next: LessonNav | None = None
     exercises: list[ExerciseOut]

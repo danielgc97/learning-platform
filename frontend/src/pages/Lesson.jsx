@@ -4,6 +4,7 @@ import { apiFetch } from '../api'
 import { useApi } from '../useApi'
 import Alert from '../components/Alert'
 import { buttonClass } from '../components/Button'
+import CourseDrawer from '../components/CourseDrawer'
 import { ArrowRightIcon, CheckIcon } from '../components/Icons'
 import Markdown from '../components/Markdown'
 import SqlExercise from '../SqlExercise'
@@ -46,6 +47,19 @@ export default function Lesson() {
   if (error) return <Alert tone="error">{error}</Alert>
 
   const lessonDone = data.exercises.length > 0 && data.exercises.every((e) => completed.has(e.slug))
+  // La marca de "completada" de esta lección sale del progreso local, no del índice
+  // que vino del servidor: así aparece en cuanto el alumno termina el último ejercicio.
+  const items = data.index.map((les) =>
+    les.id === data.id
+      ? { ...les, completed_count: data.exercises.filter((e) => completed.has(e.slug)).length }
+      : les,
+  )
+  const indexProps = {
+    items,
+    currentId: data.id,
+    courseSlug: data.course_slug,
+    courseTitle: data.course_title,
+  }
 
   return (
     <>
@@ -79,6 +93,8 @@ export default function Lesson() {
       <article className="mt-6 max-w-2xl">
         <Markdown>{data.content_md}</Markdown>
       </article>
+
+      <CourseDrawer {...indexProps} />
 
       {data.exercises.map((exercise) => {
         const props = {

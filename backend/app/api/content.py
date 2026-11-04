@@ -23,8 +23,8 @@ def course(slug: str, user_id: str = Depends(get_current_user_id)):
 
 
 @router.get("/lessons/{lesson_id}", response_model=LessonDetail)
-def lesson(lesson_id: UUID):
-    found = content.get_lesson(str(lesson_id))
+def lesson(lesson_id: UUID, user_id: str = Depends(get_current_user_id)):
+    found = content.get_lesson(str(lesson_id), user_id)
     if found is None:
         raise HTTPException(status_code=404, detail="Lección no encontrada.")
     return found
