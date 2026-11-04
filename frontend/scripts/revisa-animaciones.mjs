@@ -82,7 +82,8 @@ function conecta(url) {
     const p = pendientes.get(m.id)
     if (!p) return
     pendientes.delete(m.id)
-    m.error ? p.mal(new Error(m.error.message)) : p.ok(m.result)
+    if (m.error) p.mal(new Error(m.error.message))
+    else p.ok(m.result)
   }
   const envia = async (metodo, params = {}, sesion) => {
     await abierto

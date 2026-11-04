@@ -109,6 +109,8 @@ export default function Lesson() {
         </article>
       )}
 
+      <CourseDrawer {...indexProps} />
+
       {data.exercises.map((exercise) => {
         const props = {
           exercise,
