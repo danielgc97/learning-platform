@@ -8,6 +8,8 @@ Un componente que siempre muestra lo mismo sirve de poco. Lo útil es que reciba
 hace con **props** (de *properties*, propiedades): los datos que le pasas al usarlo, igual que los parámetros
 de una función de Python.
 
+<!-- animacion -->
+
 ## Práctica
 
 Agrega este componente en `src/App.jsx` (arriba de `App`) y úsalo dentro:

@@ -7,6 +7,8 @@ title: "Estado con useState: pantallas que reaccionan"
 Una pantalla real cambia: escribes en un campo, pulsas un botón, llegan datos. Para que React sepa **qué
 cambió y vuelva a dibujar**, guardas esos valores en el **estado**, con la función `useState`.
 
+<!-- animacion -->
+
 ## Práctica
 
 Agrega este componente a `src/App.jsx` y úsalo en `App` con `<Contador />`:

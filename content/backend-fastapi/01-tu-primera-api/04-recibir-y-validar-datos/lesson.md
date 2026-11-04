@@ -8,6 +8,8 @@ Para **crear** algo, el frontend envía los datos en el cuerpo (*body*) de una p
 En FastAPI describes cómo debe verse ese cuerpo con una clase de **Pydantic**, igual a las que viste en el
 curso de Python.
 
+<!-- animacion -->
+
 ## Práctica
 
 Agrega a `main.py`:

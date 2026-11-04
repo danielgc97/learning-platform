@@ -14,6 +14,10 @@ export const ANIMACIONES = {
   'sql-para-tu-base/claves-foraneas': lazy(() => import('./ClavesForaneas')),
   'sql-para-tu-base/join': lazy(() => import('./Join')),
   'sql-para-tu-base/left-join': lazy(() => import('./LeftJoin')),
+  'backend-fastapi/recibir-y-validar-datos': lazy(() => import('./Validar')),
+  'backend-fastapi/cors': lazy(() => import('./Cors')),
+  'frontend-react/props': lazy(() => import('./Props')),
+  'frontend-react/estado': lazy(() => import('./Estado')),
   'usuarios-y-seguridad/autenticacion-y-autorizacion': lazy(() => import('./Sesion')),
 }
 

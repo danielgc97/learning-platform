@@ -11,6 +11,8 @@ Un **origen** es la combinación de protocolo, dominio y puerto. Tu frontend en 
 `http://localhost:5173` y tu API en `http://127.0.0.1:8000`: son **orígenes distintos**. Por defecto, el
 navegador impide que una página llame a otro origen, a menos que ese otro origen lo **autorice**.
 
+<!-- animacion -->
+
 Quien autoriza es el backend. En FastAPI se hace con un *middleware*.
 
 ## Práctica
