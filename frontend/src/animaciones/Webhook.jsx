@@ -36,7 +36,7 @@ export default function Webhook() {
       <Son en={4.1} tipo="viaje" />
       <Flujo desde={4.4} x={140} y={147} dx={250} dur={1.7} tono="var(--ok)" />
       <Son en={6.0} tipo="llega" />
-      <Nota desde={6.4} fin={9.0} y={200}>tu backend recalcula la firma con el secreto que solo tenéis los dos</Nota>
+      <Nota desde={6.4} fin={9.0} y={200}>tu backend recalcula la firma con el secreto que solo ella y tú conocen</Nota>
       <Son en={6.5} tipo="bien" />
       <Chip desde={7.4} fin={9.0} y={240}>
         <span className="verbo">200</span>recibido · y le das acceso
