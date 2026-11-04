@@ -1,4 +1,4 @@
-import Escena, { Capa, Chip, Metrica, Nodo, Nota, Rotulo, Son } from './Escena'
+import Escena, { Capa, Metrica, Nodo, Nota, Rotulo, Son } from './Escena'
 
 // Lección: cómo funciona una app · API y endpoints.
 // Los cuatro verbos de la lección, sobre el mismo recurso: cuatro formas de pedirle

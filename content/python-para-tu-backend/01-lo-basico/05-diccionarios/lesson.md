@@ -7,6 +7,8 @@ title: "Diccionarios: un registro con nombre"
 Una lista guarda valores por posición. Pero un producto tiene varios datos con significado: nombre, precio,
 stock. Para eso están los **diccionarios**: pares de **clave** y **valor**, entre llaves.
 
+<!-- animacion -->
+
 ```python
 producto = {"nombre": "Mouse", "precio": 45.5, "stock": 10}
 ```

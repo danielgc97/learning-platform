@@ -7,6 +7,8 @@ title: "Pasos pequeños: plan primero, código después"
 El error más común al construir con IA es pedirlo todo de golpe: "hazme la app completa". La IA genera
 decenas de archivos, algo falla y no sabes dónde. Es mucho más efectivo trabajar en pasos pequeños.
 
+<!-- animacion -->
+
 Un ciclo que funciona:
 
 1. **Pide un plan** antes del código: "Antes de escribir nada, explícame en pasos qué vas a hacer para agregar el borrado de tareas".

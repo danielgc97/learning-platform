@@ -7,6 +7,8 @@ title: "Planes y acceso: quién puede usar qué"
 Cobrar no es solo recibir dinero: es **decidir qué puede hacer cada persona según lo que pagó**. Para eso
 necesitas guardar el estado de cada suscripción en tu propia base de datos. Una tabla sencilla:
 
+<!-- animacion -->
+
 ```sql
 create table public.suscripciones (
   id bigint generated always as identity primary key,

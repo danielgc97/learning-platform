@@ -1,4 +1,4 @@
-import Escena, { Capa, Marca, Nota, Rotulo, Son, Tabla } from './Escena'
+import Escena, { Marca, Nota, Rotulo, Son, Tabla } from './Escena'
 
 // Lección: SQL para tu base · GROUP BY.
 // Los datos salen del ejemplo de la lección: tres de Accesorios y dos de Cómputo.

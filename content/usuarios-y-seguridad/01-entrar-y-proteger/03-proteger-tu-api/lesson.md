@@ -7,6 +7,8 @@ title: "Proteger tu API con el token"
 Al iniciar sesión, Supabase entrega al frontend un **token de acceso**. Ahora hay que enviarlo en cada
 petición, y que tu backend lo valide.
 
+<!-- animacion -->
+
 ## Práctica en el frontend
 
 Cuando llames a tu API, agrega el token en la cabecera `Authorization`:

@@ -21,6 +21,8 @@ Se lee **de abajo hacia arriba**:
 
 Los errores del navegador funcionan igual: se ven en la consola de las herramientas de desarrollo (tecla F12).
 
+<!-- animacion -->
+
 Cuando le pidas ayuda a la IA:
 
 1. **Pega el error completo**, no un resumen.

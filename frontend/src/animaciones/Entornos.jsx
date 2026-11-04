@@ -1,4 +1,4 @@
-import Escena, { Capa, Chip, Nota, Rotulo, Son, Tabla } from './Escena'
+import Escena, { Chip, Nota, Rotulo, Son, Tabla } from './Escena'
 
 // Lección: herramientas del día a día · entornos virtuales y dependencias.
 // Un entorno virtual es una carpeta: invisible en la práctica, pero es justo lo que

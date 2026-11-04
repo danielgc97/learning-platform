@@ -10,6 +10,8 @@ LangGraph describe un agente como un **grafo**: un mapa de pasos conectados. Tie
 - **Nodos**: funciones de Python que reciben el estado y devuelven **solo lo que quieren cambiar**.
 - **Aristas**: las flechas que dicen qué nodo va después.
 
+<!-- animacion -->
+
 `START` y `END` son los puntos de entrada y salida. Así se ve el grafo más simple (un nodo):
 
 ```python

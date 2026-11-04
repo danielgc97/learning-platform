@@ -21,14 +21,21 @@ export const ANIMACIONES = {
   'backend-fastapi/recibir-y-validar-datos': lazy(() => import('./Validar')),
   'backend-fastapi/errores-y-codigos-de-estado': lazy(() => import('./Codigos')),
   'backend-fastapi/cors': lazy(() => import('./Cors')),
+  'python-para-tu-backend/diccionarios': lazy(() => import('./Diccionarios')),
   'frontend-react/props': lazy(() => import('./Props')),
   'frontend-react/estado': lazy(() => import('./Estado')),
   'frontend-react/traer-datos-de-tu-api': lazy(() => import('./TraerDatos')),
   'usuarios-y-seguridad/autenticacion-y-autorizacion': lazy(() => import('./Sesion')),
   'usuarios-y-seguridad/cada-usuario-ve-lo-suyo': lazy(() => import('./Rls')),
+  'usuarios-y-seguridad/proteger-tu-api': lazy(() => import('./ProtegerApi')),
   'cobrar-a-tus-usuarios/como-funciona-un-pago-online': lazy(() => import('./Pago')),
   'cobrar-a-tus-usuarios/webhooks': lazy(() => import('./Webhook')),
+  'cobrar-a-tus-usuarios/planes-y-acceso': lazy(() => import('./Planes')),
   'publica-tu-saas/que-cambia-al-publicar': lazy(() => import('./Publicar')),
+  'agentes-ia/estado-nodos-y-aristas': lazy(() => import('./Grafo')),
+  'agentes-ia/decisiones-y-ciclos': lazy(() => import('./Ciclos')),
+  'trabajar-con-ia/pasos-pequenos': lazy(() => import('./PasosPequenos')),
+  'trabajar-con-ia/cuando-algo-falla': lazy(() => import('./Errores')),
 }
 
 export const CLAVES = Object.keys(ANIMACIONES)

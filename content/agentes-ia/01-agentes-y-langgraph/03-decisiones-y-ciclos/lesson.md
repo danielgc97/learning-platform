@@ -7,6 +7,8 @@ title: "Decisiones y ciclos: aristas condicionales"
 Una arista fija siempre va al mismo lugar. Una **arista condicional** usa una función que mira el estado y
 **decide a cuál nodo ir**. Ahí es donde el grafo se vuelve un agente.
 
+<!-- animacion -->
+
 ```python
 class Borrador(TypedDict):
     texto: str
