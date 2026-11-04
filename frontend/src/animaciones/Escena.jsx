@@ -8,7 +8,7 @@ const RITMO = 1.35
 
 // Hasta cuánto puede crecer el lienzo sobre su tamaño de diseño. Como es vectorial,
 // al crecer se redibuja: no se pixela como le pasaría a un vídeo.
-const MAX_ESCALA = 1.55
+const MAX_ESCALA = 2
 
 const reloj = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`
 
