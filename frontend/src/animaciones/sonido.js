@@ -5,6 +5,17 @@
 
 let contexto
 
+// Ningún navegador deja sonar nada hasta que la persona toca la página. Si el sonido
+// está encendido y la animación arranca sola al entrar en pantalla, el contexto se
+// queda dormido y no suena nada: con el primer toque o tecla se despierta.
+function despierta() {
+  if (contexto && contexto.state === 'suspended') contexto.resume().catch(() => {})
+}
+if (typeof document !== 'undefined') {
+  document.addEventListener('pointerdown', despierta, { passive: true })
+  document.addEventListener('keydown', despierta, { passive: true })
+}
+
 function abre() {
   if (!contexto) {
     const AC = window.AudioContext || window.webkitAudioContext
