@@ -7,6 +7,8 @@ title: "Listas de diccionarios: filtrar y calcular"
 Cuando tu backend pida a la base de datos "todos los productos", recibirá una **lista de diccionarios**:
 una lista con un diccionario por cada fila.
 
+<!-- animacion -->
+
 ```python
 productos = [
     {"nombre": "Mouse", "precio": 45.5, "stock": 10},

@@ -8,6 +8,8 @@ Git guarda las versiones **en tu computadora**. **GitHub** es un sitio web que g
 Te da dos ventajas: un respaldo si pierdes tu equipo y la forma en que los servicios de publicación leerán tu
 código más adelante.
 
+<!-- animacion -->
+
 ## Práctica: sube tu proyecto
 
 1. Crea una cuenta en github.com.

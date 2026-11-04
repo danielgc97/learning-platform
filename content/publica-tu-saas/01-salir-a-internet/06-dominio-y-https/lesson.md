@@ -7,6 +7,8 @@ title: "Dominio propio y HTTPS"
 Una dirección como `tareas-web.vercel.app` sirve para pruebas. Un producto serio tiene su propio dominio
 (`mitareas.com`). Este paso es opcional para empezar, pero genera confianza.
 
+<!-- animacion -->
+
 ## Práctica
 
 1. **Compra el dominio** en un registrador (la empresa que los vende). Compara precios de renovación, no solo el del primer año.

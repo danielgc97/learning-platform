@@ -7,6 +7,8 @@ title: "JOIN + GROUP BY: tu primer reporte"
 Las preguntas de negocio suelen necesitar las dos herramientas que ya conoces: **unir** tablas para tener
 los datos juntos y **agrupar** para resumirlos. Por ejemplo: "¿cuánto ha gastado cada cliente?".
 
+<!-- animacion -->
+
 ```sql
 SELECT c.nombre,
        COUNT(*) AS pedidos,

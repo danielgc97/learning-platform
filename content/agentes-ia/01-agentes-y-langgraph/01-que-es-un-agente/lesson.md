@@ -10,6 +10,8 @@ los ejemplos de código los verás, pero no se ejecutan en la plataforma.
 
 Hay tres niveles, de menos a más autonomía:
 
+<!-- animacion -->
+
 | Nivel | Qué es | Ejemplo |
 |-------|--------|---------|
 | **Llamada simple** | Entra texto, sale texto | "Resume este correo" |

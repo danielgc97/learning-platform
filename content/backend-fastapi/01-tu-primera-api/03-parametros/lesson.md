@@ -7,6 +7,8 @@ title: "Datos en la URL: parámetros"
 Los endpoints necesitan recibir datos: "dame la tarea 3", "dame solo las pendientes". Hay dos formas de
 pedirlos desde la URL.
 
+<!-- animacion -->
+
 **Parámetro de ruta**: es parte de la dirección y identifica un elemento. Va entre llaves en la ruta.
 
 **Parámetro de consulta**: va después de un `?` y sirve para filtrar. Es opcional si le das un valor por defecto.
