@@ -10,6 +10,8 @@ avisa con un **webhook**: cuando ocurre algo (un pago aprobado, una suscripción
 
 Un webhook es un endpoint más, que en lugar del navegador recibe llamadas de la pasarela.
 
+<!-- animacion -->
+
 Pero cualquiera podría enviar un `POST` falso a esa dirección diciendo "Ana pagó". Por eso se aplican reglas:
 
 1. **Verifica la firma.** La pasarela firma cada mensaje con un secreto que solo ella y tú conocen. Tu backend recalcula la firma y rechaza lo que no coincida. Cada proveedor tiene su método exacto y una librería oficial para esto: úsala en vez de inventar el tuyo.

@@ -10,6 +10,7 @@ export const ANIMACIONES = {
   'como-funciona-una-app/api-y-endpoints': lazy(() => import('./ApiEndpoints')),
   'herramientas-del-dia-a-dia/git-guarda-versiones': lazy(() => import('./Git')),
   'herramientas-del-dia-a-dia/entornos-y-dependencias': lazy(() => import('./Entornos')),
+  'herramientas-del-dia-a-dia/variables-de-entorno': lazy(() => import('./Secretos')),
   'sql-para-tu-base/group-by': lazy(() => import('./GroupBy')),
   'sql-para-tu-base/claves-foraneas': lazy(() => import('./ClavesForaneas')),
   'sql-para-tu-base/join': lazy(() => import('./Join')),
@@ -19,6 +20,9 @@ export const ANIMACIONES = {
   'frontend-react/props': lazy(() => import('./Props')),
   'frontend-react/estado': lazy(() => import('./Estado')),
   'usuarios-y-seguridad/autenticacion-y-autorizacion': lazy(() => import('./Sesion')),
+  'usuarios-y-seguridad/cada-usuario-ve-lo-suyo': lazy(() => import('./Rls')),
+  'cobrar-a-tus-usuarios/como-funciona-un-pago-online': lazy(() => import('./Pago')),
+  'cobrar-a-tus-usuarios/webhooks': lazy(() => import('./Webhook')),
 }
 
 export const CLAVES = Object.keys(ANIMACIONES)

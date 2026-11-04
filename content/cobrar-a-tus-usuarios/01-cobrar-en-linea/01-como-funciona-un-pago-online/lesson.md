@@ -20,6 +20,8 @@ La regla más importante: **tú nunca manejas los datos de la tarjeta**. Guardar
 estrictas de seguridad. Por eso la pasarela ofrece una **página de pago alojada** (o campos seguros que ella
 controla), y tu app solo recibe el resultado.
 
+<!-- animacion -->
+
 El flujo típico:
 
 1. El cliente pulsa "Pagar" en tu app.

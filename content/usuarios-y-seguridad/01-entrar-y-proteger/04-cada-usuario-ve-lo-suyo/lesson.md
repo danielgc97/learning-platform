@@ -8,6 +8,8 @@ Para saber de quién es cada tarea, la tabla necesita una columna `user_id`. Ade
 Level Security*, seguridad por filas): reglas dentro de la propia base de datos sobre qué filas puede tocar
 cada persona. Es una segunda capa por si algo falla en tu código.
 
+<!-- animacion -->
+
 ## Práctica en el SQL Editor de Supabase
 
 1. Borra las tareas de prueba y agrega la columna:

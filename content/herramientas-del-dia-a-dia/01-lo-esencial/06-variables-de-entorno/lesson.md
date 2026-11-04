@@ -8,6 +8,8 @@ Tu app necesitará datos que no deben estar escritos en el código: la clave de 
 contraseña de un servicio, la dirección de tu API. Se guardan como **variables de entorno**: valores que
 viven fuera del código y que cambian según dónde corra la app (tu computadora o internet).
 
+<!-- animacion -->
+
 En desarrollo se guardan en un archivo llamado `.env`:
 
 ```
