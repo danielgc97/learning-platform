@@ -42,7 +42,7 @@ export default function SqlDemo() {
     <div className="lab-card overflow-hidden">
       <header className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 border-b border-line bg-panel px-5 py-2.5 text-sm font-semibold">
         <span>Pruébalo aquí · SQL</span>
-        <span className="text-xs font-normal">Sin cuenta y sin instalar nada</span>
+        <span className="text-[13px] font-normal">Sin cuenta y sin instalar nada</span>
       </header>
 
       <div className="grid lg:grid-cols-2">
@@ -64,21 +64,21 @@ export default function SqlDemo() {
             {running ? 'Ejecutando…' : 'Ejecutar'}
           </Button>
           {!ranOnce && (
-            <p className="mt-2 text-xs leading-5 text-muted">
+            <p className="mt-2 text-[13px] leading-5 text-muted">
               La primera vez tarda unos segundos: se está cargando una base de datos entera dentro de tu navegador.
             </p>
           )}
         </div>
 
         <div className="min-h-40 border-t border-line bg-panel p-5 lg:border-t-0 lg:border-l">
-          <p className="mb-3 text-xs font-semibold text-muted">Resultado</p>
+          <p className="mb-3 text-[13px] font-semibold text-muted">Resultado</p>
           {error && (
             <>
               <p className="text-sm leading-6">
                 La consulta tiene un error. Esto es lo que responde la base de datos, tal cual:
               </p>
-              <pre className="mt-2 overflow-x-auto font-mono text-xs leading-5 text-bad">{error}</pre>
-              <p className="mt-3 text-xs leading-5 text-muted">
+              <pre className="mt-2 overflow-x-auto font-mono text-[13px] leading-5 text-bad">{error}</pre>
+              <p className="mt-3 text-[13px] leading-5 text-muted">
                 Dentro de las lecciones, la IA te explica qué significa y te da una pista, sin resolverte el
                 ejercicio.
               </p>

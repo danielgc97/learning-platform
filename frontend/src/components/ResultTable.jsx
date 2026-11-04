@@ -5,7 +5,7 @@ export default function ResultTable({ columns, rows }) {
         <thead className="bg-panel text-left">
           <tr>
             {columns.map((c) => (
-              <th key={c} className="px-3 py-2 text-xs font-medium">{c}</th>
+              <th key={c} className="px-3 py-2 text-[13px] font-medium">{c}</th>
             ))}
           </tr>
         </thead>

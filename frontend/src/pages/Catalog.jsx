@@ -13,7 +13,7 @@ function CourseCard({ course }) {
     >
       <h3 className="font-display text-xl leading-tight">{course.title}</h3>
       <p className="mt-1 line-clamp-2 flex-1 text-sm leading-6 text-muted">{course.description}</p>
-      <p className="mt-4 text-xs font-semibold text-muted">
+      <p className="mt-4 text-[13px] font-semibold text-muted tabular-nums">
         {course.lesson_count} {course.lesson_count === 1 ? 'lección' : 'lecciones'} ·{' '}
         {empty ? 'En preparación' : `${course.completed_count}/${course.exercise_count} completados`}
       </p>
@@ -56,7 +56,7 @@ export default function Catalog() {
                   <h2 className="font-display text-3xl leading-none">{phase.title}</h2>
                   {phase.text && <p className="mt-1 text-sm text-muted">{phase.text}</p>}
                 </div>
-                <span className="text-sm font-semibold text-muted">{total === 0 ? 'En preparación' : `${done}/${total}`}</span>
+                <span className="text-sm font-semibold text-muted tabular-nums">{total === 0 ? 'En preparación' : `${done}/${total}`}</span>
               </header>
               <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 {phase.items.map((course) => (

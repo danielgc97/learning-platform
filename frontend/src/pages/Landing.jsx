@@ -35,7 +35,7 @@ export default function Landing() {
           <div className="lg:col-span-7">
             {/* Un titular es un título, no una frase: cabe en dos líneas y el resto va debajo. */}
             <h1 className="font-display text-[clamp(2.75rem,1.5rem+5.5vw,7rem)] leading-[0.95]">Construye tu propio SaaS</h1>
-            <p className="mt-6 max-w-xl text-lg leading-8 text-muted">
+            <p className="mt-6 max-w-xl text-lg leading-8">
               Una aplicación web que otros usan y pagan, hecha por ti con la IA como copiloto. Aprendes lo
               mínimo indispensable de cada pieza, practicas aquí mismo sin instalar nada y recibes pistas
               cuando te atasques.
@@ -58,8 +58,10 @@ export default function Landing() {
       </section>
 
       <section className="pb-16">
-        <h2 className="font-display text-3xl">De la idea al producto publicado</h2>
-        <p className="mt-2 text-muted">Así se construyó esta misma plataforma.</p>
+        <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+          <h2 className="font-display text-3xl">De la idea al producto publicado</h2>
+          <p className="text-muted">Así se construyó esta misma plataforma.</p>
+        </div>
         <ol className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {JOURNEY.map((step, i) => (
             <li key={step.title} className="lab-card lab-reveal flex flex-col p-5">

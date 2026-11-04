@@ -8,9 +8,9 @@ const money = (n) => `$${n.toFixed(4)}`
 function Stat({ label, value, hint }) {
   return (
     <div className="lab-card p-4">
-      <p className="text-xs font-semibold text-muted">{label}</p>
+      <p className="text-[13px] font-semibold text-muted">{label}</p>
       <p className="mt-2 text-3xl leading-none font-semibold">{value}</p>
-      {hint && <p className="mt-1.5 text-xs text-muted">{hint}</p>}
+      {hint && <p className="mt-1.5 text-[13px] text-muted">{hint}</p>}
     </div>
   )
 }
@@ -22,15 +22,15 @@ function CostByDay({ days }) {
     <ul className="space-y-2">
       {days.map((d) => (
         <li key={d.day} className="flex items-center gap-3 text-sm">
-          <span className="w-24 shrink-0 font-mono text-xs text-muted tabular-nums">{d.day}</span>
+          <span className="w-24 shrink-0 text-[13px] text-muted tabular-nums">{d.day}</span>
           <span className="h-3 min-w-24 flex-1 overflow-hidden rounded-sm bg-panel">
             <span
               className="block h-full rounded-r-sm bg-chart-fill"
               style={{ width: `${max > 0 ? Math.max(2, (d.cost_usd / max) * 100) : 0}%` }}
             />
           </span>
-          <span className="w-20 shrink-0 text-right font-mono text-xs tabular-nums">{money(d.cost_usd)}</span>
-          <span className="w-16 shrink-0 text-right text-xs text-muted tabular-nums">
+          <span className="w-20 shrink-0 text-right text-[13px] tabular-nums">{money(d.cost_usd)}</span>
+          <span className="w-16 shrink-0 text-right text-[13px] text-muted tabular-nums">
             {d.calls} {d.calls === 1 ? 'ayuda' : 'ayudas'}
           </span>
         </li>
@@ -39,7 +39,7 @@ function CostByDay({ days }) {
   )
 }
 
-const th = 'px-3 py-2 text-left text-xs font-semibold text-muted'
+const th = 'px-3 py-2 text-left text-[13px] font-semibold text-muted'
 const td = 'border-t border-line px-3 py-2'
 
 export default function Admin() {
@@ -91,7 +91,7 @@ export default function Admin() {
               <tbody>
                 {hardest.map((e) => (
                   <tr key={e.slug}>
-                    <td className={`${td} font-mono text-xs`}>{e.slug}</td>
+                    <td className={`${td} font-mono text-[13px]`}>{e.slug}</td>
                     <td className={`${td} text-right tabular-nums`}>{e.failed}</td>
                     <td className={`${td} text-right tabular-nums`}>{e.attempts}</td>
                   </tr>

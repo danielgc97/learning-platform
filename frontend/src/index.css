@@ -185,6 +185,19 @@
     @apply bg-paper font-sans text-ink antialiased;
   }
 
+  /* Evita que la última línea de un párrafo quede con una sola palabra, y reparte
+     mejor los títulos de dos líneas. El navegador que no lo soporte los deja igual. */
+  p,
+  li {
+    text-wrap: pretty;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
   a {
     @apply font-medium text-accent underline decoration-1 underline-offset-4;
   }

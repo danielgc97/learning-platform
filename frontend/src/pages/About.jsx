@@ -16,10 +16,8 @@ export default function About() {
 
   return (
     <>
-      <span className="inline-flex tint-2 rounded-full px-3.5 py-1 text-sm font-semibold">Nosotros</span>
-      <h1 className="mt-5 max-w-3xl font-display text-4xl leading-tight sm:text-5xl">
-        Que cualquiera pueda construir{' '}
-        su propio SaaS.
+      <h1 className="max-w-3xl font-display text-4xl leading-tight sm:text-5xl">
+        Que cualquiera pueda construir su propio SaaS.
       </h1>
 
       <div className="mt-12 grid gap-10 lg:grid-cols-12">

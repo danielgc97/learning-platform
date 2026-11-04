@@ -101,7 +101,7 @@ export function AuthForm() {
   }
 
   return (
-    <form onSubmit={submit} noValidate className="lab-card w-full max-w-xs p-4">
+    <form onSubmit={submit} noValidate className="w-full max-w-xs">
       <div className="flex gap-2">
         <Button variant={isSignup ? 'primary' : 'secondary'} aria-pressed={isSignup} onClick={() => changeMode('signup')} className="min-h-11 flex-1 px-2">
           Crear cuenta
