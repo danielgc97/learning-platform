@@ -192,6 +192,18 @@
     text-wrap: pretty;
   }
 
+  /* El texto de las lecciones va justificado, como en un libro. Sin partir palabras el
+     justificado abre huecos enormes entre ellas, así que lleva guiones automáticos; el
+     idioma sale del lang="es" de la página. En el móvil no: con renglones de pocas
+     palabras los huecos molestan más de lo que ayuda el borde recto. */
+  @media (width >= 40rem) {
+    .lab-prose p,
+    .lab-prose li {
+      text-align: justify;
+      hyphens: auto;
+    }
+  }
+
   h1,
   h2,
   h3 {

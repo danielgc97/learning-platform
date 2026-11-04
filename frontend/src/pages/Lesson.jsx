@@ -90,7 +90,7 @@ export default function Lesson() {
         />
       </div>
 
-      <article className="mt-6 max-w-2xl">
+      <article className="lab-prose mt-6 max-w-2xl">
         <Markdown>{data.content_md}</Markdown>
       </article>
 
