@@ -53,6 +53,7 @@ class LessonNav(BaseModel):
 
 class LessonDetail(BaseModel):
     id: str
+    slug: str
     title: str
     content_md: str
     course_slug: str

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { apiFetch } from '../api'
 import { useApi } from '../useApi'
@@ -7,9 +7,12 @@ import { buttonClass } from '../components/Button'
 import CourseDrawer from '../components/CourseDrawer'
 import { ArrowRightIcon, CheckIcon } from '../components/Icons'
 import Markdown from '../components/Markdown'
+import { animacionDe } from '../animaciones'
 import SqlExercise from '../SqlExercise'
 import PythonExercise from '../PythonExercise'
 import QuizExercise from '../QuizExercise'
+
+const MARCA_ANIMACION = '<!-- animacion -->'
 
 function NavCard({ lesson, direction }) {
   const isNext = direction === 'next'
@@ -54,6 +57,9 @@ export default function Lesson() {
       ? { ...les, completed_count: data.exercises.filter((e) => completed.has(e.slug)).length }
       : les,
   )
+  // La lección decide dónde va su animación con <!-- animacion -->; sin marca, va al final.
+  const Animacion = animacionDe(data.course_slug, data.slug)
+  const [antes, despues] = data.content_md.split(MARCA_ANIMACION)
   const indexProps = {
     items,
     currentId: data.id,
@@ -91,8 +97,18 @@ export default function Lesson() {
       </div>
 
       <article className="lab-prose mt-6 max-w-2xl">
-        <Markdown>{data.content_md}</Markdown>
+        <Markdown>{antes}</Markdown>
       </article>
+      {Animacion && (
+        <div className="max-w-2xl">
+          <Suspense fallback={null}><Animacion /></Suspense>
+        </div>
+      )}
+      {despues && (
+        <article className="lab-prose max-w-2xl">
+          <Markdown>{despues}</Markdown>
+        </article>
+      )}
 
       <CourseDrawer {...indexProps} />
 

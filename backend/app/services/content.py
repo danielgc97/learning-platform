@@ -56,7 +56,7 @@ def get_lesson(lesson_id: str, user_id: str) -> dict | None:
         get_supabase()
         .table("lessons")
         .select(
-            "id,title,content_md,modules(title,courses(slug,title)),"
+            "id,slug,title,content_md,modules(title,courses(slug,title)),"
             "exercises(slug,type,statement,starter_code,spec,position)"
         )
         .eq("id", lesson_id)
@@ -79,6 +79,7 @@ def get_lesson(lesson_id: str, user_id: str) -> dict | None:
 
     return {
         "id": row["id"],
+        "slug": row["slug"],
         "title": row["title"],
         "content_md": row["content_md"],
         "course_slug": course["slug"],

@@ -1,0 +1,275 @@
+/* El motor de las animaciones de las lecciones.
+
+   Todo el movimiento es función de --seek, el segundo en el que está la escena: cada
+   animación calcula su retraso como (su tiempo) - (el tiempo actual). Para saltar a un
+   punto basta con cambiar --seek y reiniciar; para pausar, congelar las animaciones.
+   Es el mismo planteamiento que un render por fotogramas, así que esto se porta a
+   Remotion sin reescribir la animación.
+
+   Los colores salen de los tokens de la app, así que la escena sigue el tema claro
+   y el oscuro sin tener que duplicar nada. */
+
+.esc-marco {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.esc-lienzo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: top left;
+}
+
+.esc-lienzo.quieta,
+.esc-lienzo.quieta * {
+  animation-play-state: paused !important;
+}
+
+/* Entrada y salida de cada elemento. El desplazamiento va en `translate`, no en
+   `transform`, para no borrar el translateX(-50%) con el que se centran las piezas. */
+.esc-capa {
+  position: absolute;
+  opacity: 0;
+  animation:
+    esc-entra .5s var(--ease-lab) calc(var(--in) - var(--seek)) both,
+    esc-sale .35s var(--ease-lab) calc(var(--out, 999s) - var(--seek)) forwards;
+}
+@keyframes esc-entra { from { opacity: 0; translate: 0 10px } to { opacity: 1; translate: 0 0 } }
+@keyframes esc-sale { from { opacity: 1 } to { opacity: 0; translate: 0 -8px } }
+
+/* ---------- texto ---------- */
+
+.esc-ojo {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 14px;
+}
+.esc-titular {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 1.04;
+  letter-spacing: -.03em;
+  margin: 0;
+}
+.esc-titular .verde { color: var(--ok); }
+.esc-bajada {
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.8;
+  margin: 18px 0 0;
+}
+.esc-bajada b { color: var(--ink); font-weight: 400; }
+
+.esc-nota {
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+  margin: 0;
+}
+.esc-nota b { color: var(--ok); font-weight: 400; }
+.esc-nota .mal { color: var(--bad); }
+
+.esc-rotulo {
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 8px;
+  line-height: 1;
+}
+
+/* ---------- piezas del diagrama ---------- */
+
+.esc-nodo { text-align: center; width: 150px; }
+.esc-caja {
+  width: 68px;
+  height: 68px;
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: var(--panel);
+  animation: esc-late 1s var(--ease-lab) calc(var(--late, 999s) - var(--seek)) both;
+}
+@keyframes esc-late {
+  0% { border-color: var(--line) }
+  25% { border-color: var(--tono, var(--accent)) }
+  100% { border-color: var(--line) }
+}
+.esc-sub { font-size: 11px; color: var(--muted); margin: 8px 0 0; line-height: 1.2; }
+
+.esc-rejilla { display: grid; grid-template-columns: repeat(3, 4px); gap: 5px; }
+.esc-rejilla i { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
+.esc-lineas { display: grid; gap: 5px; }
+.esc-lineas i { display: block; height: 2px; border-radius: 2px; background: var(--c2-ink); }
+.esc-lineas i:nth-child(1) { width: 26px }
+.esc-lineas i:nth-child(2) { width: 17px }
+.esc-lineas i:nth-child(3) { width: 22px }
+
+.esc-riel {
+  position: absolute;
+  background: repeating-linear-gradient(to right, var(--line) 0 4px, transparent 4px 9px);
+  height: 1px;
+}
+.esc-riel.vertical {
+  width: 1px;
+  height: auto;
+  background: repeating-linear-gradient(to bottom, var(--line) 0 4px, transparent 4px 9px);
+}
+
+/* Los puntos que recorren el riel: lo único que se mueve mientras se lee. */
+.esc-flujo i {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--tono, var(--accent));
+  animation: esc-fluye var(--dur, 1.3s) linear calc(var(--in) + var(--d, 0s) - var(--seek)) both;
+}
+@keyframes esc-fluye {
+  0% { translate: 0 0; opacity: 0 }
+  14% { opacity: 1 }
+  82% { opacity: 1 }
+  100% { translate: var(--dx, 0px) var(--dy, 0px); opacity: 0 }
+}
+
+/* El paquete de datos viaja él mismo de una pieza a la siguiente: un solo objeto en
+   movimiento se sigue con la vista mucho mejor que varios apareciendo y apagándose. */
+.esc-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--panel);
+  padding: 6px 10px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  white-space: nowrap;
+}
+.esc-chip .verbo { color: var(--ok); }
+.esc-chip .dato { color: var(--muted); }
+.esc-chip.mal .verbo { color: var(--bad); }
+.esc-chip.viajero {
+  animation: esc-viaja var(--dur, 1.4s) var(--ease-lab) calc(var(--in) - var(--seek)) both;
+}
+@keyframes esc-viaja {
+  0% { translate: 0 0; opacity: 0 }
+  16% { opacity: 1 }
+  76% { opacity: 1 }
+  100% { translate: var(--dx, 0px) var(--dy, 0px); opacity: 0 }
+}
+
+/* El botón que se hunde al pulsarlo. */
+.esc-pulso { animation: esc-pulsa .5s var(--ease-lab) calc(var(--in) - var(--seek)) both; }
+@keyframes esc-pulsa {
+  0%, 100% { transform: none }
+  35% { transform: scale(.94); filter: brightness(1.15) }
+}
+
+/* ---------- tablas (para el JOIN) ---------- */
+
+.esc-tabla { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--panel); }
+.esc-tabla .cabecera,
+.esc-tabla .fila {
+  display: grid;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  line-height: 1;
+}
+.esc-tabla .cabecera {
+  color: var(--muted);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  font-size: 9px;
+  border-bottom: 1px solid var(--line);
+}
+.esc-tabla .cabecera span,
+.esc-tabla .fila span { padding: 7px 9px; }
+.esc-tabla .fila + .fila { border-top: 1px solid var(--line); }
+.esc-tabla .fila.marcada { background: color-mix(in srgb, var(--accent) 12%, transparent); }
+.esc-titulo-tabla {
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 7px;
+}
+
+/* ---------- el dato del final ---------- */
+
+@property --esc-n { syntax: '<integer>'; inherits: false; initial-value: 0 }
+
+.esc-metrica { text-align: center; }
+.esc-cifra {
+  font-family: var(--font-mono, monospace);
+  font-weight: 500;
+  font-size: 46px;
+  letter-spacing: -.02em;
+  color: var(--ok);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  margin: 0;
+  counter-reset: esc-n var(--esc-n);
+  animation: esc-cuenta 1.2s linear calc(var(--in) + .2s - var(--seek)) both;
+}
+.esc-cifra::before { content: counter(esc-n); }
+.esc-cifra small { font-size: 20px; color: var(--muted); margin-left: 5px; }
+@keyframes esc-cuenta { from { --esc-n: 0 } to { --esc-n: var(--hasta) } }
+.esc-pie-metrica {
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 11px 0 0;
+}
+
+/* ---------- controles ---------- */
+
+.esc-tiempo { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--panel); }
+.esc-tiempo i {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--accent);
+  animation: esc-avanza var(--total) linear calc(0s - var(--seek)) both;
+}
+@keyframes esc-avanza { from { width: 0 } to { width: 100% } }
+
+.esc-mandos {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  font-size: .8125rem;
+  color: var(--muted);
+}
+.esc-mandos button {
+  font: inherit;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 5px 12px;
+  cursor: pointer;
+}
+.esc-mandos button:hover { border-color: var(--muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  .esc-lienzo, .esc-lienzo * { animation-play-state: paused !important; }
+}

@@ -14,6 +14,8 @@ Parece instantáneo, pero tu clic hizo un viaje de ida y vuelta:
 5. La base confirma y el backend arma una **respuesta**.
 6. La respuesta vuelve al navegador y el frontend actualiza la pantalla.
 
+<!-- animacion -->
+
 Las peticiones y respuestas siguen un idioma común llamado **HTTP**. Y los datos suelen viajar en
 **JSON**, un formato de texto que tanto las personas como los programas pueden leer:
 

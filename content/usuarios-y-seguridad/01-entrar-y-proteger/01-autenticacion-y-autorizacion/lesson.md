@@ -22,6 +22,8 @@ El flujo de tu producto será este:
 3. Tu backend **valida el token** y descubre qué usuario es.
 4. Tu backend entrega solo los datos de ese usuario.
 
+<!-- animacion -->
+
 No programarás tú el manejo de contraseñas: guardarlas de forma segura es delicado y Supabase ya lo hace
 bien. Tu trabajo es usar el token y aplicar la autorización.
 

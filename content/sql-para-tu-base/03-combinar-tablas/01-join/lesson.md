@@ -7,6 +7,8 @@ title: "JOIN: unir tablas"
 Separar los datos en tablas evita repetirlos, pero a la hora de mostrarlos quieres verlos juntos: el nombre
 del cliente al lado de cada pedido. Eso hace `JOIN`.
 
+<!-- animacion -->
+
 Con estas dos tablas:
 
 **clientes**
