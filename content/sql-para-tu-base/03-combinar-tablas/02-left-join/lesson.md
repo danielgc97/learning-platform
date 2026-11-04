@@ -10,6 +10,8 @@ descarta a los clientes sin pedidos. Para eso existe `LEFT JOIN`.
 `LEFT JOIN` conserva **todas las filas de la tabla de la izquierda** (la del `FROM`), tengan pareja o no.
 Cuando no hay pareja, las columnas de la otra tabla quedan vacías (`NULL`).
 
+<!-- animacion -->
+
 ```sql
 SELECT c.nombre, p.total
 FROM clientes c

@@ -8,6 +8,8 @@ En la lección anterior, `SUM` te dio **un solo número** para toda la tabla. Pe
 otras cosas: "¿cuánto vendí **en cada categoría**?". Para eso existe `GROUP BY`: junta las filas que
 comparten un valor y calcula una respuesta por cada grupo.
 
+<!-- animacion -->
+
 ```sql
 SELECT categoria, COUNT(*) AS productos
 FROM ventas

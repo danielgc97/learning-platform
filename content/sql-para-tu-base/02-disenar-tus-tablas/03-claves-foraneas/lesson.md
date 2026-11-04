@@ -14,6 +14,8 @@ Imagina que guardas los pedidos así, repitiendo los datos del cliente en cada u
 Si Ana cambia de correo, tendrías que corregirlo en cada fila. La solución es guardar al cliente **una sola
 vez**, en su propia tabla, y que cada pedido apunte a él con su `id`.
 
+<!-- animacion -->
+
 **clientes**
 
 | id | nombre | correo |

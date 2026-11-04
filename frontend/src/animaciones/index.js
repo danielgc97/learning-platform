@@ -10,7 +10,10 @@ export const ANIMACIONES = {
   'como-funciona-una-app/api-y-endpoints': lazy(() => import('./ApiEndpoints')),
   'herramientas-del-dia-a-dia/git-guarda-versiones': lazy(() => import('./Git')),
   'herramientas-del-dia-a-dia/entornos-y-dependencias': lazy(() => import('./Entornos')),
+  'sql-para-tu-base/group-by': lazy(() => import('./GroupBy')),
+  'sql-para-tu-base/claves-foraneas': lazy(() => import('./ClavesForaneas')),
   'sql-para-tu-base/join': lazy(() => import('./Join')),
+  'sql-para-tu-base/left-join': lazy(() => import('./LeftJoin')),
   'usuarios-y-seguridad/autenticacion-y-autorizacion': lazy(() => import('./Sesion')),
 }
 
