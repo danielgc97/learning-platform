@@ -15,6 +15,8 @@ Casi toda aplicación web se puede entender como un restaurante con tres zonas:
 El cliente nunca entra a la cocina ni a la despensa. Pide algo en el comedor, la cocina lo prepara con
 lo que hay en la despensa y el plato vuelve a la mesa.
 
+<!-- animacion -->
+
 ¿Por qué separar las capas? Por seguridad y orden. Si la contraseña de tu base de datos estuviera en la
 pantalla, cualquiera podría verla. Por eso las reglas importantes (quién puede ver qué, cuánto cuesta
 algo) viven en el backend, no en el navegador.

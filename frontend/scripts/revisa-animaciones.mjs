@@ -267,7 +267,9 @@ try {
   }
 
   const tema = opcion('tema', 'oscuro')
-  const nombres = ['el-viaje-de-un-clic', 'join', 'autenticacion-y-autorizacion']
+  await ev(`location.href = ${JSON.stringify(pagina(0, tema))}`)
+  for (let i = 0; i < 40 && !(await ev('!!window.__ANIMACIONES').catch(() => false)); i++) await espera(250)
+  const nombres = await ev('window.__ANIMACIONES')
 
   const soloUna = opcion('n', null)
   const cuales = soloUna === null ? nombres.map((_, i) => i) : [Number(soloUna)]

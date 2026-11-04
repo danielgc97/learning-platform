@@ -8,6 +8,8 @@ Tu proyecto usará paquetes de otras personas (por ejemplo, FastAPI). A esos paq
 **dependencias**. Para que las de un proyecto no se mezclen con las de otro, cada proyecto de Python tiene su
 propio **entorno virtual**: una carpeta con su propia copia de Python y de sus paquetes.
 
+<!-- animacion -->
+
 ## Práctica en Python
 
 Dentro de tu carpeta de proyecto:

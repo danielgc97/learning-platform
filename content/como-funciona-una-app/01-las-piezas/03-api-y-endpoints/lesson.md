@@ -10,6 +10,8 @@ restaurante: no ves la cocina, pero sabes qué puedes pedir.
 
 Cada plato de la carta es un **endpoint**: una dirección más un verbo que indica la acción.
 
+<!-- animacion -->
+
 | Verbo | Dirección | Qué hace |
 |-------|-----------|----------|
 | `GET` | `/tareas` | Pide la lista de tareas |

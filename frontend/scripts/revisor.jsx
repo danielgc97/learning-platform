@@ -1,23 +1,20 @@
-// Página que usa solo el comprobador de animaciones: muestra una animación a pantalla
-// entera para medirla. No entra en la app: `npm run build` solo empaqueta index.html.
+// Página que usa solo el comprobador de animaciones: muestra una a pantalla entera para
+// medirla. No entra en la app: `npm run build` solo empaqueta index.html.
+import { Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
-import ViajeDeUnClic from '../src/animaciones/ViajeDeUnClic'
-import Join from '../src/animaciones/Join'
-import Sesion from '../src/animaciones/Sesion'
+import { ANIMACIONES, CLAVES } from '../src/animaciones/index.js'
 import '../src/index.css'
 
-export const ANIMACIONES = [
-  ['el-viaje-de-un-clic', ViajeDeUnClic],
-  ['join', Join],
-  ['autenticacion-y-autorizacion', Sesion],
-]
+// El comprobador lee de aquí cuántas hay y cómo se llaman.
+window.__ANIMACIONES = CLAVES
 
 const cual = Number(new URLSearchParams(location.search).get('n') || 0)
-const [nombre, Animacion] = ANIMACIONES[cual]
-document.title = nombre
+const clave = CLAVES[cual]
+const Animacion = ANIMACIONES[clave]
+document.title = clave
 
 createRoot(document.getElementById('root')).render(
   <main className="mx-auto w-full max-w-6xl px-5 py-6">
-    <Animacion />
+    <Suspense fallback={null}><Animacion /></Suspense>
   </main>,
 )

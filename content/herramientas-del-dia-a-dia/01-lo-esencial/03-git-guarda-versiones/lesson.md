@@ -10,6 +10,8 @@ guardas una versión (un **commit**). Si más adelante rompes algo, puedes volve
 Esto es especialmente importante cuando trabajas con IA: si te cambia veinte archivos y todo deja de
 funcionar, vuelves al último commit y pruebas otra vez.
 
+<!-- animacion -->
+
 La primera vez, dile a Git quién eres (con tus datos reales):
 
 ```
